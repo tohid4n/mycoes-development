@@ -1,0 +1,162 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+    <div>
+            <ul class="flex items-center justify-evenly text-center sticky w-full overflow-hidden bg-white h-12 border-b border-gray-300">
+                <li><a href="{% url 'services:home' %}" class="font-Nunito font-normal text-lg text-black  hover:text-black pb-1 underline underline-offset-8">Full-stack</a></li>
+                <li><a href="{% url 'services:front-end' %}" class="font-Nunito font-normal text-lg text-black  hover:text-black">Front-end</a></li>
+                <li><a href="{% url 'services:back-end' %}" class="font-Nunito font-normal text-lg text-slate-700  hover:text-black">Back-end</a></li>
+            </ul>
+    </div>
+
+
+<div class="m-6 lg:flex lg:justify-between lg:m-12">
+
+    <!--This carousel-->
+    
+    <div class="carousel lg:scroll-effect w-full h-96 lg:w-2/5 overflow-hidden">
+        <div class="carousel-slide">
+          <img src="image1.jpg" alt="Image 1">
+        </div>
+        <div class="carousel-slide">
+          <img src="image2.jpg" alt="Image 2">
+        </div>
+        <div class="carousel-slide">
+          <img src="image3.jpg" alt="Image 3">
+        </div>
+      
+        <!-- Carousel Indicators -->
+        <div class="carousel-indicators absolute bottom-2 left-1/2 transform -translate-x-1/2">
+          <button class="carousel-indicator-dot"></button>
+          <button class="carousel-indicator-dot"></button>
+          <button class="carousel-indicator-dot"></button>
+        </div>
+      
+        <!-- Carousel Navigation -->
+        <button class="carousel-nav-prev absolute top-1/2 left-2 transform -translate-y-1/2">
+            <span class="material-symbols-outlined h-8">arrow_back_ios</span>
+        </button>
+        <button class="carousel-nav-next absolute top-1/2 right-2 transform -translate-y-1/2">
+            <span class="material-symbols-outlined">arrow_forward_ios</span>
+        </button>
+      </div>
+
+
+
+
+<!--This part of text content-->
+
+<div class="w-full mt-12 lg:mt-0 lg:w-2/4 lg:ml-auto lg:overflow-y-auto">
+    <div class="">
+    <p class="font-Montserrat font-semibold text-2xl sm:text-3xl">Full Website Development with Django</p>
+    </div>
+
+    <div class="m-6">
+        <p class="font-Montserrat font-normal text-xl">Our Service focuses on building fully functional websites for clients using the Django framework. We strive to create dynamic websites that meet all client requirements and deliver exceptional performance. Here are the key aspects of our Service,<</p>
+    </div>
+
+
+
+    <!--Expertise-->
+
+    <div class="m-6">
+        <p class="font-Karla font-semibold text-xl sm:text-2xl">Expertise</p>
+        <div class="m-4">
+            <p class="font-WorkSans font-semibold text-xl">Responsive Design</p>
+            <div>
+                <p class="font-Karla font-normal text-lg">We ensure that the websites we develop are responsive, adapting seamlessly to different devices and screen sizes.</p>
+            </div>
+        </div>
+        <div class="m-4">
+            <p class="font-WorkSans font-semibold text-xl">Performance Optimization</p>
+            <div>
+                <p class="font-Karla font-normal text-lg">We optimize the website's speed and performance, ensuring smooth navigation and quick loading times.</p>
+            </div>
+        </div>
+        <div class="m-4">
+            <p class="font-WorkSans font-semibold text-xl">User Interface (UI) and User Experience (UX)</p>
+            <div>
+                <p class="font-Karla font-normal text-lg">We prioritize creating visually appealing and user-friendly interfaces to enhance the overall user experience.</p>
+            </div>
+        </div>
+        <div class="m-4">
+            <p class="font-WorkSans font-semibold text-xl">Django Security</p>
+            <div>
+                <p class="font-Karla font-normal text-lg">We implement robust security measures to protect the website and user data, following industry best practices.</p>
+            </div>
+        </div>
+        <div class="m-4">
+            <p class="font-WorkSans font-semibold text-xl">Revisions</p>
+            <div>
+                <p class="font-Karla font-normal text-lg">We offer multiple revision rounds to accommodate any changes or enhancements requested by the client. We strive to provide the desired outcome and meet the client's expectations.</p>
+            </div>
+        </div>    
+        <div class="m-4">
+            <p class="font-WorkSans font-semibold text-xl">Fast Delivery</p>
+            <div>
+                <p class="font-Karla font-normal text-lg">Timely Delivery, We prioritize delivering projects within the agreed-upon timeline, ensuring efficient turnaround times.</p>
+        </div>    
+    </div>
+
+    
+    <!--Development Technologies-->
+
+    <div class="mt-8">
+        <p class="font-Karla font-semibold text-xl sm:text-2xl">Development Technologies</p>
+        <div class="m-4">
+            <p class="font-WorkSans font-semibold text-xl">Default Technologies</p>
+            <div>
+                <p class="font-Karla font-normal text-lg">Our default technology stack includes Django, Python, MySQL, HTML, CSS, and JavaScript.</p>
+            </div>
+        </div>
+        <div class="m-4">
+            <p class="font-WorkSans font-semibold text-xl">Additional Choices</p>
+            <div>
+                <p class="font-Karla font-normal text-lg">Clients have the flexibility to choose additional technologies such as React.js, Bootstrap, Tailwind CSS, and PostgreSQL based on their specific preferences and project requirements.</p>
+            </div>  
+    </div>
+
+
+     <!--Code Delivery and Status Updates-->
+
+     <div class="mt-8">
+        <p class="font-Karla font-semibold text-xl sm:text-2xl">Code Delivery and Status Updates</p>
+        <div class="m-4">
+            <p class="font-WorkSans font-semibold text-xl">Code Delivery</p>
+            <div>
+                <p class="font-Karla font-normal text-lg">Upon completion of the project, we provide the client with a zip file containing all the necessary code files.</p>
+            </div>
+        </div>
+        <div class="m-4">
+            <p class="font-WorkSans font-semibold text-xl">Status Navigation</p>
+            <div>
+                <p class="font-Karla font-normal text-lg">Clients can easily track the progress of their project through the "Status" navigation. They will receive timely updates on the development process and can view the current status of their website.</p>
+            </div>  
+    </div>
+
+
+    <!--Pricing-->
+
+    <div class="mt-8">
+        <p class="font-Karla font-semibold text-xl sm:text-2xl">Pricing</p>
+        <div class="m-4">
+            <p class="font-Montserrat font-normal text-xl">Our Service focuses on building fully functional websites for clients using the Django framework. We strive to create dynamic websites that meet all client requirements and deliver exceptional performance. Here are the key aspects of our Service,</p>
+        </div>
+    </div>
+
+
+    <!--Button a-tags-->
+    <div class="flex -ml-8 justify-center xsm:justify-start xsm:-ml-8 mt-10">
+        <a href="" class="text-white font-WorkSans bg-black hover:bg-slate-900 focus:ring-4 focus:ring-slate-700 font-semibold rounded-lg text-2xl px-10 py-3.5 ml-4 mb-2  dark:bg-black dark:hover:bg-slate-900 focus:outline-none dark:focus:ring-black">Make an offer</a>
+    </div>
+    
+
+
+</div>
+</div>
+
+
+{% endblock content %}

@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base {
+    .word-spacing {
+        word-spacing: 1rem;
+    }
+    .input_classes {
+        @apply bg-gray-50 border border-gray-900 text-gray-900 text-lg font-Karla font-normal rounded focus:ring-black focus:border-black  block w-full p-2.5  dark:border-gray-900 dark:placeholder-gray-400 dark:focus:ring-black dark:focus:border-black
+    }
+    .input_classes_chat_message {
+        @apply font-Karla block w-full align-middle rounded-xl py-4 px-4 h-auto text-gray-900 focus:outline-none border-none bg-gray-50 resize-none
+    }      
+}
+

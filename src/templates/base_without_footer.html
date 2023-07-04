@@ -1,0 +1,89 @@
+{% load static %}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{% static 'css/output.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Karla:wght@300;400;600&family=Libre+Franklin:wght@100;400;800&family=Montserrat:wght@100;200;300;400;500;600;700&family=Nunito:wght@200;400;500&family=Work+Sans:wght@400;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    
+    <title>{% block head_title %}Mycoes{% endblock head_title %}</title>
+    {% block extra_head %}
+    {% endblock %}
+
+</head>
+
+<body>
+
+    <!-- Navbar -->
+
+        {% if messages %}
+        <div>
+    {% for message in messages %}
+      <div class="alert alert-{{ message.tags }} bg-opacity-90 font-Karla font-normal text-lg p-4 mb-4 text-white
+                  {% if message.tags == 'success' %}
+                    bg-green-500
+                  {% elif message.tags == 'info' %}
+                    bg-blue-500
+                  {% elif message.tags == 'warning' %}
+                    bg-yellow-500
+                  {% elif message.tags == 'error' %}
+                    bg-red-500
+                  {% endif %}
+                  ">
+        {{ message }}
+        <button type="button" class="close text-white ml-4" onclick="this.parentElement.remove()" aria-label="Close">
+          <span aria-hidden="true" class="text-lg">&times;</span>
+        </button>
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
+
+<header>
+  <div class="flex items-center justify-between fixed top-0 w-screen overflow-hidden bg-white z-0 h-12 border-b border-gray-300">
+      <a href="/" class="font-Montserrat font-semibold text-2xl mx-4">MyCoes</a>
+
+      <button aria-controls="primary-navaigation" aria-expanded="false" class="mobile-nav-toggle"><span class="sr-only">Menu</span></button>
+      <nav>
+          <ul id="primary-navaigation" data-visible="false" aria-label="Primary" role="list" class="primary-navaigation">
+              <li><a href="/" class="font-Nunito font-normal text-lg text-slate-700  hover:text-black">Home</a></li>
+              <li><a href="{% url 'services:home' %}" class="font-Nunito font-normal text-lg text-slate-700  hover:text-black">Services</a></li>
+              <li><a href="" class="font-Nunito font-normal text-lg text-slate-700  hover:text-black">Status</a></li>
+              <li><a href="{% url 'chat:chat-page' %}" class="font-Nunito font-normal  text-lg text-slate-700  hover:text-black">Chat</a></li>
+              <li><a href="" class="font-Nunito font-normal  text-lg text-slate-700  hover:text-black">Profile</a></li>     
+          </ul>
+      </nav>
+  
+  </div>
+</header>
+
+<!-- Main Body Content -->
+
+<main>
+    <div>
+        {% block content %}
+
+        {% endblock content %}
+    </div>
+</main>
+
+
+
+    <script src="{% static 'js/nav.js' %}" type="text/javascript"></script>
+    <script src="{% static 'js/carousel.js' %}"></script>
+
+</body>
+
+</html>

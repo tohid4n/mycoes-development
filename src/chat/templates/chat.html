@@ -1,0 +1,71 @@
+{% extends 'base_without_footer.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="mt-10 mb-20 flex justify-center overflow-x-hidden">
+    <div class="w-full sm:w-7/12 m-4">
+
+        <div class="flex flex-col">
+            {% for chat in chats %}
+            <div class="flex items-end justify-end mb-6">
+                <div class="max-w-xl">
+                    <div class="rounded-full bg-black border border-gray-900">
+                    <p class="font-Montserrat font-normal text-white text-sm exsm:text-lg  py-3 px-6">{{ chat.message }}</p>
+                    </div>
+                    <p class="font-Karla font-normal text-sm p-2">{{ chat.timestamp }}</p>
+                </div>
+            </div>
+        
+            {% endfor %}
+        </div>
+
+        <div class="flex flex-col">
+            {% for admin_message in admin_messages %}
+            <div class="flex items-start mb-6">
+                <div class="max-w-xl">
+                    <div class="rounded-full bg-white border-2 border-gray-900">
+                        <p class="font-Montserrat font-normal text-black text-sm exsm:text-lg p-3">{{ admin_message.message }}</p>
+                    </div>
+                    <p class="font-Karla font-normal text-sm p-2">{{ admin_message.timestamp }}</p>
+                </div>
+            </div>
+        
+            {% endfor %}
+        </div>
+
+
+    </div>
+</div>
+
+
+
+
+    <div class="flex justify-center items-center fixed bottom-0 left-0 right-0 w-full bg-white pb-10 pt-4">
+        <div class="w-4/5 sm:w-9/12 lg:w-7/12">
+          <div class="border border-gray-900 rounded-lg bg-gray-50">
+            <form method="POST" class="flex">
+              {% csrf_token %}
+              {% for field in chat_form %}
+              <div class="w-full">
+                {{ field }}
+              </div>
+              {% endfor %}
+              <button type="submit" class="p-2">
+                <svg class="w-6 h-6 transform rotate-90" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                </svg>
+              </button>              
+            </form>
+          </div>
+        </div>
+      </div>
+
+ 
+
+{% endblock content %}
+
+
+
+
+   

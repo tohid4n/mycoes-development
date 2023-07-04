@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!--Hero first show-->
+
+<div class="flex flex-col justify-center items-center m-0 p-0 bg-black h-screen w-screen">
+  <div class="text-center">
+  <h1 class="font-Montserrat font-extralight text-5xl sm:text-6xl md:text-7xl xl:text-8xl text-white p-4">Your Web Development Solution</h1>
+</div>
+<div class="flex justify-center text-center">
+  <p class="text-white text-4xl font-Montserrat font-semibold p-4 lg:w-4/6 lg:text-5xl max-exsm:text-2xl">"Nothing matters when a website fulfills the requirements effectively, regardless of the development technologies used."</p>
+</div>
+
+<div class="flex justify-center text-center m-4">
+  <a href="{% url 'chat:chat-page' %}" class="py-2.5 px-10 mr-2 mb-2 text-2xl font-medium text-white bg-transparent rounded-full border border-white hover:bg-white hover:text-black focus:z-10">Chat with me</a>
+</div>
+
+</div>
+
+
+<!--content why mycoes-->
+
+<div class="text-center mt-8">
+   <h2 class="font-WorkSans text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light p-4">Why Mycoes is the Solution for Your Web Development Needs?</h2>
+   <div class="flex justify-center">
+    <p class="font-Nunito font-normal text-2xl p-4 sm:w-5/6">We use popular Development technologies for frontend HTML, CSS, Js, Bootstrap, and React-js, and for backend Python, Django, my-SQL, and restful APIs. A website built using these technologies is valuable for growing business, providing a secure, customizable, and scalable platform to showcase products or services, attract new customers, and increase revenue, we respond fast, and we use the test pay method.</p>
+   </div>
+</div>
+
+
+<!--services cards-->
+
+<div class="bg-slate-100 text-center mt-8 p-8">
+  <p class="font-Montserrat font-semibold text-4xl sm:text-6xl">Services</p>
+  <div class="flex flex-wrap justify-evenly items-center mt-8 mb-8">
+          <a href="{% url 'services:home' %}" class="w-5/6 sm:w-2/5 md:w-c43 lg:w-c28 text-left m-8 xsm:m-12 smMd:m-16 sm:m-6 hover:cursor-pointer">
+              <img class="max-w-full object-cover w-full rounded" src="{% static 'img/services/fullstackse.png' %}" alt="">
+              <p class="font-WorkSans font-semibold text-2xl exsm:text-3xl md:text-4xl text-white p-4 -mt-36">Fullstack Development</p>
+          </a>
+
+          <a href="{% url 'services:front-end' %}" class="w-5/6 sm:w-2/5 md:w-c43 lg:w-c28  text-left m-8 xsm:m-12 smMd:m-16 sm:m-6 hover:cursor-pointer">
+              <img class="max-w-full object-cover w-full rounded" src="{% static 'img/services/frontendse.png' %}" alt="">
+              <p class="font-WorkSans font-semibold text-2xl exsm:text-3xl md:text-4xl text-white p-4 -mt-36">Front End Development</p>
+          </a>
+
+          <a href="{% url 'services:back-end' %}" class="w-5/6 sm:w-2/5 md:w-c43 lg:w-c28 text-left m-8 xsm:m-12 smMd:m-16 sm:m-6 hover:cursor-pointer">
+              <img class="max-w-full object-cover w-full rounded" src="{% static 'img/services/backendse.png' %}" alt="">
+              <p class="font-WorkSans font-semibold text-2xl exsm:text-3xl md:text-4xl text-white p-4 -mt-36">Back-end Development</p>
+          </a>
+  </div>
+</div>
+</div>
+
+
+<!--price tag line-->
+
+<div class="text-center m-14">
+<p class="font-Montserrat font-medium text-3xl sm:text-5xl">We don't set prices for our services. We accept offers.</p>
+</div>
+
+
+<!--offer  tag line & btn-->
+
+<div class="bg-slate-50">
+  <div class="m-8">
+      <p class="font-WorkSans font-semibold text-4xl text-black pt-8 sm:text-5xl md:text-6xl">A website that is fast & smooth, and Secure gives the best user-experiences for your business.</p>
+      <br />
+      <div class="pb-8">
+          <a class="py-2.5 px-10 mr-2 mb-2 text-xl sm:text-2xl font-Montserrat font-extralight text-black bg-transparent rounded-full border border-black hover:bg-black hover:text-white hover:font-normal hover:cursor-pointer focus:z-10">Make an offer now</a>
+      </div>
+    </div>
+</div>
+
+{% endblock content %}
+  
