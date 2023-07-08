@@ -15,7 +15,7 @@
     </div>
 
 
-<form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+<form class="signup" id="signup_form" method="POST" action="{% url 'account_signup' %}">
   {% csrf_token %}
 
   <div class="mb-4">

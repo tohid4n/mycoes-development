@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="mt-10">
+<div>
+    <div class="text-center">
+        <p class="font-WorkSans font-normal text-4xl sm:text-5xl m-4">Rejected</p>
+    </div>
+
+    <div class="flex justify-center text-center w-full sm:w-5/6 m-auto">
+    <div class="w-full mb-10">
+        <div>
+            <p class="font-Nunito font-normal text-xl sm:text-2xl m-4">Thank you for submitting your offer for web development services. We have carefully reviewed your proposal, and unfortunately, we regret to inform you that your offer has been rejected for this particular project. We appreciate the effort and time you put into preparing your offer. Although your offer did not meet our specific project requirements we have. we want to assure you that we value your time and effort. We hope to have the opportunity to collaborate with you on future projects. If you have any concerns you can chat with me.</p>
+        </div>
+        <div class="flex justify-center text-center mt-8">
+            <a href="{% url 'chat:chat-page' %}" class="py-2.5 px-10 mr-2 mb-2 text-2xl font-medium text-black bg-transparent rounded-full border border-black hover:bg-black hover:text-white focus:z-10">Chat with me</a>
+        </div>
+    </div>
+    </div>
+</div>
+</div>
+
+{% endblock content %}

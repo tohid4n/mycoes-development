@@ -6,10 +6,10 @@
         <nav>
             <ul id="primary-navaigation" data-visible="false" aria-label="Primary" role="list" class="primary-navaigation">
                 <li><a href="/" class="font-Nunito font-normal text-lg text-slate-700  hover:text-black">Home</a></li>
-                <li><a href="{% url 'services:home' %}" class="font-Nunito font-normal text-lg text-slate-700  hover:text-black">Services</a></li>
-                <li><a href="" class="font-Nunito font-normal text-lg text-slate-700  hover:text-black">Status</a></li>
+                <li><a href="{% url 'services:home' %}" class="font-Nunito font-normal text-lg text-slate-700 hover:text-black">Services</a></li>
+                <li><a href="{% url 'status:home' %}" class="font-Nunito font-normal text-lg text-slate-700  hover:text-black">Status</a></li>
                 <li><a href="{% url 'chat:chat-page' %}" class="font-Nunito font-normal  text-lg text-slate-700  hover:text-black">Chat</a></li>
-                <li><a href="" class="font-Nunito font-normal  text-lg text-slate-700  hover:text-black">Profile</a></li>     
+                <li><a href="{% url 'user_profile:profile-home' %}" class="font-Nunito font-normal  text-lg text-slate-700  hover:text-black">Profile</a></li>     
             </ul>
         </nav>
     

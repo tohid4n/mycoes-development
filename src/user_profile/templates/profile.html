@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div>
+
+
+    <div>
+        <p class="font-Montserrat text-2xl font-medium sm:text-3xl m-4 sm:m-6">Account & Profile</p>
+    </div>
+
+    <div>
+    <div class="xsm:flex xsm:justify-start gap-10 ml-8">
+        <div>
+            <p class="font-Karla font-normal text-xl sm:text-2xl pb-2 xsm:m-4">{{ user.email }}</p>
+        </div>
+        <div>
+           {% include 'account/logout.html' %} 
+        </div>
+    </div>
+    </div>
+
+<hr class="m-4">
+
+    <div>
+        <p class="font-Montserrat text-2xl font-medium sm:text-3xl m-4 sm:m-6">Billing</p>
+    </div>
+        <div>
+        <div class="xsm:flex gap-8 xsm:justify-start ml-8">
+            
+            {% block profile-navs %}
+            {% endblock profile-navs %}
+        </div>
+        </div>
+
+        <hr class="m-4">
+
+        <div>
+        {% block profile-body %}
+            
+        {% endblock profile-body %}
+        </div> 
+
+</div>
+
+
+{% endblock content %}

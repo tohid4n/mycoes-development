@@ -1,0 +1,68 @@
+{% extends 'profile.html' %}
+
+
+
+
+{% block profile-navs %}
+                
+<div>
+    <a class="font-Karla font-normal text-xl sm:text-2xl pb-4 xsm:m-4 underline underline-offset-8" href="{% url 'user_profile:profile-home' %}">Orders</a>
+</div>
+<div class="mt-1">
+   <a class="font-Karla font-normal text-xl sm:text-2xl xsm:m-4"  href="{% url 'user_profile:transactions' %}">Transactions</a>
+</div>
+
+{% endblock profile-navs %}
+
+
+
+
+{% block profile-body %}
+            
+<div class="mt-8 text-center">
+    <p class="font-WorkSans font-normal text-4xl xsm:text-5xl m-4">Your Orders</p>
+</div>
+
+            
+<div class="flex justify-center items-center m-8 overflow-x-auto">
+    
+    <div class="w-full border border-slate-500">
+        <div class="flex flex-col overflow-x-auto">
+            <table class="w-full text-sm text-left">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                    <tr>
+                        <th scope="col" class="px-6 py-3">
+                            Project Name
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Date
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Download
+                        </th>
+                    </tr>
+                    
+                </thead>
+                
+        
+                <tbody>
+                    <tr class="bg-white border-t border-slate-500">
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                            Apple MacBook Pro 17" Hello world
+                        </th>
+                        <td class="px-6 py-4">
+                            12/7/2004
+                        </td>
+                        <td class="px-6 py-4">
+                            <a href="" class="underline text-blue-500">Download</a>  
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+{% endblock profile-body %}
+                

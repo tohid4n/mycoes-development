@@ -1,0 +1,27 @@
+{% extends 'profile.html' %}
+
+
+
+
+{% block profile-navs %}
+                
+<div>
+    <a class="font-Karla font-normal text-xl sm:text-2xl pb-4 xsm:m-4 underline underline-offset-8" href="{% url 'user_profile:no-orders' %}">Orders</a>
+</div>
+
+
+{% endblock profile-navs %}
+
+{% block profile-body %}
+            
+<div class="mt-20">
+    <div class="text-center">
+        <p class="font-WorkSans font-normal text-4xl xsm:text-5xl m-4">You haven't made any offers yet.</p>
+    </div>
+    <div class="flex justify-center text-center mt-4 mb-8">
+        <a href="{% url 'services:home' %}" class="py-2.5 px-10 m-4 text-2xl font-medium text-black bg-transparent rounded-full border border-black hover:bg-black hover:text-white focus:z-10">View Services</a>
+    </div>
+</div>
+
+{% endblock profile-body %}
+                

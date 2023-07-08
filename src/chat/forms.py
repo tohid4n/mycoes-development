@@ -1,6 +1,5 @@
 from django import forms
 
-
 class ChatForm(forms.Form):
     message = forms.CharField(
         widget=forms.Textarea(
@@ -11,6 +10,7 @@ class ChatForm(forms.Form):
             }
         )
     )
+    
 class AdminMessageForm(forms.Form):
     message = forms.CharField(
         widget=forms.Textarea(
