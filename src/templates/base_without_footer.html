@@ -51,23 +51,8 @@
   </div>
 {% endif %}
 
-<header>
-  <div class="flex items-center justify-between fixed top-0 w-screen overflow-hidden bg-white z-0 h-12 border-b border-gray-300">
-      <a href="/" class="font-Montserrat font-semibold text-2xl mx-4">MyCoes</a>
+{% include 'base/navbar.html' %}
 
-      <button aria-controls="primary-navaigation" aria-expanded="false" class="mobile-nav-toggle"><span class="sr-only">Menu</span></button>
-      <nav>
-          <ul id="primary-navaigation" data-visible="false" aria-label="Primary" role="list" class="primary-navaigation">
-              <li><a href="/" class="font-Nunito font-normal text-lg text-slate-700  hover:text-black">Home</a></li>
-              <li><a href="{% url 'services:home' %}" class="font-Nunito font-normal text-lg text-slate-700  hover:text-black">Services</a></li>
-              <li><a href="" class="font-Nunito font-normal text-lg text-slate-700  hover:text-black">Status</a></li>
-              <li><a href="{% url 'chat:chat-page' %}" class="font-Nunito font-normal  text-lg text-slate-700  hover:text-black">Chat</a></li>
-              <li><a href="{% url 'user_profile:profile-home' %}" class="font-Nunito font-normal  text-lg text-slate-700  hover:text-black">Profile</a></li>     
-          </ul>
-      </nav>
-  
-  </div>
-</header>
 
 <!-- Main Body Content -->
 

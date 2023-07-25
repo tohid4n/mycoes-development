@@ -22,7 +22,7 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 
 #EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
@@ -41,9 +41,12 @@ INSTALLED_APPS = [
     
     'rest_framework',
     'django.contrib.sites',
+    
+    #django-allauth
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
     
     
 
@@ -52,10 +55,11 @@ INSTALLED_APPS = [
     'services',
     'orders',
     'status',
-    'chat',
-    'user_profile'
+    'user_profile',
+    'feedback'
     
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -88,7 +92,10 @@ TEMPLATES = [
     },
 ]
 
+
+
 WSGI_APPLICATION = 'website.wsgi.application'
+
 
 
 # Database
@@ -136,12 +143,31 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
+#SOCIALACCOUNT_QUERY_EMAIL = True
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 LOGIN_REDIRECT_URL = '/'
 SITE_ID = 1
+
+
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': ['email'],
+        'AUTH_PARAMS': {'access_type': 'online'},
+        'OAUTH_PKCE_ENABLED': True,
+        
+        'APP': {
+            'client_id': env('CLIENT_ID'),
+            'secret': env('SECRET'),
+        }
+    }
+}
+
+
+
 
 
 # Internationalization
@@ -204,4 +230,29 @@ if DEBUG is False:
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "console": {
+            "level": "DEBUG",
+            "class": "logging.StreamHandler",
+        },
+    },
+    "root": {
+        "handlers": ["console"],
+        "level": "DEBUG",
+    },
+}
+
+
+#stripe
+
+STRIPE_PUBLIC_KEY=env("STRIPE_PUBLIC_KEY")
+STRIPE_SECRET_KEY=env("STRIPE_SECRET_KEY")
+STRIPE_WEBHOOK_SECRET=env("STRIPE_WEBHOOK_SECRET")
+
 

@@ -1,6 +1,7 @@
 html,
 body {
   height: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -12,121 +13,88 @@ main {
   flex-grow: 1;
 }
 
-
-
-
 /* Navbar */
 
-.mobile-nav-toggle  {
-    display: none;
+.mobile-nav-toggle {
+  display: none;
 }
 
 .primary-navaigation {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    list-style: none;
-    padding: 0;
-    padding-right: 1.5rem;
-    margin: 0;
-    left: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  list-style: none;
+  padding: 0;
+  padding-right: 1.5rem;
+  margin: 0;
+  left: 1rem;
 }
 
 .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-  }
-
-
-
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
 
 @media (max-width: 35em) {
-    .primary-navaigation {
-        gap: 2em;
-        position: fixed;
-        inset: 0 0 0 0;
-        background: #F1F1F1;
-        flex-direction: column;
-        align-items: center;
-        padding: 8rem 2rem;
+  .primary-navaigation {
+    gap: 2em;
+    position: fixed;
+    inset: 0 0 0 0;
+    background: #F1F1F1;
+    flex-direction: column;
+    align-items: center;
+    padding: 8rem 2rem;
+    transform: translateX(100%);
+    transition: transform 350ms step-start;
+    z-index: 20; /* Added z-index to ensure it appears on top */
+  }
 
-        transform: translateX(100%);
-        transition: transform 350ms step-start;
-    }
+  .primary-navaigation[data-visible="true"] {
+    transform: translateX(0%);
+  }
 
-    .primary-navaigation[data-visible="true"] {
-        transform: translateX(0%);
-    }
+  .mobile-nav-toggle {
+    display: block;
+    position: absolute;
+    z-index: 20; /* Increased z-index to appear on top of other elements */
+    background-image: url('/static/icons/Sort.svg');
+    background-color: transparent;
+    width: 2rem;
+    aspect-ratio: 1;
+    background-repeat: no-repeat;
+    border: 0;
+    right: 1rem;
+    top: 1.3rem;
+    align-items: center;
+  }
 
-    .mobile-nav-toggle {
-        display: block;
-        position: absolute;
-        z-index: 999;
-        background-image: url('/static/icons/Sort.svg');
-        background-color: transparent;
-        width: 2rem;
-        aspect-ratio: 1;
-        background-repeat: no-repeat;
-        border: 0;
-        right: 1rem;
-        top: 1.3rem;
-        align-items: center;
-    }
+  .mobile-nav-toggle[aria-expanded="true"] {
+    background-image: url('/static/icons/close_round.svg');
+    z-index: 30;
+  }
+}
 
-    .mobile-nav-toggle[aria-expanded="true"] {
-        background-image: url('/static/icons/close_round.svg');
-    }
+
+/* Hero background image */
+
+.dark-bg-custom {
+  background-image: url('/static/img/hero/black.jpg');
 }
 
 
 
-/* Carousel */
-
-  .carousel-slide {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
-  }
-  
-  .carousel-slide:not(.hidden) {
-    opacity: 1;
-  }
-  
-  .carousel-indicators {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-  }
-  
-  .carousel-indicator-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background-color: #999;
-    transition: background-color 0.3s ease-in-out;
-  }
-  
-  .carousel-indicator-dot.active {
-    background-color: black;
-  }  
-   
-
-  /* carousel scroll */
+/* Scroll effect */
 
 .carousel {
     position: relative;
-    z-index: 99;
+    z-index: 1;
 }
 
 .scroll-effect {
@@ -138,7 +106,9 @@ main {
 @media only screen and (max-width: 600px) {
   .carousel {
     position: none;
-    z-index: 99;
-}
-} 
+    z-index: 1;
+}} 
  
+
+
+

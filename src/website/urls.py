@@ -23,7 +23,7 @@ urlpatterns = [
     path('services/', include('services.urls')),
     path('status/', include('status.urls')),
     path('accounts/', include('allauth.urls')),
-    path('chat/', include('chat.urls')),
     path('order/', include('orders.urls')),
     path('profile/', include('user_profile.urls')),
+    path('feedback/', include('feedback.urls')),
 ]

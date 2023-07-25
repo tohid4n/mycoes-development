@@ -1,0 +1,72 @@
+{% extends 'base_without_footer.html' %}
+{% load static %}
+{% block head_title %} | Feedback{% endblock head_title %}
+
+{% block content %}
+
+
+<div class="flex justify-center m-4">
+<div class="w-full sm:w-10/12">
+
+  <div class="mt-16 text-center">
+    <p class="font-WorkSans font-semibold text-4xl">Feedback</p>
+  </div>
+
+
+  
+      <div class="w-full mt-5 mb-32  overflow-y-hidden">
+          {% for feedback in object_list %}
+          <div class="mb-8">
+            <hr class="border-0.5 border-black">
+            <div>
+              <div class="m-4"><p>{{ feedback.timestamp|date }}</p></div>
+              <div class="m-4"><p class="font-WorkSans font-normal text-xl">"{{ feedback.text_feedback }}"</p></div>
+            </div>
+            <hr class="border-0.5 border-black">
+          </div>
+          {% empty %}
+          <div>
+            <p class="font-WorkSans text-3xl m-4">No objects yet.</p>
+          </div>
+          {% endfor %}
+        
+      </div>
+   
+
+    </div>
+</div>
+
+
+
+ 
+      
+  
+   
+<div class="">
+
+<div class="flex justify-center items-center fixed bottom-0 left-0 right-0 bg-white pb-8 w-full pt-4">
+    <div class="w-4/5 sm:w-9/12 lg:w-7/12 border border-black rounded bg-gray-50">
+        
+          <div class="w-full">
+            
+           
+                <form method="POST" class="flex">
+                    {% csrf_token %}
+                    {{ form }}
+                    <button type="submit" class="text-black font-WorkSans font-normal text-xl p-3 -mb-4 sm:-mb-10">Send</button>
+                  </form>
+                 
+         
+         </div>            
+      
+    </div>
+  </div>
+
+</div>
+
+
+
+</div>
+</div>
+
+{% endblock content %}

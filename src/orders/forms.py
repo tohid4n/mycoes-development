@@ -9,7 +9,8 @@ class OfferForm(forms.ModelForm):
         
         
         widgets = {
-            'date': forms.widgets.DateInput(attrs={'type': 'date'})
+            'date': forms.widgets.DateInput(attrs={'type': 'date'}),
+            'budget': forms.widgets.NumberInput(attrs={'placeholder': '$'})
         }
         
 

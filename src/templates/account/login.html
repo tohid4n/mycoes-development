@@ -6,67 +6,85 @@
 {% block head_title %}{% trans "Sign In" %}{% endblock %}
 
 {% block content %}
+<div class="w-full xsm:w-r26 p-8 m-auto mt-16 mb-8 sm:border rounded-md border-slate-900">
+  <div class="flex justify-center">
+    <div class="w-full">
+      <div class="text-center mb-6">
+        <h1 class="font-Montserrat font-semibold text-4xl">{% trans "Sign In" %}</h1>
+      </div>
+      
+      {% get_providers as socialaccount_providers %}
+    
+      {% if socialaccount_providers %}
+      
+      <div class="socialaccount_ballot m-4">
+        <ul class="socialaccount_providers">
 
-<div class="w-full xsm:w-r26 p-8 m-auto mt-8 mb-8 sm:border rounded-md border-slate-900">
+          
 
-<div class="flex justify-center">
-<div class="w-full">
+            {% include "socialaccount/snippets/provider_list.html" with process="login" %}
 
-  <div class="text-center mb-6">
-    <h1 class="font-Montserrat font-semibold text-4xl">{% trans "Sign In" %}</h1>
-  </div>
-  
-{% get_providers as socialaccount_providers %}
-
-{% if socialaccount_providers %}
-<p>{% blocktrans with site.name as site_name %}Please sign in with one
-of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a>
-for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
-
-<div class="socialaccount_ballot">
-
-  <ul class="socialaccount_providers">
-    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
-  </ul>
-
-  <div class="login-or">{% trans 'or' %}</div>
-
-</div>
-
-{% include "socialaccount/snippets/login_extra.html" %}
-
-{% else %}
-<div>
-<p>{% blocktrans %}Don't have account?
-<a href="{{ signup_url }}" class="underline font-WorkSans font-bold text-lg">Create an account</a>{% endblocktrans %}</p>
-</div>
-{% endif %}
-
-
-
-  <form class="login" method="POST" action="{% url 'account_login' %}">
-    {% csrf_token %}
-    <div class="mb-4">
-      <label for="id_login" class="block font-Karla text-xl text-black font-bold mb-2">Email</label>
-      <input id="id_login" type="text" name="login" class="border border-gray-900 rounded w-full py-3 px-3 font-Karla text-lg text-gray-900 font-normal leading-tight focus:outline-none focus:shadow-outline">
+        </ul>
+      </div>
+    
+      <div class="text-center mb-4">
+        <p class="font-normal text-2xl underline">or</p>
+      </div>
+      {% include "socialaccount/snippets/login_extra.html" %}
+    
+      {% else %}
+      <div>
+        <p>{% blocktrans %}Don't have an account? <a href="{{ signup_url }}" class="underline font-WorkSans font-bold text-lg">Create an account</a>{% endblocktrans %}</p>
+      </div>
+      {% endif %}
+    
+      <form class="login" method="POST" action="{% url 'account_login' %}">
+        {% csrf_token %}
+    
+        <div class="mb-4">
+          <label for="id_login" class="block font-Karla text-xl text-black font-bold mb-2">{% trans "Email" %}</label>
+          <input id="id_login" type="text" name="login" class="border border-gray-900 rounded w-full py-3 px-3 font-Karla text-lg text-gray-900 font-normal leading-tight focus:outline-none focus:shadow-outline">
+          {% if form.login.errors %}
+          <ul class="text-red-500">
+            {% for error in form.login.errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+        </div>
+        
+        <div class="mb-4">
+          <label for="id_password" class="block font-Karla text-xl text-black font-bold mb-2">{% trans "Password" %}</label>
+          <input id="id_password" type="password" name="password" class="border border-gray-900 rounded w-full py-3 px-3 font-Karla text-lg text-gray-900 font-normal leading-tight focus:outline-none focus:shadow-outline">
+          {% if form.password.errors %}
+          <ul class="text-red-500">
+            {% for error in form.password.errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+        </div>
+    
+        {% if redirect_field_value %}
+        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}">
+        {% endif %}
+        <div class="mt-5">
+          <button class="primaryAction text-white font-WorkSans bg-black hover:bg-slate-900 focus:ring-4 focus:ring-slate-700 font-semibold rounded-lg text-2xl w-full py-2.5 mb-2 dark:bg-black dark:hover:bg-slate-900 focus:outline-none dark:focus:ring-black" type="submit">{% trans "Login" %}</button>
+        </div>
+          <div class="flex items-center justify-between">
+            <div>
+              <a class="button secondaryAction font-Karla text-xl text-black hover:underline font-normal" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+            </div>
+            <div>
+              <a href="{{ signup_url }}" class="underline font-WorkSans font-bold text-lg">Sign up</a>
+            </div>
+          </div>
+      </form>
     </div>
-    <div class="mb-4">
-      <label for="id_password" class="block font-Karla text-xl text-black font-bold mb-2">Password</label>
-      <input id="id_password" type="password" name="password" class="border border-gray-900 rounded w-full py-3 px-3 font-Karla text-lg text-gray-900 font-normal leading-tight focus:outline-none focus:shadow-outline">
-    </div>
-    {% if redirect_field_value %}
-    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}">
-    {% endif %}
-    <div class="mt-5">
-    <button class="primaryAction text-white font-WorkSans bg-black hover:bg-slate-900 focus:ring-4 focus:ring-slate-700 font-semibold rounded-lg text-2xl w-full py-2.5 mb-2 dark:bg-black dark:hover:bg-slate-900 focus:outline-none dark:focus:ring-black" type="submit">{% trans "Login" %}</button>
   </div>
-    <a class="button secondaryAction font-Karla text-xl text-black hover:underline font-normal" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
-  </form>
+</div>
+{% endblock content %} 
 
-</div>
-</div>
-</div>
 
-{% endblock content %}
 
 

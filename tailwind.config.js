@@ -3,6 +3,7 @@ module.exports = {
   content: [
     "./src/**/*.{html,js}",
     "./src/**/forms.py",
+    "./node_modules/flowbite/**/*.js"
   ],
   theme: {
     extend: {
@@ -14,6 +15,7 @@ module.exports = {
       width: {
         'r26': '26rem',
         'c43': '43%',
+        'c45': '45%',
         'c28': '28%'
       },
       minHeight: {
@@ -29,7 +31,7 @@ module.exports = {
     },
   },
   plugins: [
-  
-  ],
+    require('flowbite/plugin')
+  ]
 }
 

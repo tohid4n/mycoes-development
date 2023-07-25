@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.core.validators import MaxValueValidator, DecimalValidator
 
 
 class Offer(models.Model):
@@ -30,9 +29,10 @@ class Offer(models.Model):
     description = models.TextField()
     date = models.DateField()
     development_category = models.CharField(max_length=12, choices=DEVELOPMENT_CHOICES, default=FULLSTACK)
-    budget = models.DecimalField(max_digits=10, decimal_places=2, validators=[MaxValueValidator(9999999.99), DecimalValidator(max_digits=10, decimal_places=2)])
+    budget = models.IntegerField()
     attached_files = models.FileField(upload_to='uploads/', null=True, blank=True)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default=PENDING)
+    download_file = models.ForeignKey('user_profile.DownloadFile', on_delete=models.SET_NULL, null=True, blank=True, related_name='offer_download_files')
     timestamp = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):

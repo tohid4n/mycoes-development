@@ -1,3 +1,20 @@
+
+
+{% comment %} {%load socialaccount%}
+
+<body onload="document.forms['google_login'].submit()">
+
+
+
+<form method="post" name= "google_login">
+  {% csrf_token %}
+  <button type="submit" style="display: none;">Continue</button>
+</form>
+
+</body> {% endcomment %}
+
+
+
 {% extends "socialaccount/base.html" %}
 {% load i18n %}
 
