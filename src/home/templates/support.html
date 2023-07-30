@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head_title %}Support{% endblock head_title %}
+
+{% block content %}
+
+<div class="mt-16">
+<div class="m-4">
+
+<div class="mt-20 md:mt-28">
+    <p class="font-Montserrat font-semibold text-4xl sm:text-5xl text-black m-4 md:m-8">MyCoes Customer Care</p>
+</div>
+
+<div class="w-full">
+    <p class="font-Karla font-normal text-2xl sm:text-3xl m-4 sm:ml-12">Welcome to MyCoes Customer Care! We are here to assist you with any questions or concerns you may have. Get real-time help through direct chat or send us an email and we'll respond promptly.</p>
+</div>
+
+
+<div>
+
+
+    <div>
+        <p class="font-LibreFranklin font-extrabold text-3xl sm:text-4xl m-4 mt-14 mb-4">Contact us</p>
+    </div>
+
+
+<div class="flex flex-wrap gap-4 md:gap-10  m-4 exsm:ml-8 mt-8">
+
+    <div class="w-60">
+        <a href="{% url 'home:contact' %}" class="focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 py-1 px-4 border rounded-lg border-gray-700 flex items-center w-full">
+            <img src="{% static 'icons\call.svg' %}" class='h-10 w-10' alt="call">
+            <p class="text-base font-medium ml-4 text-gray-700">Contact Form</p>
+          </a>
+    </div>
+
+    <div class="w-60">
+        <a href="https://wa.me/918431944801?text=Hello%20from%20the%20website!" class="focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 py-1 px-4 border rounded-lg border-gray-700 flex items-center w-full">
+            <img src="{% static 'icons\whatsapp.svg' %}" class='h-10 w-10' alt="whatsapp">
+            <p class="text-base font-medium ml-4 text-gray-700">Whatsapp</p>
+          </a>
+    </div>
+
+    <div class="w-60">
+        <a href="https://m.me/mycoes747" class="focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 py-1 px-4 border rounded-lg border-gray-700 flex items-center w-full">
+            <img src="{% static 'icons\messenger.svg' %}" class='h-10 w-10' alt="messenger">
+            <p class="text-base font-medium ml-4 text-gray-700">Messenger</p>
+          </a>
+    </div>
+
+    <div class="w-60">
+        <a href="https://www.instagram.com/mycoes747" class="focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 py-1 px-4 border rounded-lg border-gray-700 flex items-center w-full">
+            <img src="{% static 'icons\instagram.svg' %}" class='h-10 w-10' alt="instagram">
+            <p class="text-base font-medium ml-4 text-gray-700">Instagram</p>
+          </a>
+         </div>
+    </div>
+</div>
+
+
+
+<div class="sm:m-8 mt-8 my-8 mx-4"><p class="font-Nunito font-normal text-xl">You can also email us at mycoes747@fmail.com or info@mycoes.com for any assistance.</p></div>
+
+
+</div>
+</div>
+
+
+{% endblock content %}

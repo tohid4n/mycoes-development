@@ -13,6 +13,19 @@ main {
   flex-grow: 1;
 }
 
+
+/* ... messages ... */
+
+.alert {
+  /* ... your existing styles ... */
+  position: fixed; /* Add position: fixed to fix the alert in the viewport */
+  top: 0; /* Place the alert at the top */
+  left: 50%; /* Center the alert horizontally */
+  transform: translateX(-50%); /* Center the alert horizontally */
+  z-index: 100; /* Increase z-index to make it appear above other elements */
+}
+
+
 /* Navbar */
 
 .mobile-nav-toggle {
@@ -92,23 +105,17 @@ main {
 
 /* Scroll effect */
 
-.carousel {
-    position: relative;
-    z-index: 1;
-}
+
 
 .scroll-effect {
     position: fixed;
     top: 1rem;
 }
-
-
 @media only screen and (max-width: 600px) {
   .carousel {
     position: none;
     z-index: 1;
 }} 
- 
 
 
 

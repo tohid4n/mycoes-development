@@ -12,6 +12,16 @@ class HomePageView(generic.TemplateView):
 
 class AboutView(generic.TemplateView):
     template_name = 'about.html'
+    
+  
+class SupportView(generic.TemplateView):
+    template_name = 'support.html'   
+    
+class PrivacyPolicyView(generic.TemplateView):
+    template_name = 'privacy-policy.html'   
+    
+class TermsOfServicesView(generic.TemplateView):
+    template_name = 'terms-of-services.html'            
    
 
 class ContactView(generic.FormView):

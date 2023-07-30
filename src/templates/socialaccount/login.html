@@ -1,6 +1,4 @@
-
-
-{% comment %} {%load socialaccount%}
+{%load socialaccount%}
 
 <body onload="document.forms['google_login'].submit()">
 
@@ -11,28 +9,4 @@
   <button type="submit" style="display: none;">Continue</button>
 </form>
 
-</body> {% endcomment %}
-
-
-
-{% extends "socialaccount/base.html" %}
-{% load i18n %}
-
-{% block head_title %}{% trans "Sign In" %}{% endblock %}
-
-{% block content %}
-{% if process == "connect" %}
-<h1>{% blocktrans with provider.name as provider %}Connect {{ provider }}{% endblocktrans %}</h1>
-
-<p>{% blocktrans with provider.name as provider %}You are about to connect a new third party account from {{ provider }}.{% endblocktrans %}</p>
-{% else %}
-<h1>{% blocktrans with provider.name as provider %}Sign In Via {{ provider }}{% endblocktrans %}</h1>
-
-<p>{% blocktrans with provider.name as provider %}You are about to sign in using a third party account from {{ provider }}.{% endblocktrans %}</p>
-{% endif %}
-
-<form method="post">
-  {% csrf_token %}
-  <button type="submit">{% trans "Continue" %}</button>
-</form>
-{% endblock %}
+</body> 
