@@ -22,7 +22,7 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 #EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
@@ -110,7 +110,7 @@ DATABASES = {
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.elasticemail.com'
+EMAIL_HOST = env('EMAIL_HOST')
 EMAIL_PORT = 2525
 EMAIL_HOST_USER = env('EMAIL_HOST_USER')
 DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL')
@@ -185,9 +185,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-
-
-
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 STATIC_ROOT = os.path.join(BASE_DIR, "static_root")
@@ -199,6 +196,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 if DEBUG is False:
     
     SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
     SECURE_BROWSER_XSS_FILTER = True
     SECURE_CONTENT_TYPE_NOSNIFF = True
     SECURE_HSTS_INCLUDE_SUBDOMAINS =True
@@ -207,12 +205,7 @@ if DEBUG is False:
     SECURE_SSL_REDIRECT = True
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
     
-    
-    ALLOWED_HOSTS = ['www.domain.com']
-    
-    
-    
-    
+    ALLOWED_HOSTS = ['mycoes.com', 'www.mycoes.com']
     
     DATABASES = {
         'default': {
