@@ -209,13 +209,13 @@ if DEBUG is False:
     
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': '',
-            'USER': '',
-            'PASSWORD': '',
-            'HOST': '',
-            'PORT': ''
-         }
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': env('NAME'),
+        'USER': env('USER'),
+        'PASSWORD': env('PASSWORD'),
+        'HOST': env('HOST'),
+        'PORT': '3306',  # The default MySQL port
+        }
     }
 
 
