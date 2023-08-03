@@ -140,3 +140,7 @@ static_root
 media_root
 
 node_modules/
+
+
+test-settings.py
+src\website\.env
