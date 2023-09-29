@@ -1,7 +1,6 @@
 html,
 body {
   height: 100%;
-  overflow-x: hidden;
 }
 
 body {
@@ -99,23 +98,105 @@ main {
 
 .dark-bg-custom {
   background-image: url('/static/img/hero/black.jpg');
+  background-size: cover;
 }
 
 
 
 /* Scroll effect */
 
-
-
-.scroll-effect {
-    position: fixed;
-    top: 1rem;
+.carousel-container {
+  position: relative;
 }
+
+@media (min-width: 1024px) {
+  .carousel-container.fixed {
+    position: fixed;
+    top: 5rem;
+    transition: top 0.5s ease;
+    padding-right: 1rem;
+    /* Additional styling for fixed position */
+  }
+}
+
+
 @media only screen and (max-width: 600px) {
-  .carousel {
+  .carousel-container {
     position: none;
     z-index: 1;
 }} 
 
 
 
+
+
+/* For FAQS */
+
+
+.faq-list > div {
+  border-bottom: 0.09em solid #c7c7c7;
+  padding: 1.5em 0em;
+} 
+
+.faq-list > div:last-child {
+  border: unset;
+}
+
+details > summary {
+  list-style: none;
+}
+details > summary::-webkit-details-marker {
+  display: none;
+}
+
+summary {
+  cursor: pointer;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none; 
+  user-select: none;
+  transition: all 0.3s ease;
+}
+
+
+details[open] summary ~ * {
+  animation: sweep .5s ease-in-out;
+}
+
+@keyframes sweep {
+  0%    {opacity: 0; margin-left: -10px}
+  100%  {opacity: 1; margin-left: 15px}
+}
+
+
+
+details[open] p {
+  border-left: 2px solid #000000;
+  margin-left: 15px;
+  padding-left: 25px;
+  padding-top: 10px;
+  opacity: 100;
+  transition: all 3s ease;
+}
+
+details[open] summary:after {
+  content: url('/static/icons/ex-less.svg');
+  margin: 0.1 0.65em 0 0;
+}
+
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+summary:after {
+  background: transparent;
+  border-radius: 0.3em;
+  content: url('/static/icons/ex-more.svg');
+  color: #000000;
+  float: left;
+  margin: 0.3em 0.65em 0 0;
+  text-align: center;
+}

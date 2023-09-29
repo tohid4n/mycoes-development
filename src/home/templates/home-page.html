@@ -6,37 +6,53 @@
 
 <!--Hero first show-->
 
-<div class="flex flex-col justify-center items-center mt-12 p-0 dark-bg-custom h-screen w-screen">
-  <div class="text-center">
-  <h1 class="font-Montserrat font-extralight text-5xl sm:text-6xl md:text-7xl xl:text-8xl text-black p-4">Your Web Development Solution</h1>
+<div class="flex flex-col justify-center p-0 bg-white h-screen w-screen">
+  <div class="text-left">
+  <h1 class="font-Montserrat text-6xl font-bold sm:text-7xl lg:text-8xl xl:text-9xl text-black p-4">Every Business needs to have a Website.</h1>
 </div>
-<div class="flex justify-center text-center">
-  <p class="text-black text-4xl font-Montserrat font-semibold p-4 lg:w-4/6 lg:text-5xl max-exsm:text-2xl">"Nothing matters when a website fulfills the requirements effectively, regardless of the development technologies used."</p>
-</div>
-
-<div class="flex justify-center text-center m-4">
-<a href="{% url 'home:about' %}" class="py-2.5 px-10 mr-2 mb-2 text-2xl font-medium text-black bg-transparent rounded-full border border-white hover:bg-black hover:text-white focus:z-10">About us &rarr;</a>
+<div class="">
+  <p class="text-black text-2xl font-mono font-bold p-4 lg:w-4/6 sm:text-4xl">"Nothing matters when a website fulfills the requirements effectively, regardless of the development technologies used."</p>
 </div>
 
+<div class="ml-4 max-xsm:mt-4 mt-8">
+<a href="{% url 'home:about' %}" class="py-2.5 px-10 mr-2 mb-2 text-2xl font-medium text-black bg-transparent rounded-full border border-black hover:bg-black hover:text-white focus:z-10">About us &rarr;</a>
 </div>
+
+</div>
+
+
+
 
 
 <!--content why mycoes-->
 
-<div class="text-center mt-8">
-   <h2 class="font-WorkSans text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light p-4">Why Mycoes is the Solution for Your Web Development Needs?</h2>
+<div class="text-left sm:text-center bg-gray-300 py-4">
+  <h2 class="font-WorkSans text-5xl sm:text-6xl lg:text-7xl font-bold p-4">And We are Here to Help You</h2>
+  <div class="sm:flex sm:justify-center">
+   <p class="font-Nunito font-bold text-2xl sm:text-3xl p-4 sm:w-5/6">Yes, we help you! whatever help you require we are here for you. Don't have a design we design your website. Concern about SEO we help you. Want to re-build frontend yes we help you. Concern about the backend we help you. Concern about budget and pricing we help you with that too.</p>
+  </div>
+</div>
+
+
+
+<!--content why mycoes-->
+
+<div class="text-left sm:text-center py-8 sm:py-10">
+   <h2 class="font-WorkSans text-4xl sm:text-6xl font-light p-4">Why Mycoes is the Solution for Your Web Development Needs?</h2>
    <div class="flex justify-center">
     <p class="font-Nunito font-normal text-2xl p-4 sm:w-5/6">We use popular Development technologies for frontend HTML, CSS, Js, Bootstrap, and Tailwind CSS, and for backend Python, Django, my-SQL, and restful APIs. A website built using these technologies is valuable for growing business, providing a secure, customizable, and scalable platform to showcase products or services, attract new customers, and increase revenue, we respond fast, and we use the test pay method.</p>
    </div>
 </div>
 
 
+
 <!--services cards-->
 
-<div class="bg-slate-50 text-center mt-8 pt-8 pb-8">
+<div class="bg-gray-300 text-center pt-8 pb-8">
   <p class="font-Montserrat font-semibold text-5xl md:text-6xl">Services</p>
   <div class="flex justify-center m-4">
     <div class="flex flex-nowrap overflow-y-hidden overflow-x-scroll no-scrollbar gap-20 p-8">
+
       <a href="{% url 'services:home' %}" class="w-80 text-left hover:cursor-pointer">
         <img class="w-full object-cover  rounded" src="{% static 'img/services/fullstackse.png' %}" alt="">
         <p class="font-WorkSans font-semibold text-4xl text-white p-4 -mt-36">Fullstack Development</p>
@@ -51,82 +67,205 @@
         <img class="w-full object-cover rounded" src="{% static 'img/services/backendse.png' %}" alt="">
         <p class="font-WorkSans font-semibold text-4xl text-white p-4 -mt-36">Back-end Development</p>
       </a>
+
     </div>
   </div>
 </div>
 
 
-      
+</div>
+</div>
 
-</div>
-</div>
 
 
 <!--price tag line-->
 
-<div class="text-center m-14">
+<div class="text-center my-10 mx-4 sm:m-14">
 <p class="font-Montserrat font-medium text-3xl sm:text-5xl">We don't set prices for our services. We accept offers.</p>
+</div>
+
+
+<!--content why mycoes-->
+
+<div class="text-left sm:text-center mt-8 py-6 bg-gray-300">
+  <p class="font-WorkSans text-5xl sm:text-6xl font-light p-4">Don't be afraid We are not too big.</p>
+
+  <div class="flex justify-center">
+   <p class="font-Nunito font-normal text-2xl p-4 sm:w-5/6">Yes, we are not big. We are not agencies. we don't want our client's customers who own a small business or starting to go online usually think they have to pay a lot for these services. When starting an online presence or something on at an affordable price, they have to get this work done in that price range. We highly understand these things, that's why we added this line. We are Freelancers currently.</p>
+  </div>
 </div>
 
 
 
 <!--How it works-->
 
-<div class="bg-gray-100">
+<div class="bg-white">
 
-  <div class="max-sm:text-center">
-    <p class="font-Montserrat font-extralight text-4xl exsm:text-5xl sm:text-6xl pt-6 pl-5 pb-0 md:pt-12 md:pl-12">How it works?</p>
+  <div class="text-center">
+    <p class="font-Montserrat font-extralight text-4xl exsm:text-5xl sm:text-6xl pt-10  pb-0 md:pt-12">How it works?</p>
   </div>
 
-<div class="w-full p-8">
-  <div>
-    <p class="text-black  text-3xl font-Montserrat font-semibold p-4  lg:text-4xl max-exsm:text-2xl">1. Know the Services.</p>
+<div class="w-full">
+  <div class="border border-black p-3 sm:p-8 mx-4 my-8">
+    <p class="text-black  text-3xl font-Montserrat font-semibold px-4 pb-4 lg:text-4xl max-exsm:text-2xl">1. Know the Services.</p>
+    <p class="font-Nunito font-normal text-xl exsm:text-2xl px-4">We Provide mainly three services Frontend, Backend, and Fullstack website solutions. These are the main services  based on code prefrence. If someone wants to design and deploy the website client has to mention or discuss these things when contacting. After contacting on pricing, services, and needs client can go to the next step.</p>
   </div>
 
-  <div>
-    <p class="text-black  text-3xl font-Montserrat font-semibold p-4  lg:text-4xl max-exsm:text-2xl">2. Make an offer according to your needs.</p>
+  <div class="border border-black p-3 sm:p-8 mx-4 my-8">
+    <p class="text-black  text-3xl font-Montserrat font-semibold px-4 pb-4 lg:text-4xl max-exsm:text-2xl">2. Offer according to your needs.</p>
+    <p class="font-Nunito font-normal text-xl exsm:text-2xl px-4">we highly recommend you before making an offer contact us. we have to discuss your projects and selected services for your convenience. When making an offer it is best to provide any files related to projects. </p>
   </div>
 
-  <div>
-    <p class="text-black  text-3xl font-Montserrat font-semibold p-4 lg:text-4xl max-exsm:text-2xl">3. Get updates on your project on the status navigation.</p>
+  <div class="border border-black p-3 sm:p-8 mx-4 my-8">
+    <p class="text-black  text-3xl font-Montserrat font-semibold px-4 pb-4 lg:text-4xl max-exsm:text-2xl">3. Get updates on status navigation.</p>
+    <p class="font-Nunito font-normal text-xl exsm:text-2xl px-4">Once your offer is accepted, you'll be able to easily track the progress of your project through the status navigation. Under the progress bar, there's a form where you can provide your feedback, suggest changes, and add any additional requirements you may have. We'll also give you a video clip of your project to review, enabling you to see its current state.
+      You can request as many revisions as you want. Just check the box and specify the changes in the additional field. We'll provide you with a test video link and other relevant information about your project. As you say, we do.</p>
   </div>
 
-  <div>
-    <p class="text-black  text-3xl font-Montserrat font-semibold p-4  lg:text-4xl max-exsm:text-2xl">4. Pay the price that you made in the offer.</p>
+  <div class="border border-black p-3 sm:p-8 mx-4 my-8">
+    <p class="text-black  text-3xl font-Montserrat font-semibold px-4 pb-4 lg:text-4xl max-exsm:text-2xl">4. Pay the Amount that you made in the offer.</p>
+    <p class="font-Nunito font-normal text-xl exsm:text-2xl px-4">When the project is completed we set the progress bar to 100% then you will get a payment checkout page from there you have to pay the discussed and offered price with stripe.</p>
   </div>
 
-  <div>
-    <p class="text-black  text-3xl font-Montserrat font-semibold p-4 lg:text-4xl max-exsm:text-2xl">5. Get your project code.</p>
+  <div class="border border-black p-3 sm:p-8 mx-4 my-8">
+    <p class="text-black  text-3xl font-Montserrat font-semibold px-4 pb-4 lg:text-4xl max-exsm:text-2xl">5. Get your project.</p>
+    <p class="font-Nunito font-normal text-xl exsm:text-2xl px-4">You get a downloadable link in status section there you can download the project folder. For your convineance we also added in profile section where you can check transactions and offers made by you. </p>
   </div>
+
+
 </div>
 
 </div>
 
 
 
-<!--content why mycoes-->
+<!--contact from home-page-->
 
-<div class="text-center mt-8">
-  <h2 class="font-WorkSans text-4xl  md:text-5xl lg:text-6xl font-light p-4">As You say, we do.</h2>
-  <div class="flex justify-center">
-   <p class="font-Nunito font-normal text-2xl p-4 sm:w-5/6">Once your offer is accepted, you'll be able to easily track the progress of your project through the status navigation. Under the progress bar, there's a form where you can provide your feedback, suggest changes, and add any additional requirements you may have. We'll also give you a video clip of your project to review, enabling you to see its current state.
-    You can request as many revisions as you want. Just check the box and specify the changes in the additional field. We'll provide you with a test video link and other relevant information about your project. As you say, we do.</p>
+<div class="py-4">
+
+  <div>
+      <p class="font-LibreFranklin font-extrabold text-3xl sm:text-4xl m-4 mb-4">Contact us</p>
+  </div>
+
+
+<div class="flex flex-wrap gap-4 md:gap-10 m-4 exsm:ml-8 mt-8">
+
+  <div class="w-60">
+      <a href="{% url 'home:contact' %}" class="focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 hover:bg-slate-100 py-1 px-4 border rounded-lg border-gray-700 flex items-center w-full">
+          <img src="{% static 'icons\call.svg' %}" class='h-10 w-10' alt="call">
+          <p class="text-base font-medium ml-4 text-gray-700">Contact Form</p>
+        </a>
+  </div>
+
+  <div class="w-60">
+      <a href="https://wa.me/918431944801?text=Hello%20from%20the%20website!" class="focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 hover:bg-slate-100 py-1 px-4 border rounded-lg border-gray-700 flex items-center w-full">
+          <img src="{% static 'icons\whatsapp.svg' %}" class='h-10 w-10' alt="whatsapp">
+          <p class="text-base font-medium ml-4 text-gray-700">Whatsapp</p>
+        </a>
+  </div>
+
+  <div class="w-60">
+      <a href="https://m.me/mycoes747" class="focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 hover:bg-slate-100 py-1 px-4 border rounded-lg border-gray-700 flex items-center w-full">
+          <img src="{% static 'icons\messenger.svg' %}" class='h-10 w-10' alt="messenger">
+          <p class="text-base font-medium ml-4 text-gray-700">Messenger</p>
+        </a>
+  </div>
+
+  <div class="w-60">
+      <a href="https://www.instagram.com/mycoes747" class="focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 hover:bg-slate-100 py-1 px-4 border rounded-lg border-gray-700 flex items-center w-full">
+          <img src="{% static 'icons\instagram.svg' %}" class='h-10 w-10' alt="instagram">
+          <p class="text-base font-medium ml-4 text-gray-700">Instagram</p>
+        </a>
+       </div>
   </div>
 </div>
 
 
 <!--offer  tag line & btn-->
 
-<div>
-  <div class="m-8">
+
+
+<div class="bg-gray-300 py-4 my-8">
+  <div class="mx-8">
       <p class="font-WorkSans font-semibold text-4xl text-black pt-8 sm:text-5xl md:text-6xl">A website that is fast & smooth, and Secure gives the best user-experiences for your business.</p>
       <br />
       <div class="pb-8">
-          <a href="{% url 'orders:make-offer' %}" class="py-2.5 px-10 mr-2 mb-2 text-xl sm:text-2xl font-Montserrat font-extralight text-black bg-transparent rounded-full border border-black hover:bg-black hover:text-white hover:font-normal hover:cursor-pointer focus:z-10">Make an offer now</a>
+          <a href="{% url 'orders:make-offer' %}" class="py-2.5 px-8 xsm:px-10 mr-2 mb-2 text-lg exsm:text-xl sm:text-2xl font-Montserrat font-extralight text-black bg-transparent rounded-full border border-black hover:bg-black hover:text-white hover:font-normal hover:cursor-pointer focus:z-10">Make an offer now</a>
       </div>
     </div>
 </div>
 
+
+<!--FAQ's from home-page-->
+
+<div class="mb-6">
+<div class="w-11/12 m-auto">
+<div id="faq" class="mb-4">
+  <div>
+    <h3 class="text-5xl font-Nunito mb-4 pt-6">FAQ's</h3>
+  </div>
+  <div class="faq-list">
+      <div>
+        <details>
+          <summary title="How can I pay for my appointment?" class="font-Karla font-semibold text-xl sm:text-2xl">Why Should I Have a Website for My Business?</summary>
+          <p class="font-Nunito font-normal text-xl">Every business needs a website to establish an online presence. A well-designed website showcases your products or services, attracts new customers, and increases revenue. It's a valuable platform for reaching a wider audience and promoting your business effectively.</p>
+        </details>
+        </div>
+      <div>
+        <details>
+          <summary title="What can I expect at my first consultation?" class="font-Karla font-semibold text-xl sm:text-2xl">How Can Mycoes Help Me with Web Development?</summary>
+          <p class="font-Nunito font-normal text-xl">Mycoes offers a range of web development services, including frontend and backend development. We use popular technologies like HTML, CSS, JavaScript, Python, Django, and MySQL to create customized and secure websites. Whether you need a complete website design or assistance with specific aspects, we're here to help.</p>
+        </details>
+        </div>
+      <div>
+        <details>
+          <summary title="What are your opening hours?" class="font-Karla font-semibold text-xl sm:text-2xl">What Development Technologies Does Mycoes Use?</summary>
+          <p  class="font-Nunito font-normal text-xl">Mycoes uses a combination of frontend technologies like HTML, CSS, JavaScript, Bootstrap, and Tailwind CSS. For backend development, we leverage Python, Django, MySQL, and RESTful APIs. These technologies ensure that your website is secure, customizable, and scalable.</p>
+        </details>
+        </div>
+      <div>
+        <details>
+          <summary title="Do I need a referral?" class="font-Karla font-semibold text-xl sm:text-2xl">How Does the Pricing Work?</summary>
+          <p class="font-Nunito font-normal text-xl">We don't set fixed prices for our services. Instead, we encourage you to make an offer based on your budget and project requirements. If we agree on your offer, we'll inform you via email, and you can track your project's status through our platform. Let's have a discussion before finalizing your offer.</p>
+        </details>
+        </div>
+      <div>
+        <details>
+          <summary title="Is the cost of the appointment covered by private health insurance?" class="font-Karla font-semibold text-xl sm:text-2xl">Are You a Freelancer or an Agency?</summary>
+          <p class="font-Nunito font-normal text-xl">We are freelancers, not a large agency. Our goal is to provide high-quality web development services at an affordable price. We understand that small businesses and startups may have budget constraints, and we're here to help them establish their online presence without breaking the bank.</p>
+        </details>
+        </div>
+      <div>
+            <details>
+                <summary title="What are the parking and public transport options?" class="font-Karla font-semibold text-xl sm:text-2xl">How Do I Get Started with Mycoes?</summary>
+                <p class="font-Nunito font-normal text-xl">To get started with Mycoes, follow these steps:
+                  Explore our services, including frontend, backend, and fullstack development.
+                  Contact us to discuss your project needs and services you require.
+                  Make an offer based on your budget and project understanding.
+                  Track the progress of your project through our status navigation.
+                  Once the project is complete, make the payment as discussed, and you'll receive your project files.</p>
+            </details>
+        </div>
+        <div>
+          <details>
+            <summary title="Is the cost of the appointment covered by private health insurance?" class="font-Karla font-semibold text-xl sm:text-2xl">Do you design websites?</summary>
+            <p class="font-Nunito font-normal text-xl">Yes, we design websites also.</p>
+          </details>
+          </div>
+
+          <div>
+            <details>
+              <summary title="Is the cost of the appointment covered by private health insurance?" class="font-Karla font-semibold text-xl sm:text-2xl">Do you host websites?</summary>
+              <p class="font-Nunito font-normal text-xl">Yes, we do. currently only on aws with nginx and gunicorn.</p>
+            </details>
+            </div>
+  </div>
+</div>
+</div>
+</div>
+
+
+    
 {% endblock content %}
   
 

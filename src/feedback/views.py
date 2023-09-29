@@ -20,3 +20,10 @@ class FeedbackView(LoginRequiredMixin, generic.CreateView, generic.ListView):
         form.instance.user = self.request.user
         return super().form_valid(form)
     
+
+class FeedbackDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Feedback
+    template_name = 'feedback.html' 
+    
+    def get_success_url(self):
+        return reverse('feedback:feedback-view')

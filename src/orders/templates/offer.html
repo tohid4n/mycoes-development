@@ -6,7 +6,7 @@
 
 
 <div class="flex justify-center mt-12">
-<div class="w-full sm:w-7/12 m-4">
+<div class="w-full sm:w-10/12 lg:w-7/12 m-4">
 
   <div class="m-6 text-center">
     <p class="font-WorkSans font-semibold text-4xl underline">Development Offer</p>
@@ -15,12 +15,14 @@
 <form method="POST">
   {% csrf_token %}
   {% for field in form %}
-    <div class="m-8">
+    <div class="mt-6 sm:m-8">
       <label for="{{ field.id_for_label }}" class="block mb-2 font-Karla text-2xl font-normal text-gray-900">{{ field.label }}</label>
       {{ field }}
     </div>
   {% endfor %}
-  <button type="submit" class="text-white font-WorkSans bg-black hover:bg-slate-900 focus:ring-4 focus:ring-slate-700 font-semibold rounded-lg text-2xl px-10 py-3 ml-8 mb-2  dark:bg-black dark:hover:bg-slate-900 focus:outline-none dark:focus:ring-black">Make Offer</button>
+  <div class="mt-6 sm:mt-0">
+  <button type="submit" class="text-white font-WorkSans bg-black hover:bg-slate-900 focus:ring-4 focus:ring-slate-700 font-semibold rounded-lg text-2xl px-14 py-3.5 sm:ml-8 mb-2 dark:bg-black dark:hover:bg-slate-900 focus:outline-none dark:focus:ring-black">Make Offer</button>
+</div>
 </form>
 
 

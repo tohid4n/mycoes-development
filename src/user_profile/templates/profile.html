@@ -4,11 +4,10 @@
 
 {% block content %}
 
-<div class="mt-16">
-
+<div class="mt-20">
 
     <div>
-        <p class="font-Montserrat text-2xl font-medium sm:text-3xl m-4 sm:m-6">Profile</p>
+        <p class="font-Montserrat text-2xl font-medium sm:text-3xl m-4 mt-8 sm:m-6">Profile</p>
     </div>
 
     <div>
@@ -22,20 +21,21 @@
     </div>
     </div>
 
-<hr class="m-4">
+    <hr class="border-black border-1 mt-8">
+
 
     <div>
         <p class="font-Montserrat text-2xl font-medium sm:text-3xl m-4 sm:m-6">Billing</p>
     </div>
         <div>
-        <div class="xsm:flex gap-8 xsm:justify-start ml-8">
+        <div class="xsm:flex gap-8 xsm:justify-start ml-8 mb-8">
             
             {% block profile-navs %}
             {% endblock profile-navs %}
         </div>
         </div>
 
-        <hr class="m-4">
+        <hr class="border-black border-1">
 
         <div>
         {% block profile-body %}

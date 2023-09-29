@@ -14,9 +14,11 @@ class AboutView(generic.TemplateView):
     template_name = 'about.html'
     
   
+  
 class SupportView(generic.TemplateView):
-    template_name = 'support.html'   
+    template_name = 'support.html'  
     
+
 class PrivacyPolicyView(generic.TemplateView):
     template_name = 'privacy-policy.html'   
     

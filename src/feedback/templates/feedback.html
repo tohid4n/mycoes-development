@@ -13,25 +13,42 @@
   </div>
 
 
-  
-      <div class="w-full mt-5 mb-32  overflow-y-hidden">
-          {% for feedback in object_list %}
-          <div class="mb-8">
-            <hr class="border-0.5 border-black">
-            <div>
-              <div class="m-4"><p>{{ feedback.timestamp|date }}</p></div>
-              <div class="m-4"><p class="font-WorkSans font-normal text-xl">"{{ feedback.text_feedback }}"</p></div>
-            </div>
-            <hr class="border-0.5 border-black">
-          </div>
-          {% empty %}
+  <div class="w-full mt-5 mb-32  overflow-y-hidden">
+    {% for feedback in object_list %}
+    <div class="mb-8">
+      <hr class="border-0.5 border-black">
+      <div>
+
+        <div class="flex justify-between m-4">
+          <div><p>{{ feedback.timestamp|date }}</p></div>
           <div>
-            <p class="font-WorkSans text-3xl m-4">No objects yet.</p>
-          </div>
-          {% endfor %}
-        
+           {% if feedback.user == user %}
+          <form method="post" action="{% url 'feedback:feedback-delete' feedback.pk %}">
+            {% csrf_token %}
+            <button type="submit" class="hover:underline">Delete</button>
+          </form>
+          {% endif %}
+        </div>
       </div>
-   
+
+        <div class="m-4"><p class="font-WorkSans font-normal text-xl">"{{ feedback.text_feedback }}"</p></div>
+      </div>
+      <hr class="border-0.5 border-black">
+  
+      
+    </div>
+
+
+    {% empty %}
+    <div>
+      <p class="font-WorkSans text-3xl m-4">No objects yet.</p>
+    </div>
+    {% endfor %}
+  </div>
+  
+
+  
+  
 
     </div>
 </div>

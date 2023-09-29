@@ -1,12 +1,14 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block head_title %}Services | Back-end{% endblock head_title %}
+{% block head_title %}Backend Web Development Services{% endblock head_title %}
+{% block meta_description %}Enhance your website with robust backend development services from MyCoes. Leverage Django, MySQL, and Django Rest Framework to ensure a secure foundation, efficient data management, seamless integration, and performance optimization. Explore key features and technologies we use. Get code delivery, status updates, and transparent pricing. Contact us for a reliable backend solution today.{% endblock meta_description %}
+    
 
 {% block content %}
 
 
     <div>
-            <ul class="flex items-center justify-evenly text-center sticky w-full overflow-hidden bg-white h-12 border-b border-gray-300 mt-12">
+            <ul class="flex items-center justify-evenly text-center sticky w-full overflow-hidden bg-white h-12 border-b border-black mt-12">
                 <li><a href="{% url 'services:home' %}" class="font-Nunito font-normal text-lg text-slate-700  hover:text-black">Full-stack</a></li>
                 <li><a href="{% url 'services:front-end' %}" class="font-Nunito font-normal text-lg text-slate-700 hover:text-black">Front-end</a></li>
                 <li><a href="{% url 'services:back-end' %}" class="font-Nunito font-normal text-lg text-black hover:text-black underline underline-offset-8">Back-end</a></li>
@@ -18,11 +20,11 @@
 
         <!--This carousel-->
 
-    <div class="w-full carousel lg:w-c45">
-        <div class="hidden xsm:block">
+    <div class="w-full carousel-container lg:w-c45">
+        <div class="hidden exsm:block">
     <div id="default-carousel" class="relative w-full" data-carousel="slide">
         <!-- Carousel wrapper -->
-        <div class="relative h-56 overflow-hidden border border-black rounded-lg md:h-96">
+        <div class="relative h-56 overflow-hidden border-2 border-black rounded-lg md:h-96">
             <!-- Item 1 -->
             <div class="hidden duration-700 ease-in-out" data-carousel-item>
                 <img src="{% static 'img\services\carousel\py.png' %}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
@@ -69,12 +71,12 @@
     
     <!--This part of text content-->
     
-   <div class="w-full mt-12 lg:mt-0 lg:w-2/4 lg:ml-auto lg:overflow-y-auto">
-    <div class="">
-        <p class="font-Montserrat font-semibold text-2xl sm:text-3xl">Backend Development</p>
+   <div class="w-full mt-6 sm:mt-12 lg:mt-0 lg:w-2/4 lg:ml-auto lg:overflow-y-auto">
+    <div>
+        <p class="font-Montserrat text-3xl sm:text-5xl">Backend Development</p>
         </div>
     
-        <div class="m-6">
+        <div class="mt-6 border-black border-2 p-4">
             <p class="font-Nunito font-normal text-2xl">Our backend development services focus on leveraging Django, MySQL, and Django Rest Framework to create robust and secure website backends. With our expertise, we ensure that your website has a solid foundation, efficient data management, secure authentication, and seamless integration of Django templates. By implementing the power of these technologies, we provide a reliable and scalable backend solution for your website.</p>
         </div>
     
@@ -82,42 +84,42 @@
     
         <!--Key Features-->
     
-        <div class="m-6">
-            <p class="font-Karla font-semibold text-xl sm:text-2xl">Key Features</p>
+        <div class="mt-8 border-black border-2 p-4">
+            <p class="font-Karla font-semibold text-2xl sm:text-3xl">Key Features</p>
             <div class="m-4">
-                <p class="font-WorkSans font-semibold text-xl">Database Management with MySQL</p>
+                <p class="font-WorkSans font-semibold text-xl">&bull; Database Management with MySQL</p>
                 <div>
-                    <p class="font-Karla font-normal text-lg">We leverage MySQL as the database management system to ensure efficient storage, retrieval, and manipulation of data.</p>
+                    <p class="font-WorkSans font-normal text-xl">We leverage MySQL as the database management system to ensure efficient storage, retrieval, and manipulation of data.</p>
                 </div>
             </div> 
             <div class="m-4">
-                <p class="font-WorkSans font-semibold text-xl">Secure Authentication</p>
+                <p class="font-WorkSans font-semibold text-xl">&bull; Secure Authentication</p>
                 <div>
-                    <p class="font-Karla font-normal text-lg">We prioritize the security of your website by implementing secure authentication mechanisms.</p>
+                    <p class="font-WorkSans font-normal text-xl">We prioritize the security of your website by implementing secure authentication mechanisms.</p>
                 </div>
             </div>
             <div class="m-4">
-                <p class="font-WorkSans font-semibold text-xl">Django Templates</p>
+                <p class="font-WorkSans font-semibold text-xl">&bull; Django Templates</p>
                 <div>
-                    <p class="font-Karla font-normal text-lg">We seamlessly integrate Django templates, allowing for dynamic content rendering and enhanced user experiences.</p>
+                    <p class="font-WorkSans font-normal text-xl">We seamlessly integrate Django templates, allowing for dynamic content rendering and enhanced user experiences.</p>
                 </div>
             </div> 
             <div class="m-4">
-                <p class="font-WorkSans font-semibold text-xl">Django Rest Framework</p>
+                <p class="font-WorkSans font-semibold text-xl">&bull; Django Rest Framework</p>
                 <div>
-                    <p class="font-Karla font-normal text-lg"> We utilize Django Rest Framework to build powerful and scalable APIs, facilitating seamless communication between the frontend and backend of your website.</p>
+                    <p class="font-WorkSans font-normal text-xl"> We utilize Django Rest Framework to build powerful and scalable APIs, facilitating seamless communication between the frontend and backend of your website.</p>
                 </div>
             </div> 
             <div class="m-4">
-                <p class="font-WorkSans font-semibold text-xl">Performance Optimization</p>
+                <p class="font-WorkSans font-semibold text-xl">&bull; Performance Optimization</p>
                 <div>
-                    <p class="font-Karla font-normal text-lg">We optimize the backend performance, ensuring fast response times and smooth navigation.</p>
+                    <p class="font-WorkSans font-normal text-xl">We optimize the backend performance, ensuring fast response times and smooth navigation.</p>
                 </div>
             </div> 
             <div class="m-4">
-                <p class="font-WorkSans font-semibold text-xl">Error Handling and Debugging</p>
+                <p class="font-WorkSans font-semibold text-xl">&bull; Error Handling and Debugging</p>
                 <div>
-                    <p class="font-Karla font-normal text-lg">We implement error handling and debugging mechanisms, minimizing potential issues and providing a smooth user experience.</p>
+                    <p class="font-WorkSans font-normal text-xl">We implement error handling and debugging mechanisms, minimizing potential issues and providing a smooth user experience.</p>
                 </div>
             </div> 
     
@@ -126,8 +128,8 @@
         
         <!--Development Technologies-->
     
-        <div class="m-6">
-            <p class="font-Karla font-semibold  text-xl sm:text-2xl">Technologies We Use</p>
+        <div class="mt-8 border-black border-2 p-4">
+            <p class="font-Karla font-semibold text-2xl sm:text-3xl">Technologies We Use</p>
             <div class="sm:flex sm:gap-5">
                 <div class="m-4">
                     <p class="font-WorkSans font-semibold text-black word-spacing text-xl">Python Django MySQL Django Rest Framework</p>
@@ -138,26 +140,27 @@
     
          <!--Code Delivery and Status Updates-->
     
-         <div class="m-6">
-            <p class="font-Karla font-semibold text-xl sm:text-2xl">Code Delivery and Status Updates</p>
+         <div class="mt-8 border-black border-2 p-4">
+            <p class="font-Karla font-semibold text-2xl sm:text-3xl">Code Delivery and Status Updates</p>
             <div class="m-4">
-                <p class="font-WorkSans font-semibold text-xl">Code Delivery</p>
+                <p class="font-WorkSans font-semibold text-xl">&bull; Code Delivery</p>
                 <div>
-                    <p class="font-Karla font-normal text-lg">Upon completion of the project, we provide the client with a zip file containing all the necessary code files.</p>
+                    <p class="font-WorkSans font-normal text-xl">Upon completion of the project, we provide the client with a zip file containing all the necessary code files.</p>
                 </div>
             </div>
             <div class="m-4">
-                <p class="font-WorkSans font-semibold text-xl">Status Navigation</p>
+                <p class="font-WorkSans font-semibold text-xl">&bull; Status Navigation</p>
                 <div>
-                    <p class="font-Karla font-normal text-lg">Clients can easily track the progress of their project through the "Status" navigation. They will receive timely updates on the development process and can view the current status of their project.</p>
+                    <p class="font-WorkSans font-normal text-xl">Clients can easily track the progress of their project through the "Status" navigation. They will receive timely updates on the development process and can view the current status of their project.</p>
                 </div>  
         </div>
-    
+    </div>
+
     
         <!--Pricing-->
     
-        <div>
-            <p class="font-Karla font-semibold text-xl sm:text-2xl">Pricing</p>
+        <div class="mt-8 border-black border-2 p-4">
+            <p class="font-Karla font-semibold text-2xl sm:text-3xl">Pricing</p>
             <div class="m-4">
                 <p class="font-WorkSans font-normal text-xl">Make an offer based on your budget and understanding of your requirements. If we agree on your offer, we will inform you through email and you can check the status of your project. If not, we can discuss it further on finalizing the offer. Let's have a discussion before making an offer.</p>
             </div>
@@ -165,13 +168,13 @@
 
 
     <!--Button a-tags-->
-    <div class="flex justify-center -ml-4 xsm:justify-start  mt-10">
-        <a href="{% url 'orders:make-offer' %}" class="text-white font-WorkSans bg-black hover:bg-slate-900 focus:ring-4 focus:ring-slate-700 font-semibold rounded-full text-2xl px-10 py-3.5 ml-4 mb-2  dark:bg-black dark:hover:bg-slate-900 focus:outline-none dark:focus:ring-black">Make an offer</a>
+    <div class="flex -ml-4 xsm:justify-start mt-10">
+        <a href="{% url 'orders:make-offer' %}" class="text-black font-WorkSans border-black border-2 hover:bg-slate-500  font-semibold text-2xl px-10 py-3.5 ml-4 mb-2">Make an offer</a>
     </div>
+    
     
 
 
-</div>
 </div>
 
 

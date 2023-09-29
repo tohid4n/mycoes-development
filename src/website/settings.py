@@ -49,7 +49,8 @@ INSTALLED_APPS = [
     'orders',
     'status',
     'user_profile',
-    'feedback'
+    'feedback',
+    'projects',
     
 ]
 
@@ -91,15 +92,12 @@ WSGI_APPLICATION = 'website.wsgi.application'
 
 
 DATABASES = {
-        'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': env('NAME'),
-        'USER': env('USER'),
-        'PASSWORD': env('PASSWORD'),
-        'HOST': env('HOST'),
-        'PORT': '3306',  # The default MySQL port
-        }
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
+}
+
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -188,18 +186,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 
     
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
-SECURE_BROWSER_XSS_FILTER = True
-SECURE_CONTENT_TYPE_NOSNIFF = True
-SECURE_HSTS_INCLUDE_SUBDOMAINS =True
-SECURE_HSTS_SECONDS = 31536000
-SECURE_REDIRECT_EXEMPT = []
-SECURE_SSL_REDIRECT = True
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https', 'http')
+
 
     
-ALLOWED_HOSTS = ['mycoes.com', 'www.mycoes.com']
+ALLOWED_HOSTS = ['*']
     
     
 # Default primary key field type
