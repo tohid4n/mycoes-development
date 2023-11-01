@@ -1,17 +1,13 @@
-<footer class="bg-black">
-    <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8 bottom-0">
+<footer class="bg-white dark:bg-black border-t border-black dark:border-white">
+    <div class="w-full max-w-screen-xl mx-auto p-4 bottom-0">
         <div class="sm:flex sm:items-center sm:justify-between">
-            <a href="/" class="font-Montserrat font-semibold text-2xl text-white mb-4 sm:mb-0">MyCoes</a>
-            <ul class="flex flex-wrap items-center mt-3 mb-6 text-sm font-medium text-slate-50 sm:mb-0 sm:mt-0 dark:text-gray-400">
-                <li>
-                    <a href="{% url 'home:about' %}" class="mr-4 text-lg hover:underline md:mr-6 ">About</a>
-                </li>
-                <li>
-                    <a href="{% url 'home:contact' %}" class="mr-4 text-lg  hover:underline md:mr-6">Contact</a>
-                </li>
-                <li>
-                    <a href="{% url 'home:support' %}" class="mr-4 text-lg  hover:underline md:mr-6">Support</a>
-                </li>
+            <div>
+            <a href="/" class="font-OpenSans font-extrabold text-4xl text-black dark:text-white">MyCoes</a>
+            <span class="block mt-4 mb-4 text-sm text-black dark:text-white">© 2023 <a href="/" class="hover:underline">MyCoes™</a>. All Rights Reserved.</span>
+           </div>
+
+            <ul class="flex flex-wrap items-center leading-relaxed mt-3 mb-6 text-sm font-medium sm:mb-0 sm:mt-0 text-black dark:text-white">
+              
                 <li>
                     <a href="{% url 'home:privacy-policy' %}" class="mr-4 text-lg  hover:underline md:mr-6">Privacy & Policy</a>
                 </li>
@@ -21,15 +17,40 @@
                 <li>
                     <a href="{% url 'feedback:feedback-view' %}" class="mr-4 text-lg  hover:underline md:mr-6">Feedback</a>
                 </li>
+
                 <li>
-                    <a href="https://github.com/tohid4n" class="mr-4 text-lg hover:underline md:mr-6 ">Github</a>
+                    <a href="{% url 'support:home' %}" class="mr-4 text-lg  hover:underline md:mr-6">Support</a>
                 </li>
-                <li>
-                    <a href="https://twitter.com/mycoes747" class="text-lg hover:underline">Twitter</a>
-                </li>
+               
             </ul>
+
+
+           
+            
+            <div class="border border-black dark:border-white flex w-40 text-center">
+                <a
+                  id="theme-switcher"
+                  class="block w-full whitespace-nowrap  px-3 py-2 text-sm font-normal dark:text-white bg-white dark:bg-black active:bg-black active:text-white active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-black hover:bg-slate-400"
+                  href="#"
+                  data-theme="light">
+                  <div class="pointer-events-none">
+                   
+                    <span data-theme-name="light">Light</span>
+                  </div>
+                </a>
+                <a
+                  id="theme-switcher"
+                  class="block w-full whitespace-nowrap bg-transparent px-3 py-2 text-sm font-normal dark:text-black bg-black dark:bg-white active:bg-white active:text-black active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-black hover:bg-slate-400"
+                  href="#"
+                  data-theme="dark"
+                  data-te-dropdown-item-ref>
+                  <div class="pointer-events-none">
+                    <span data-theme-name="dark">Dark</span>
+                  </div>
+                </a>
+              </div>
+
         </div>
-        <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
-        <span class="block text-sm text-slate-100 sm:text-center dark:text-gray-400">© 2023 <a href="/" class="hover:underline">MyCoes™</a>. All Rights Reserved.</span>
-    </div>
+    
+        </div>
 </footer>

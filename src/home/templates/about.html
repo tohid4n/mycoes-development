@@ -8,57 +8,102 @@ Welcome to MyCoes! We offer customized web development services using HTML, CSS,
 
 {% block content %}
 
-<div class="mt-20">
+
+<div>
+    <div class="flex flex-col md:flex-row px-6 gap-10 m-auto w-full sm:w-11/12 md:w-10/12 lg:w-8/12">
+        <div class="text-left mt-32">
+            <h1 class="text-6xl font-Content font-bold text-black dark:text-white m-4 text-left">About Us</h1>
+        </div>
+    </div>
+    </div>
     
-<div class="m-4">
-
-<div class="sm:text-center">
-    <p class="font-Montserrat font-semibold text-4xl sm:text-6xl text-black m-2 mb-4 sm:m-8">About MyCoes</p>
-</div>
-
-<div class="w-full mt-6">
-    <p class="font-Karla font-normal text-2xl sm:text-3xl m-2">Welcome to MyCoes! We specialize in providing customized web development services tailored to meet your exact requirements. Throughout the development process, we prioritize transparency and flexibility, ensuring a smooth and enjoyable experience from beginning to end. Your satisfaction is our ultimate goal.</p>
-</div>
-
-<div class="w-full mt-6">
-    <p class="font-Karla font-normal text-2xl sm:text-3xl m-2">&square; MyCoes is a solopreneur business that excels in developing websites using HTML, CSS, JavaScript, Tailwind CSS, Python, Django, and MySQL. We are proficient in solving both frontend and backend-related challenges. Additionally, we have expanded our offerings to include website design and hosting on AWS.</p>
-</div>
-
-
-<div class="w-full mt-6">
-    <p class="font-Karla font-normal text-2xl sm:text-3xl m-2">&square; Rather than setting fixed prices for our services, we prefer to engage in direct discussions with our clients. We encourage you to reach out to us to discuss your specific needs, projects, and any issues you may be facing. Once both parties agree on the pricing, clients can initiate the process by filling out a Development form. We've included a progress bar to keep you updated on the project's status, as well as an additional changes form for requesting further modifications.</p>
-</div>
-
-
-<div class="w-full mt-6">
-    <p class="font-Karla font-normal text-2xl sm:text-3xl m-2">&square; For your convenience, we recommend using WhatsApp as our primary contact method, as it offers efficient and streamlined communication. However, we understand that clients may prefer different platforms, such as Facebook Messenger, Instagram, or others, and we are happy to accommodate your preferences. You can also reach us directly via the chat icon on our website, which functions similarly to WhatsApp for your convenience.</p>
-</div>
-
-<div class="w-full mt-6">
-    <p class="font-Karla font-normal text-2xl sm:text-3xl m-2">&square; If your project involves code, once it's completed, we will notify you and provide a payment page. You can then proceed to make the payment, which should match the agreed-upon offer. Once payment is received, you will receive a downloadable link, allowing you to access and download the project folder. If your project pertains to website hosting, we utilize various platforms. While we haven't yet incorporated separate design and hosting services into our standard offerings, we are open to discussing these aspects separately based on your specific requirements.</p>
-</div>
-
-<div class="w-full mt-6">
-    <p class="font-Karla font-normal text-2xl sm:text-3xl m-2">&square; We have chosen Stripe as our payment gateway to facilitate secure and convenient transactions.</p>
-</div>
 
 
 <div>
-    <div>
-        <p class="font-LibreFranklin font-extrabold text-3xl sm:text-4xl m-2 mt-14 mb-4">Meet the Developer</p>
+    <div class="flex flex-col-reverse md:flex-row items-center p-10 gap-10 m-auto w-full sm:w-11/12 md:w-10/12 lg:w-8/12">
+
+        <div class="w-full md:w-1/2">
+            <div><h2 class="text-4xl lg:text-5xl leading-snug lg:leading-snug font-Content font-bold text-black dark:text-white mb-6">We help to build a website that fulfills its purpose.</h2></div>
+        <div><p class="text-lg md:text-xl font-OpenSans font-normal leading-snug sm:leading-snug text-black dark:text-white tracking-wide">To fulfill its purpose, we offer a wide range of services such as web design, web development, content writing, and onsite SEO with an Easy Pricing Model.</p></div>
+      </div>
+
+        <div class="w-full max-xsm:hidden md:w-1/2">
+            <svg class="max-w-full stroke-black dark:stroke-white" width="542" height="365" viewBox="0 0 542 365" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="99.3164" y="67.3164" width="342.386" height="230.367" stroke="black dark:white" stroke-width="0.632877"/>
+                <rect x="126.268" y="85.2675" width="289.465" height="194.76" stroke="black dark:white" stroke-width="0.535055"/>
+                <rect x="145.233" y="98.2329" width="251.973" height="169.534" stroke="black dark:white" stroke-width="0.465753"/>
+                <rect x="160.204" y="109.204" width="220.592" height="148.421" stroke="black dark:white" stroke-width="0.407749"/>
+                <rect x="184.16" y="124.16" width="173.416" height="116.679" stroke="black dark:white" stroke-width="0.320548"/>
+                <rect x="0.5" y="0.5" width="541" height="364" stroke="black dark:white"/>
+                <rect x="41.4247" y="28.4247" width="459.479" height="309.151" stroke="black dark:white" stroke-width="0.849315"/>
+                <rect x="64.381" y="44.381" width="412.238" height="277.365" stroke="black dark:white" stroke-width="0.761993"/>
+                </svg>  
+        </div>
+
+    </div>
     </div>
 
-    <div>
-        <p class="font-Nunito font-normal text-2xl sm:text-3xl m-2 mb-10">Hello! My name is Saiyyad Patel, and I am a full-stack web developer and designer. I am excited to be the one working on your projects.</p>
+
+
+
+<div class="bg-black dark:bg-white">
+<div class="flex flex-col md:flex-row items-center p-10 gap-10 m-auto w-full sm:w-11/12 md:w-10/12 lg:w-8/12">
+    <div class="w-full md:w-1/2">
+        <img src="{% static 'img/general/wireframe-design.png' %}" alt="Mobile Wireframes web-design" class="max-w-full">
     </div>
+    <div class="w-full md:w-1/2">
+        <h2 class="text-4xl lg:text-5xl font-Content font-bold leading-normal lg:leading-normal text-white dark:text-black">We build websites Like it is ours.</h2>
+    </div>
+</div>
+</div>
+
+
+
+<div>
+    <div class="flex flex-col md:flex-row items-center p-10 gap-4 sm:gap-5 md:gap-10 m-auto w-full sm:w-11/12 md:w-10/12 lg:w-8/12">
+        <div class="w-full md:w-1/2">
+            <h2 class="text-4xl lg:text-5xl font-Content font-bold leading-normal lg:leading-tight text-black dark:text-white">Our vision is to build a better user experience and design.</h2>
+        </div>
+        <div class="w-full md:w-1/2">
+            <p class="text-2xl font-OpenSans font-normal leading-normal text-black dark:text-white">Without better user experience and design, there is no better communication. In the business world, communication is essential to achieve goals and We are here to build that for you.</p>
+        </div>
+    </div>
+    </div>
+    
+
    
-</div>
 
+        <div class="bg-black dark:bg-white">
+            <div class="flex flex-col md:flex-row items-center p-10 gap-10 m-auto w-full sm:w-11/12 md:w-10/12 lg:w-8/12">
+                <div class="w-full md:w-1/2">
+                    <h2 class="text-4xl lg:text-5xl font-Content font-bold leading-normal lg:leading-tight text-white dark:text-black">We provide solutions for your findings.</h2>
+                </div>
+                <div class="w-full md:w-1/2">
+                    <p class="text-2xl font-OpenSans font-normal leading-normal text-white dark:text-black">Not only do we build better user experience and design, we do a lot more. We solve your website problems. We come up with new innovative ideas and better things that help you to achieve your goals.</p>
+                </div>
+            </div>
+            </div>
 
+       
+            
+            
 
-</div>
-</div>
+                <div class="flex justify-center">
 
-</div>
-
+                    <div class="w-11/12 md:w-10/12 lg:w-8/12 my-12 p-5 sm:p-10">
+                    <div>
+                <h2 class="text-4xl lg:text-5xl font-OpenSans font-normal leading-relaxed lg:leading-relaxed tracking-wide text-black dark:text-white">Experience a better way of building websites.</h2>
+                    </div>
+                
+                    <div class="mt-16">
+                      <a href="{% url 'home:contact' %}" class="text-black dark:text-white hover:text-white dark:hover:text-black">
+                      <div class="text-center w-full py-5 sm:py-6 border border-black dark:border-white hover:bg-black dark:hover:bg-white">
+                        <p class="text-2xl font-Inter font-light">Contact us</p>
+                      </div>
+                    </a>
+                    </div>
+                    
+                  </div>
+                  </div>
+                 
 {% endblock content %}

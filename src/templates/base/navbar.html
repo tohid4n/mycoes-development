@@ -1,16 +1,21 @@
-<header>
-  <div class="flex items-center justify-between fixed top-0 w-screen overflow-hidden bg-white h-12 border-b border-black z-10">
-    <a href="/" class="font-Montserrat font-semibold text-2xl mx-4">MyCoes</a>
+<header class="fixed top-0 flex justify-center w-full bg-white dark:bg-black h-16 border-b border-black dark:border-white z-10">
+  
+    <div class="w-full overflow-hidden lg:w-5/6 flex items-center justify-between">
+    <a href="/" class="font-OpenSans font-extrabold text-4xl m-4 text-black dark:text-white">MyCoes</a>
+  
     <button aria-controls="primary-navaigation" aria-expanded="false" class="mobile-nav-toggle z-20"><span class="sr-only">Menu</span></button>
     <nav>
-      <ul id="primary-navaigation" data-visible="false" aria-label="Primary" role="list" class="primary-navaigation">
-        <li><a href="/" class="font-Nunito font-normal text-lg text-slate-700 hover:text-black">Home</a></li>
-        <li><a href="{% url 'services:home' %}" class="font-Nunito font-normal text-lg text-slate-700 hover:text-black">Services</a></li>
-        <li><a href="{% url 'projects:no-project-page' %}" class="font-Nunito font-normal text-lg text-slate-700 hover:text-black">Projects</a></li>
-        <li><a href="{% url 'status:home' %}" class="font-Nunito font-normal text-lg text-slate-700 hover:text-black">Status</a></li>
-        <li><a href="{% url 'user_profile:profile-orders' %}" class="font-Nunito font-normal text-lg text-slate-700 hover:text-black">Profile</a></li>    
+      <ul id="primary-navaigation" data-visible="false" aria-label="Primary" role="list" class="primary-navaigation space-x-6 md:space-x-9">
+        <li><a href="/" class="font-Roboto tracking-wider font-light text-xl text-black dark:text-white hover:underline">Home</a></li>
+        <li><a href="{% url 'home:about' %}" class="font-Roboto tracking-wider font-light text-xl text-black dark:text-white hover:underline">About us</a></li>
+        <li><a href="{% url 'home:services' %}" class="font-Roboto tracking-wider font-light text-xl text-black dark:text-white hover:underline">Services</a></li>
+        <li><a href="{% url 'home:pricing' %}" class="font-Roboto tracking-wider font-light text-xl text-black dark:text-white hover:underline">Pricing</a></li>
+        <li><a href="{% url 'home:contact' %}" class="font-Roboto tracking-wider font-light text-xl text-black dark:text-white hover:underline">Contact</a></li>
+        <li><a href="{% url 'user_profile:profile-orders' %}" class="font-Roboto tracking-wider font-light text-xl text-black dark:text-white hover:underline">Profile</a></li>    
         
       </ul>
     </nav>
   </div>
-</header>
+
+
+</header> 

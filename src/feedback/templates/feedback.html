@@ -1,89 +1,85 @@
-{% extends 'base_without_footer.html' %}
+{% extends 'base.html' %}
 {% load static %}
 {% block head_title %}Feedback{% endblock head_title %}
 
+
 {% block content %}
 
+<div class="m-auto w-full sm:w-11/12 md:w-10/12 lg:w-8/12">
+   <div class="mt-28 sm:mt-32 md:mt-36">
 
-<div class="flex justify-center m-4">
-<div class="w-full sm:w-10/12">
+  
+  
+    <div class="text-left">
+      <p class="text-4xl sm:text-5xl font-OpenSans font-normal m-6 text-black dark:text-white">Feedback & Reviews</p>
+    </div>
+  
 
-  <div class="mt-16 text-center">
-    <p class="font-WorkSans font-semibold text-4xl">Feedback</p>
-  </div>
 
-
-  <div class="w-full mt-5 mb-32  overflow-y-hidden">
-    {% for feedback in object_list %}
-    <div class="mb-8">
-      <hr class="border-0.5 border-black">
-      <div>
-
-        <div class="flex justify-between m-4">
-          <div><p>{{ feedback.timestamp|date }}</p></div>
-          <div>
-           {% if feedback.user == user %}
-          <form method="post" action="{% url 'feedback:feedback-delete' feedback.pk %}">
-            {% csrf_token %}
-            <button type="submit" class="hover:underline">Delete</button>
-          </form>
-          {% endif %}
+    <div class="mt-4 md:mt-10 flex justify-center">
+      <div class="bottom-0 left-0 right-0 pb-8 w-9/12 pt-4">
+          <div class="w-full border border-black dark:border-white rounded-xl">
+              
+                <div class="w-full">
+                      <form method="POST" class="flex">
+                          {% csrf_token %}
+                          {{ form }}
+                          <button type="submit" class="text-black dark:text-white font-OpenSans font-normal text-lg sm:text-xl p-3 -mb-8 sm:-mb-10">Submit</button>
+                        </form>
+               </div>            
+          </div>
         </div>
       </div>
 
-        <div class="m-4"><p class="font-WorkSans font-normal text-xl">"{{ feedback.text_feedback }}"</p></div>
-      </div>
-      <hr class="border-0.5 border-black">
-  
-      
-    </div>
 
-
-    {% empty %}
-    <div>
-      <p class="font-WorkSans text-3xl m-4">No objects yet.</p>
-    </div>
-    {% endfor %}
-  </div>
-  
-
-  
-  
-
-    </div>
+<div>
+<p class="text-xl font-OpenSans font-normal text-black dark:text-white m-6">{{ feedback_count }} Feedbacks</p>
 </div>
 
 
-
- 
-      
+  <div class="mt-6 mb-20 mx-6">
+    <div class="w-full overflow-y-hidden">
+      {% for feedback in object_list %}
+      <div class="border-b border-black dark:border-white">
+       
+        <div>
   
-   
-<div class="">
-
-<div class="flex justify-center items-center fixed bottom-0 left-0 right-0 bg-white pb-8 w-full pt-4">
-    <div class="w-4/5 sm:w-9/12 lg:w-7/12 border border-black rounded bg-gray-50">
-        
-          <div class="w-full">
-            
+          <div class="flex justify-between m-4">
+            <div class="flex gap-4">
+              <div><p class="text-sm font-Roboto font-bold text-black dark:text-white">{{ feedback.timestamp|date }}</p></div>
+              <div><p class="text-sm font-Roboto font-normal text-black dark:text-white">{{ feedback.timestamp|date }}</p></div>
+            </div>
            
-                <form method="POST" class="flex">
-                    {% csrf_token %}
-                    {{ form }}
-                    <button type="submit" class="text-black font-WorkSans font-normal text-xl p-3 -mb-4 sm:-mb-10">Send</button>
-                  </form>
-                 
-         
-         </div>            
+            <div>
+             {% if feedback.user == user %}
+            <form method="post" action="{% url 'feedback:feedback-delete' feedback.pk %}">
+              {% csrf_token %}
+              <button type="submit" class="hover:underline">Delete</button>
+            </form>
+            {% endif %}
+          </div>
+        </div>
+  
+          <div class="m-4"><p class="text-xl font-Content font-normal tracking-wide text-black dark:text-white">{{ feedback.text_feedback }}</p></div>
+        </div>
       
+        
+      </div>
+  
+  
+      {% empty %}
+      <div>
+        <p class="font-WorkSans text-3xl m-4">No Feedbacks yet.</p>
+      </div>
+      {% endfor %}
     </div>
+    
   </div>
-
-</div>
-
-
-
-</div>
-</div>
+   
+  
+      </div>
+  </div>
+  
+  
 
 {% endblock content %}

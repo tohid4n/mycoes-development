@@ -1,12 +1,26 @@
 from django import forms
+from .models import ContactModel
 
 
+class ContactForm(forms.ModelForm):
+    class Meta:
+        model = ContactModel
+        fields = ['name', 'email', 'about']
+        
 
-class ContactForm(forms.Form):
-    full_name = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'class': 'input_classes'}))
-    email = forms.EmailField(widget=forms.TextInput(attrs={'class': 'input_classes'}))
-    topic = forms.CharField(max_length=200, widget=forms.TextInput(attrs={'class': 'input_classes'}))
-    message = forms.CharField(widget=forms.Textarea(attrs={'class': 'input_classes'}))
-
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        
+        
+        self.fields['name'].label = 'Name' 
+        self.fields['email'].label = 'Email'
+        self.fields['about'].label = 'About'
+        
+        self.fields['name'].widget.attrs.update({'class': 'contact_classes'})
+        self.fields['email'].widget.attrs.update({'class': 'contact_classes'})
+        self.fields['about'].widget.attrs.update({'class': 'about_contact_class'})
+       
+        
+        
 
 

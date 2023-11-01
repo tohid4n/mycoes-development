@@ -45,11 +45,11 @@ INSTALLED_APPS = [
 
     #apps
     'home',
-    'services',
     'orders',
     'status',
     'user_profile',
     'feedback',
+    'support',
     'projects',
     
 ]
@@ -60,6 +60,7 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -102,7 +103,7 @@ DATABASES = {
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = env('EMAIL_HOST')
-EMAIL_PORT = 2525
+EMAIL_PORT = 587
 EMAIL_HOST_USER = env('EMAIL_HOST_USER')
 DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL')
 NOTIFY_EMAIL = env('NOTIFY_EMAIL')

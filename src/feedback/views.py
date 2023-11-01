@@ -20,6 +20,14 @@ class FeedbackView(LoginRequiredMixin, generic.CreateView, generic.ListView):
         form.instance.user = self.request.user
         return super().form_valid(form)
     
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        feedbacks = Feedback.objects.all()  # Retrieve all feedbacks from the database
+        feedback_count = feedbacks.count()  # Count the number of feedbacks
+        context['feedbacks'] = feedbacks
+        context['feedback_count'] = feedback_count
+        return context
+    
 
 class FeedbackDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Feedback

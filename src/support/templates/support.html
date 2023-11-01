@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head_title %}Feedback{% endblock head_title %}
+
+
+{% block content %}
+
+<div class="m-auto w-full sm:w-11/12 md:w-10/12 lg:w-8/12">
+   <div class="mt-28 sm:mt-32 md:mt-36">
+
+  
+  
+    <div class="text-center">
+      <p class="text-4xl sm:text-5xl font-OpenSans font-normal m-6 text-black dark:text-white">Find Your Answer</p>
+    </div>
+  
+
+
+    <div class="mt-4 md:mt-10 flex justify-center">
+      <div class="bottom-0 left-0 right-0 pb-8 w-9/12 pt-4">
+          <div class="w-full border border-black dark:border-white rounded-xl">
+              
+                <div class="w-full">
+                      <form method="POST" class="flex">
+                          {% csrf_token %}
+                          {{ form }}
+                          <button type="submit" class="text-black dark:text-white font-OpenSans font-normal text-lg sm:text-xl p-3 -mb-8 sm:-mb-10">Submit</button>
+                        </form>
+               </div>            
+          </div>
+        </div>
+      </div>
+
+
+
+  
+      </div>
+  </div>
+  
+{% endblock content %}
