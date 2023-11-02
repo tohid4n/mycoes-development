@@ -41,10 +41,16 @@
     
       <form class="login" method="POST" action="{% url 'account_login' %}">
         {% csrf_token %}
-    
+        
+    <div>
+        <ul class="text-red-500 py-2">
+          <li>{{ form.non_field_errors | safe }}</li>
+        </ul>
+      </div>
+
         <div class="mb-4">
           <label for="id_login" class="block font-Karla text-xl text-black font-bold mb-2">{% trans "Email" %}</label>
-          <input id="id_login" type="text" name="login" class="border border-gray-900 rounded w-full py-3 px-3 font-Karla text-lg text-gray-900 font-normal leading-tight focus:outline-none focus:shadow-outline">
+          <input id="id_login" type="text" name="login" class="border border-gray-900 rounded w-full py-3 px-3 font-Karla text-lg text-gray-900 font-normal leading-tight focus:ring-black focus:border-black dark:focus:ring-black dark:focus:border-black">
           {% if form.login.errors %}
           <ul class="text-red-500">
             {% for error in form.login.errors %}
@@ -54,17 +60,45 @@
           {% endif %}
         </div>
         
-        <div class="mb-4">
-          <label for="id_password" class="block font-Karla text-xl text-black font-bold mb-2">{% trans "Password" %}</label>
-          <input id="id_password" type="password" name="password" class="border border-gray-900 rounded w-full py-3 px-3 font-Karla text-lg text-gray-900 font-normal leading-tight focus:ring-black focus:border-black dark:focus:ring-black dark:focus:border-black">
-          {% if form.password.errors %}
+
+            
+             
+<div>
+  <div><label for="id_password" class="block font-Karla text-xl text-black font-bold mb-2">{% trans "Password" %}</label></div>
+      <div class="relative">
+        <input
+            id="id_password"
+            type="password"
+            name="password"
+            style="-webkit-text-security: none; background-color: transparent;"
+            class="border border-gray-900 rounded w-full py-3 px-3 font-Karla text-lg text-gray-900 font-normal leading-tight focus:ring-black focus:border-black dark:focus:ring-black dark:focus:border-black"
+        >
+        <button
+            type="button"
+            onclick="togglePasswordVisibility(this)"
+            class="absolute inset-y-0 right-2 pr-3 flex items-center justify-center"
+            style="height: 100%;"
+        >
+            <span id="show-hide-text" class="text-base">Show</span>
+        </button>
+      </div>
+
+      <div>
+
+        {% if form.password.errors %}
           <ul class="text-red-500">
             {% for error in form.password.errors %}
             <li>{{ error }}</li>
             {% endfor %}
           </ul>
           {% endif %}
+
         </div>
+    
+
+  </div>
+
+
     
         {% if redirect_field_value %}
         <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}">

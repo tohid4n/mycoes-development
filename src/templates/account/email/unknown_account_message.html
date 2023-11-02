@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.5;
+            color: #333333;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Hello from MyCoes,</h1>
+        <p>You are receiving this e-mail because you or someone else has requested a
+          password for your user account. However, we do not have any record of a user
+          with email <strong>{{ email }}</strong> in our database.</p>
+        <p>This mail can be safely ignored if you did not request a password reset.</p>
+        <p>If it was you, you can sign up for an account using the link below.</p>
+        <a href="{{ signup_url }}" style="color: rgb(0, 116, 240);">Sign up</a>
+        <p>Thank you for using MyCoes.</p>
+        <p>Best regards,</p>
+        <p>MyCoes.</p>
+    </div>
+</body>
+</html>
+

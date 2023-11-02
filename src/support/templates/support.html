@@ -15,8 +15,28 @@
     </div>
   
 
+    <div id="autocomplete" class="autocomplete">
+      <input class="autocomplete-input" />
+      <ul class="autocomplete-result-list"></ul>
+    </div>
 
-    <div class="mt-4 md:mt-10 flex justify-center">
+    
+    <div id="accordion-flush" data-accordion="collapse" data-active-classes="text-black dark:text-white" data-inactive-classes="text-black dark:text-white">
+      <h2 id="accordion-flush-heading-1">
+        <button type="button" class="flex items-center justify-between w-full py-5 text-left border-b border-gray-600 dark:border-gray-200" data-accordion-target="#accordion-flush-body-1" aria-expanded="true" aria-controls="accordion-flush-body-1">
+          <span class="font-light text-xl sm:text-2xl font-OpenSans leading-normal sm:leading-normal tracking-wide text-black dark:text-white">How does MyCoes help me build my website?</span>
+          <svg data-accordion-icon class="rotate-180 shrink-0 fill-black dark:fill-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M480-345 240-585l56-56 184 184 184-184 56 56-240 240Z"/></svg>
+        </button>
+      </h2>
+      <div id="accordion-flush-body-1" class="hidden" aria-labelledby="accordion-flush-heading-1">
+        <div class="py-5 border-b border-gray-600 dark:border-gray-200">
+          <p class="mb-2 text-base sm:text-lg font-OpenSans font-normal text-gray-800 leading-normal sm:leading-normal tracking-wide dark:text-white">MyCoes simplifies website development with expert design, robust development, reliable  and content creation. We customize solutions for a visually appealing site, ensuring quality and affordability. Partner with us for a successful online presence.</p>
+        </div>
+      </div>
+    
+
+
+    {% comment %} <div class="mt-4 md:mt-10 flex justify-center">
       <div class="bottom-0 left-0 right-0 pb-8 w-9/12 pt-4">
           <div class="w-full border border-black dark:border-white rounded-xl">
               
@@ -29,7 +49,7 @@
                </div>            
           </div>
         </div>
-      </div>
+      </div> {% endcomment %}
 
 
 

@@ -9,11 +9,13 @@ class SupportView(generic.TemplateView):
     template_name = 'support.html'
     
     
-class FAQAutocompleteSearch(generic.View):
-    def get(self, request, *args, **kwargs):
-        search_term = request.GET.get('term', '')
-        faqs = FAQ.objects.filter(
-            Q(question__icontains=search_term) | Q(answer__icontains=search_term)
-        )[:10]  # Limit to 10 results
-        data = [{'id': faq.id, 'text': faq.question} for faq in faqs]
-        return JsonResponse(data, safe=False)
+class SearchFAQsView(generic.View):
+    def get(self, request):
+        search_term = request.GET.get('term')
+        faqs = FAQ.objects.filter(question__icontains=search_term)
+        faq_data = [{'question': faq.question, 'answer': faq.answer} for faq in faqs]
+
+        return JsonResponse({'status': 200, 'data': faq_data})
+
+    
+    
