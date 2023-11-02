@@ -172,8 +172,21 @@
  <script src="{% static 'js/carousel.js' %}"></script>
  <script src="{% static 'js/flowbite.min.js' %}"></script>
 
-
-
+<!--Password togller show button-->
+ <script>
+  function togglePasswordVisibility(button) {
+    const passwordInput = button.previousElementSibling; // Assuming the input element is right before the button
+    const showHideText = button.querySelector('#show-hide-text');
+  
+    if (passwordInput.type === 'password') {
+      passwordInput.type = 'text';
+      showHideText.textContent = 'Hide';
+    } else {
+      passwordInput.type = 'password';
+      showHideText.textContent = 'Show';
+    }
+  }
+  </script>
 
  <!--Start of Tawk.to Script-->
 <script type="text/javascript">
