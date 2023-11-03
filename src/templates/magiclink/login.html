@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+{% load socialaccount %}
+
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
+
+{% block content %}
+<div class="w-full xsm:w-r26 p-8 m-auto mt-20 sm:mt-28 mb-7 sm:mb-12 sm:border rounded-md border-black dark:border-white">
+  <div class="flex justify-center">
+    <div class="w-full">
+      <div class="text-center mb-6">
+        <h1 class="font-OpenSans font-semibold text-4xl text-black dark:text-white">Log In</h1>
+      </div>
+      
+      {% get_providers as socialaccount_providers %}
+    
+      {% if socialaccount_providers %}
+      
+      <div class="socialaccount_ballot">
+        <ul class="socialaccount_providers">
+
+          <a href="{% provider_login_url 'google' process='login' %}" class="bg-white dark:bg-black border border-black dark:border-white text-2xl font-Roboto font-light text-black dark:text-white focus:ring-black focus:border-black flex items-center justify-center w-full py-3.5 px-3 dark:focus:ring-white dark:focus:border-white mb-5 mt-10">
+            <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/sign_in-svg2.svg" alt="google">
+            <p class="text-lg font-medium ml-4 text-black dark:text-white">Continue with Google</p>
+          </a>
+
+        </ul>
+      </div>
+    
+      {% include "socialaccount/snippets/login_extra.html" %}
+      {% endif %}
+    
+
+      <form action="{% url 'magiclink:login' %}{% if request.GET.next %}?next={{ request.GET.next }}{% endif %}" method="post">
+        {% csrf_token %}
+    
+        <div>
+            <ul class="text-red-500 py-2">
+                <li>{{ form.non_field_errors | safe }}</li>
+            </ul>
+        </div>
+    
+        <div class="mb-4">
+          <label class="block mb-4 font-OpenSans text-xl font-normal text-black dark:text-white">Email</label>
+            <input type="email" name="email" placeholder="Enter your email" required class="bg-white dark:bg-black border border-black dark:border-white text-xl font-Roboto font-light text-black dark:text-white focus:ring-black focus:border-black  block w-full p-3 dark:focus:ring-white dark:focus:border-white mb-5">
+            {% if form.email.errors %}
+                <ul class="text-red-500">
+                    {% for error in form.email.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+    
+        <div class="mt-4">
+            <button type="submit" class="text-xl font-Inter font-normal text-white dark:text-black bg-black dark:bg-white hover:bg-slate-900 dark:hover:bg-slate-100 w-full py-3.5 mb-2">Continue with Email</button>
+          </div>
+        
+    </form>
+    
+    
+     
+    </div>
+  </div>
+</div>
+{% endblock content %} 
+
+

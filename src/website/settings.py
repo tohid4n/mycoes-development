@@ -37,11 +37,12 @@ INSTALLED_APPS = [
     
     #django-allauth
     'allauth',
-    'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+
     
-    
+    #django-magiclink
+    'magiclink',
 
     #apps
     'home',
@@ -131,9 +132,26 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 AUTHENTICATION_BACKENDS = [
+    'magiclink.backends.MagicLinkBackend',
     'django.contrib.auth.backends.ModelBackend',
-    'allauth.account.auth_backends.AuthenticationBackend',
+    'allauth.socialaccount.auth_backends.AuthenticationBackend',
 ]
+
+
+# Set Djangos login URL to the magiclink login page
+LOGIN_URL = 'magiclink:login'
+
+MAGICLINK_LOGIN_TEMPLATE_NAME = 'magiclink/login.html'
+MAGICLINK_LOGIN_SENT_TEMPLATE_NAME = 'magiclink/login_sent.html'
+MAGICLINK_LOGIN_FAILED_TEMPLATE_NAME = 'magiclink/login_failed.html'
+
+# Optional:
+# If this setting is set to False a user account will be created the first
+# time a user requests a login link.
+MAGICLINK_REQUIRE_SIGNUP = False
+MAGICLINK_EMAIL_TEMPLATE_NAME_HTML = 'magiclink/login_email.html'
+
+
 
 #SOCIALACCOUNT_QUERY_EMAIL = True
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
@@ -190,7 +208,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 
     
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['127.0.0.1']
     
     
 # Default primary key field type

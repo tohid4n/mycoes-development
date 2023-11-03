@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+{% load account socialaccount %}
+
+{% block head_title %}Login link failed{% endblock %}
+
+{% block content %}
+
+
+<div class="m-auto w-11/12 md:w-10/12 lg:w-8/12 flex justify-center">
+    <div>
+     <div class="mt-36 mb-24 sm:mb-26">
+   
+   <div>
+     <h1 class="text-5xl font-Inter font-bold tracking-wide max-xsm:leading-tight leading-20 text-black dark:text-white m-4">Login failed.</h1>
+   </div>
+   <div>
+     <p class="text-2xl font-Content font-normal leading-relaxed text-black dark:text-white m-4">
+        It was not possible to log you in due to:
+        </p>
+    <p class="text-lg font-Roboto font-normal leading-relaxed text-black dark:text-white m-4">{{ login_error }}</p>
+   </div>
+
+   <div>
+    <p class="text-2xl font-Content font-normal leading-relaxed text-black dark:text-white m-4">There are several possible ways for logins to fail with the current Login link settings:</p>
+  </div>
+
+
+  <div>
+        <ul class="text-lg font-Roboto font-normal leading-relaxed text-black dark:text-white m-4">
+            <li>The URL you are trying to use is malformed.</li>
+            <li>The magic link you tried to use has expired.</li>
+            <li>You have already used this magic link to login before.</li>
+            {% if ONE_TOKEN_PER_USER %}
+            <li>You have requested another link causing this login link to become invalid</li>
+            {% endif %}
+            {% if REQUIRE_SAME_BROWSER %}
+            <li>You are using a different browser to when you requested the login link.</li>
+            {% endif %}
+            {% if REQUIRE_SAME_IP %}
+            <li>You are trying to login from a different location or machine that you requested the login link from.</li>
+        
+            {% endif %}
+          </ul>
+  </div>
+   
+   <div class="my-12 mx-4">
+     <a href="{% url 'home:contact' %}" class="text-xl font-Inter font-normal text-white dark:text-black bg-black dark:bg-white py-5 px-20 rounded hover:bg-slate-900 dark:hover:bg-slate-100">Contact us</a>
+   </div>
+   
+   
+   </div>
+   </div>
+   </div>
+{% endblock content %} 
+
+
+
+
