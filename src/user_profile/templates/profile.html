@@ -13,10 +13,10 @@
     <div>
     <div class="xsm:flex xsm:justify-start gap-10 ml-8">
         <div>
-            <p class="font-Karla font-normal text-xl sm:text-2xl pb-2 xsm:m-4">{{ user.email }}</p>
+            <p class="font-Karla font-normal text-xl sm:text-2xl pb-2 xsm:m-4 text-black dark:text-white">{{ user.email }}</p>
         </div>
         <div>
-           {% include 'account/logout.html' %} 
+           <a href="{% url 'custom_logout' %}" class="text-black dark:text-white">Logout</a>
         </div>
     </div>
     </div>

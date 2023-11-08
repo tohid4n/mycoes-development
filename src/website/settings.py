@@ -31,15 +31,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
     'rest_framework',
     'django.contrib.sites',
     
-    #django-allauth
-    'allauth',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.google',
-
+  #django-socialpython-auth
+    'social_django',
     
     #django-magiclink
     'magiclink',
@@ -61,10 +57,11 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    'allauth.account.middleware.AccountMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'website.urls'
@@ -83,6 +80,9 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.i18n',
+                
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -133,8 +133,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 AUTHENTICATION_BACKENDS = [
     'magiclink.backends.MagicLinkBackend',
+    'social_core.backends.google.GoogleOAuth2',
     'django.contrib.auth.backends.ModelBackend',
-    'allauth.socialaccount.auth_backends.AuthenticationBackend',
 ]
 
 
@@ -153,30 +153,15 @@ MAGICLINK_EMAIL_TEMPLATE_NAME_HTML = 'magiclink/login_email.html'
 
 
 
-#SOCIALACCOUNT_QUERY_EMAIL = True
-ACCOUNT_AUTHENTICATION_METHOD = 'email'
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_USERNAME_REQUIRED = False
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
-LOGIN_REDIRECT_URL = '/'
+
+
+# social-auth-app-django
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = env('CLIENT_ID')
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = env('SECRET')
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/profile/'
+
+
 SITE_ID = 1
-
-
-
-SOCIALACCOUNT_PROVIDERS = {
-    'google': {
-        'SCOPE': ['email'],
-        'AUTH_PARAMS': {'access_type': 'online'},
-        'OAUTH_PKCE_ENABLED': True,
-        
-        'APP': {
-            'client_id': env('CLIENT_ID'),
-            'secret': env('SECRET'),
-        }
-    }
-}
-
-
 
 
 

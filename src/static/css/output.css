@@ -1769,10 +1769,6 @@ input:checked + .toggle-bg {
   border-radius: 0.25rem;
 }
 
-.rounded-2xl {
-  border-radius: 1rem;
-}
-
 .rounded-full {
   border-radius: 9999px;
 }
@@ -1862,11 +1858,6 @@ input:checked + .toggle-bg {
 .border-slate-500 {
   --tw-border-opacity: 1;
   border-color: rgb(100 116 139 / var(--tw-border-opacity));
-}
-
-.border-slate-900 {
-  --tw-border-opacity: 1;
-  border-color: rgb(15 23 42 / var(--tw-border-opacity));
 }
 
 .bg-black {
@@ -2584,10 +2575,6 @@ input:checked + .toggle-bg {
 .group:focus .group-focus\:outline-none {
   outline: 2px solid transparent;
   outline-offset: 2px;
-}
-
-:is(.dark .dark\:border) {
-  border-width: 1px;
 }
 
 :is(.dark .dark\:border-blue-500) {
