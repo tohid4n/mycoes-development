@@ -1,10 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
 from django.views import generic
+
 from .forms import FeedbackForm
 from .models import Feedback
-
+#from user_profile.models import UserProfile
 
 
 class FeedbackView(LoginRequiredMixin, generic.CreateView, generic.ListView):
@@ -12,6 +13,16 @@ class FeedbackView(LoginRequiredMixin, generic.CreateView, generic.ListView):
     form_class = FeedbackForm
     model = Feedback
 
+    # def get(self, request):
+    #     user_profile = UserProfile.objects.get(user=request.user)
+    #     color = user_profile.color
+    
+    #     context = {
+    #         'color': color,
+    #     }
+
+    #     return render(request, self.template_name, context)
+    
     
     def get_success_url(self):
         return reverse('feedback:feedback-view')

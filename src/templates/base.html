@@ -38,7 +38,7 @@
 
 <body class="no-scrollbar bg-white dark:bg-black">
 
-
+  
   {% if messages %}
       <div class="fixed mt-6 inset-x-0 flex justify-center mx-4 z-50">
         {% for message in messages %}
@@ -62,6 +62,7 @@
         {% endfor %}
       </div>
     {% endif %}
+  
 
 
 
@@ -187,6 +188,38 @@
     }
   }
   </script>
+
+
+
+<script>
+
+  // script.js
+document.addEventListener('DOMContentLoaded', function () {
+    const buttons = document.querySelectorAll('.service-button');
+
+    buttons.forEach((button) => {
+        button.addEventListener('click', function () {
+            const isSelected = this.classList.contains('selected');
+            const icon = this.querySelector('.icon');
+
+            if (isSelected) {
+                // Deselect the service
+                icon.innerText = '+';
+                this.classList.remove('selected');
+                // Remove the service from your data model or form
+            } else {
+                // Select the service
+                icon.innerText = '-';
+                this.classList.add('selected');
+                const serviceName = this.dataset.service;
+                // Add the service to your data model or form
+                console.log(`Selected service: ${serviceName}`);
+            }
+        });
+    });
+});
+
+</script>
 
  <!--Start of Tawk.to Script-->
 <script type="text/javascript">

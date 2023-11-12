@@ -42,12 +42,11 @@ INSTALLED_APPS = [
 
     #apps
     'home',
-    'orders',
-    'status',
+    #'status',
     'user_profile',
     'feedback',
     'support',
-    'projects',
+   
     
 ]
 

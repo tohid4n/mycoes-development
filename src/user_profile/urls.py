@@ -1,10 +1,10 @@
 from django.urls import path
-
-from .views import OrderView, TransactionsView
+from .views import PricingView, OfferView
 
 app_name = 'user_profile'
 
 urlpatterns = [
-    path('', OrderView.as_view(), name='profile-orders'),
-    path('transactions', TransactionsView.as_view(), name='profile-transactions'),
+    path('', PricingView.as_view(), name='profile'),
+    path('offer/', OfferView.as_view(), name="make-offer"),
 ]
+

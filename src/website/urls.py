@@ -5,9 +5,7 @@ from django.urls import path, include
 urlpatterns = [
     path('tohid/admin/', admin.site.urls),
     path('', include('home.urls', namespace='home')),
-    path('status/', include('status.urls', namespace='status')),
-    path('projects/', include('projects.urls', namespace='projects')),
-    path('order/', include('orders.urls', namespace='orders')),
+    #path('status/', include('status.urls', namespace='status')),
     path('profile/', include('user_profile.urls', namespace='user_profile')),
     path('feedback/', include('feedback.urls', namespace='feedback')),
     path('support/', include('support.urls', namespace='support')),

@@ -6,53 +6,205 @@
 {% block content %}
 
 <div class="m-auto w-full sm:w-11/12 md:w-10/12 lg:w-8/12">
-   <div class="mt-28 sm:mt-32 md:mt-36">
+   <div class="mt-28 mx-6 sm:mt-32 md:mt-36">
 
-  
-  
+
     <div class="text-center">
       <p class="text-4xl sm:text-5xl font-OpenSans font-normal m-6 text-black dark:text-white">Find Your Answer</p>
     </div>
   
 
-    <div id="autocomplete" class="autocomplete">
-      <input class="autocomplete-input" />
-      <ul class="autocomplete-result-list"></ul>
+    <!-- General FAQ Section -->
+
+    <div class="my-10">
+
+    <div class="mt-14 mb-4">
+      <p class="text-2xl sm:text-4xl font-OpenSans font-semibold text-black dark:text-white">General Questions</p>
     </div>
 
-    
+
+
     <div id="accordion-flush" data-accordion="collapse" data-active-classes="text-black dark:text-white" data-inactive-classes="text-black dark:text-white">
-      <h2 id="accordion-flush-heading-1">
-        <button type="button" class="flex items-center justify-between w-full py-5 text-left border-b border-gray-600 dark:border-gray-200" data-accordion-target="#accordion-flush-body-1" aria-expanded="true" aria-controls="accordion-flush-body-1">
-          <span class="font-light text-xl sm:text-2xl font-OpenSans leading-normal sm:leading-normal tracking-wide text-black dark:text-white">How does MyCoes help me build my website?</span>
-          <svg data-accordion-icon class="rotate-180 shrink-0 fill-black dark:fill-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M480-345 240-585l56-56 184 184 184-184 56 56-240 240Z"/></svg>
+      {% for faq in general_faqs %}
+      <h2 id="accordion-flush-heading-{{ faq.id }}">
+        <button type="button" class="flex items-center justify-between w-full py-5 text-left border-b border-gray-500 dark:border-gray-700"
+          data-accordion-target="#accordion-flush-body-{{ faq.id }}" aria-expanded="false" aria-controls="accordion-flush-body-{{ faq.id }}">
+          <span class="font-light text-xl sm:text-2xl font-OpenSans leading-normal sm:leading-normal tracking-wide text-black dark:text-white">
+            {{ faq.question }}
+          </span>
+          <svg data-accordion-icon class="shrink-0 fill-black dark:fill-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
+            <path d="M480-345 240-585l56-56 184 184 184-184 56 56-240 240Z"/>
+          </svg>
         </button>
       </h2>
-      <div id="accordion-flush-body-1" class="hidden" aria-labelledby="accordion-flush-heading-1">
-        <div class="py-5 border-b border-gray-600 dark:border-gray-200">
-          <p class="mb-2 text-base sm:text-lg font-OpenSans font-normal text-gray-800 leading-normal sm:leading-normal tracking-wide dark:text-white">MyCoes simplifies website development with expert design, robust development, reliable  and content creation. We customize solutions for a visually appealing site, ensuring quality and affordability. Partner with us for a successful online presence.</p>
+      <div id="accordion-flush-body-{{ faq.id }}" class="hidden" aria-labelledby="accordion-flush-heading-{{ faq.id }}">
+        <div class="py-5 border-b border-gray-500 dark:border-gray-700">
+          <p class="mb-2 text-base sm:text-lg font-OpenSans font-normal text-gray-800 leading-normal sm:leading-normal tracking-wide dark:text-white">
+            {{ faq.answer }}
+          </p>
+
+          {% if faq.link_to %}
+          <ul class="pl-5 text-gray-500 list-disc dark:text-gray-400">
+            <li><a href="{{ faq.link_to }}" class="text-blue-600 dark:text-blue-500 hover:underline">{{ faq.link_to_text }}</a></li>
+           </ul>
+          {% endif %}
+          
         </div>
       </div>
-    
+      {% endfor %}
+    </div>
+       
+</div>
 
 
-    {% comment %} <div class="mt-4 md:mt-10 flex justify-center">
-      <div class="bottom-0 left-0 right-0 pb-8 w-9/12 pt-4">
-          <div class="w-full border border-black dark:border-white rounded-xl">
-              
-                <div class="w-full">
-                      <form method="POST" class="flex">
-                          {% csrf_token %}
-                          {{ form }}
-                          <button type="submit" class="text-black dark:text-white font-OpenSans font-normal text-lg sm:text-xl p-3 -mb-8 sm:-mb-10">Submit</button>
-                        </form>
-               </div>            
-          </div>
-        </div>
-      </div> {% endcomment %}
+<!-- Services FAQ Section -->
+
+<div class="my-20">
+
+  <div class="mt-14 mb-4">
+    <p class="text-2xl sm:text-4xl font-OpenSans font-semibold text-black dark:text-white">Services Related</p>
+  </div>
 
 
 
+  <div id="accordion-flush" data-accordion="collapse" data-active-classes="text-black dark:text-white" data-inactive-classes="text-black dark:text-white">
+    {% for faq in services_faqs %}
+    <h2 id="accordion-flush-heading-{{ faq.id }}">
+      <button type="button" class="flex items-center justify-between w-full py-5 text-left border-b border-gray-500 dark:border-gray-700"
+        data-accordion-target="#accordion-flush-body-{{ faq.id }}" aria-expanded="false" aria-controls="accordion-flush-body-{{ faq.id }}">
+        <span class="font-light text-xl sm:text-2xl font-OpenSans leading-normal sm:leading-normal tracking-wide text-black dark:text-white">
+          {{ faq.question }}
+        </span>
+        <svg data-accordion-icon class="shrink-0 fill-black dark:fill-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
+          <path d="M480-345 240-585l56-56 184 184 184-184 56 56-240 240Z"/>
+        </svg>
+      </button>
+    </h2>
+    <div id="accordion-flush-body-{{ faq.id }}" class="hidden" aria-labelledby="accordion-flush-heading-{{ faq.id }}">
+      <div class="py-5 border-b border-gray-500 dark:border-gray-700">
+        <p class="mb-2 text-base sm:text-lg font-OpenSans font-normal text-gray-800 leading-normal sm:leading-normal tracking-wide dark:text-white">
+          {{ faq.answer }}
+        </p>
+
+        {% if faq.link_to %}
+        <ul class="pl-5 text-gray-500 list-disc dark:text-gray-400">
+          <li><a href="{{ faq.link_to }}" class="text-blue-600 dark:text-blue-500 hover:underline">{{ faq.link_to_text }}</a></li>
+         </ul>
+        {% endif %}
+        
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+</div>
+
+
+
+<!-- Pricing FAQ Section -->
+
+<div class="my-20">
+
+  <div class="mt-14 mb-4">
+    <p class="text-2xl sm:text-4xl font-OpenSans font-semibold text-black dark:text-white">Pricing Related</p>
+  </div>
+
+
+
+  <div id="accordion-flush" data-accordion="collapse" data-active-classes="text-black dark:text-white" data-inactive-classes="text-black dark:text-white">
+    {% for faq in pricing_faqs %}
+    <h2 id="accordion-flush-heading-{{ faq.id }}">
+      <button type="button" class="flex items-center justify-between w-full py-5 text-left border-b border-gray-500 dark:border-gray-700"
+        data-accordion-target="#accordion-flush-body-{{ faq.id }}" aria-expanded="false" aria-controls="accordion-flush-body-{{ faq.id }}">
+        <span class="font-light text-xl sm:text-2xl font-OpenSans leading-normal sm:leading-normal tracking-wide text-black dark:text-white">
+          {{ faq.question }}
+        </span>
+        <svg data-accordion-icon class="shrink-0 fill-black dark:fill-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
+          <path d="M480-345 240-585l56-56 184 184 184-184 56 56-240 240Z"/>
+        </svg>
+      </button>
+    </h2>
+    <div id="accordion-flush-body-{{ faq.id }}" class="hidden" aria-labelledby="accordion-flush-heading-{{ faq.id }}">
+      <div class="py-5 border-b border-gray-500 dark:border-gray-700">
+        <p class="mb-2 text-base sm:text-lg font-OpenSans font-normal text-gray-800 leading-normal sm:leading-normal tracking-wide dark:text-white">
+          {{ faq.answer }}
+        </p>
+
+        {% if faq.link_to %}
+        <ul class="pl-5 text-gray-500 list-disc dark:text-gray-400">
+          <li><a href="{{ faq.link_to }}" class="text-blue-600 dark:text-blue-500 hover:underline">{{ faq.link_to_text }}</a></li>
+         </ul>
+        {% endif %}
+        
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+</div>
+
+
+
+<!-- Additional Services(gift) Section -->
+
+
+<div class="my-20">
+
+  <div class="mt-14 mb-4">
+    <p class="text-2xl sm:text-4xl font-OpenSans font-semibold text-black dark:text-white">Additional Services(Gift) Related</p>
+  </div>
+
+
+
+  <div id="accordion-flush" data-accordion="collapse" data-active-classes="text-black dark:text-white" data-inactive-classes="text-black dark:text-white">
+    {% for faq in additional_faqs %}
+    <h2 id="accordion-flush-heading-{{ faq.id }}">
+      <button type="button" class="flex items-center justify-between w-full py-5 text-left border-b border-gray-500 dark:border-gray-700"
+        data-accordion-target="#accordion-flush-body-{{ faq.id }}" aria-expanded="false" aria-controls="accordion-flush-body-{{ faq.id }}">
+        <span class="font-light text-xl sm:text-2xl font-OpenSans leading-normal sm:leading-normal tracking-wide text-black dark:text-white">
+          {{ faq.question }}
+        </span>
+        <svg data-accordion-icon class="shrink-0 fill-black dark:fill-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
+          <path d="M480-345 240-585l56-56 184 184 184-184 56 56-240 240Z"/>
+        </svg>
+      </button>
+    </h2>
+    <div id="accordion-flush-body-{{ faq.id }}" class="hidden" aria-labelledby="accordion-flush-heading-{{ faq.id }}">
+      <div class="py-5 border-b border-gray-500 dark:border-gray-700">
+        <p class="mb-2 text-base sm:text-lg font-OpenSans font-normal text-gray-800 leading-normal sm:leading-normal tracking-wide dark:text-white">
+          {{ faq.answer }}
+        </p>
+
+        {% if faq.link_to %}
+        <ul class="pl-5 text-gray-500 list-disc dark:text-gray-400">
+          <li><a href="{{ faq.link_to }}" class="text-blue-600 dark:text-blue-500 hover:underline">{{ faq.link_to_text }}</a></li>
+         </ul>
+        {% endif %}
+        
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+</div>
+
+
+<!-- Contact button for support page -->
+
+<div>
+<div>
+  <h3 class="text-5xl font-OpenSans font-normal leading-relaxed tracking-wide text-black dark:text-white">Can't find what you are looking for?</h3>
+      </div>
+
+<div class="my-16">
+  <a href="{% url 'home:contact' %}" class="text-black dark:text-white hover:text-white dark:hover:text-black">
+  <div class="text-center w-full py-5 sm:py-6 border border-black dark:border-white hover:bg-black dark:hover:bg-white">
+    <p class="text-2xl font-Inter font-light">Contact us</p>
+  </div>
+</a>
+</div>
+
+</div>
   
       </div>
   </div>

@@ -216,6 +216,26 @@ summary:after {
 
 
 
+/* styles.css */
+.service-button {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.service-button .icon {
+  margin-right: 5px;
+}
+
+.service-button.selected .icon::after {
+  content: '-';
+}
+
+.service-button.selected {
+  background-color: #ff0000; /* Example: Change background color for selected services */
+  color: #ffffff;          /* Example: Change text color for selected services */
+}
 
 
 

@@ -1,52 +1,19 @@
-from django.shortcuts import render
+from time import sleep
+from django.shortcuts import render, redirect
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import PurchasedOffer
-from orders.models import Offer
 
 from django.contrib.auth.views import LogoutView
 from django.contrib import messages
 from django.urls import reverse
-from django.shortcuts import redirect
-
-class OrderView(LoginRequiredMixin, generic.TemplateView):
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        offers = Offer.objects.filter(user=self.request.user)
-        purchased_offers = PurchasedOffer.objects.filter(user=self.request.user)
-        context['offers'] = offers
-        context['purchased_offers'] = purchased_offers
-        return context
-    
-    def get_template_names(self):
-        # Override get_template_names to return different templates based on conditions
-        purchased_offers = self.get_context_data().get('purchased_offers')
-        if purchased_offers.exists():
-            return ['orders.html']
-        else:
-            return ['no-order.html']
+from django.urls import reverse_lazy
+from django.views.generic.edit import CreateView
+from .forms import OfferForm
 
 
 
-class TransactionsView(LoginRequiredMixin, generic.TemplateView):
-    template_name = 'transactions.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        offers = Offer.objects.filter(user=self.request.user)
-        purchased_offers = PurchasedOffer.objects.filter(user=self.request.user)
-        context['offers'] = offers
-        context['purchased_offers'] = purchased_offers
-        return context
-
-    def get_template_names(self):
-        # Override get_template_names to return different templates based on conditions
-        purchased_offers = self.get_context_data().get('purchased_offers')
-        if purchased_offers.exists():
-            return ['transactions.html']
-        else:
-            return ['no-transactions.html']
+class PricingView(generic.TemplateView):
+    template_name = 'profile.html' 
 
 
 
@@ -58,3 +25,18 @@ class CustomLogoutView(LogoutView):
       'You have successfully logged out.'
     )
     return reverse('home:home-page')   
+
+
+class OfferView(LoginRequiredMixin, CreateView):
+    template_name = 'offer.html'
+    form_class = OfferForm
+    success_url = reverse_lazy('user_profile:profile')  # Define the URL to redirect to after successful form submission
+
+    def form_valid(self, form):
+        # Set the user field to the authenticated user and save the form
+        form.instance.user = self.request.user
+        form.save()
+        messages.success(self.request, "Your offer has been submitted successfully. To proceed, click on your preferred communication platforms for the next steps.")
+        sleep(2.5)
+        return super().form_valid(form)
+

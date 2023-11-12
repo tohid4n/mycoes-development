@@ -4,7 +4,7 @@ from django.conf import settings
 from django.http import HttpResponse
 from django.views import generic, View
 from django.shortcuts import render, redirect
-from orders.models import Offer
+#from orders.models import Offer
 from .models import ProgressBar
 from user_profile.models import PurchasedOffer, DownloadFile
 from .forms import ProgressBodyForm

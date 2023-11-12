@@ -16,19 +16,21 @@
   
 
 
-    <div class="mt-4 md:mt-10 flex justify-center">
-      <div class="bottom-0 left-0 right-0 pb-8 w-9/12 pt-4">
-          <div class="w-full border border-black dark:border-white rounded-xl">
+    <div class="mt-4 md:mt-10 flex items-center justify-center gap-4">
+      <div class="rounded-full text-white dark:text-black w-8 h-8 flex items-center justify-center bg-black dark:bg-white">{{ user.email.0|default_if_none:""|upper }}</div>              
+      <div class="pb-8 w-9/12 pt-8">
+          <div class="w-full border border-black dark:border-gray-400 rounded-xl">
               
                 <div class="w-full">
                       <form method="POST" class="flex">
                           {% csrf_token %}
                           {{ form }}
-                          <button type="submit" class="text-black dark:text-white font-OpenSans font-normal text-lg sm:text-xl p-3 -mb-8 sm:-mb-10">Submit</button>
+                          <button type="submit" class="text-black dark:text-white font-Roboto font-normal text-lg sm:text-xl p-3 -mb-4">Submit</button>
                         </form>
                </div>            
           </div>
         </div>
+
       </div>
 
 
@@ -37,49 +39,46 @@
 </div>
 
 
-  <div class="mt-6 mb-20 mx-6">
+  <div class="mt-6 mb-20">
     <div class="w-full overflow-y-hidden">
+     
+      
       {% for feedback in object_list %}
-      <div class="border-b border-black dark:border-white">
-       
-        <div>
-  
-          <div class="flex justify-between m-4">
+      <div >
+          <div class="flex justify-between mx-6">
             <div class="flex gap-4">
-              <div><p class="text-sm font-Roboto font-bold text-black dark:text-white">{{ feedback.timestamp|date }}</p></div>
+              <div class="rounded-full text-white dark:text-black w-8 h-8 flex items-center justify-center bg-black dark:bg-white">{{ feedback.user.email.0|default_if_none:""|upper }}</div>              
+              <div><p class="text-sm font-Roboto font-bold text-black dark:text-white">{{ feedback.user.username }}</p></div>
               <div><p class="text-sm font-Roboto font-normal text-black dark:text-white">{{ feedback.timestamp|date }}</p></div>
             </div>
-           
             <div>
              {% if feedback.user == user %}
             <form method="post" action="{% url 'feedback:feedback-delete' feedback.pk %}">
               {% csrf_token %}
-              <button type="submit" class="hover:underline">Delete</button>
+              <button type="submit" class="text-black dark:text-white hover:underline">Delete</button>
             </form>
             {% endif %}
           </div>
         </div>
-  
-          <div class="m-4"><p class="text-xl font-Content font-normal tracking-wide text-black dark:text-white">{{ feedback.text_feedback }}</p></div>
+          <div class="mx-14 my-4 border-b border-slate-600 dark:border-slate-500"><p class="text-base xsm:text-xl font-Content font-normal tracking-wide text-black dark:text-white m-4">{{ feedback.text_feedback }}</p></div>
         </div>
+
       
-        
-      </div>
   
   
       {% empty %}
       <div>
-        <p class="font-WorkSans text-3xl m-4">No Feedbacks yet.</p>
+        <p class="font-OpenSans text-3xl m-4 text-black dark:text-white">No Feedbacks yet.</p>
       </div>
       {% endfor %}
+
     </div>
-    
-  </div>
-   
-  
-      </div>
   </div>
   
   
 
+
+
+      </div>
+  </div>
 {% endblock content %}

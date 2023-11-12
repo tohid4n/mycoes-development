@@ -1,21 +1,19 @@
-from django.urls import reverse
-from django.views import  generic
-from .models import FAQ
-from django.http import JsonResponse
-from django.db.models import Q
-
+from django.views import generic
+from .models import GeneralFAQ, ServicesFAQ, PricingFAQ, AdditionalFAQ
 
 class SupportView(generic.TemplateView):
     template_name = 'support.html'
-    
-    
-class SearchFAQsView(generic.View):
-    def get(self, request):
-        search_term = request.GET.get('term')
-        faqs = FAQ.objects.filter(question__icontains=search_term)
-        faq_data = [{'question': faq.question, 'answer': faq.answer} for faq in faqs]
 
-        return JsonResponse({'status': 200, 'data': faq_data})
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['general_faqs'] = GeneralFAQ.objects.all() 
+        context['services_faqs'] = ServicesFAQ.objects.all()
+        context['pricing_faqs'] = PricingFAQ.objects.all() 
+        context['additional_faqs'] = AdditionalFAQ.objects.all() 
+        return context
+    
+    
+
 
     
     
