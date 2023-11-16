@@ -5,7 +5,7 @@ class OfferForm(forms.ModelForm):
 
     class Meta:
         model = Offer
-        fields = ['title', 'description', 'date', 'budget', 'attached_files', 'selected_services']
+        fields = ['title', 'description', 'date', 'budget', 'attached_files']
 
         widgets = {
             'date': forms.widgets.DateInput(attrs={'type': 'date'}),
@@ -19,6 +19,7 @@ class OfferForm(forms.ModelForm):
         self.fields['date'].label = "Deadline for Completion"
         self.fields['budget'].label = "What's your budget range?"
         self.fields['attached_files'].label = 'Attach Files(Optional)'
+        
         
         # Add classes to the fields
         self.fields['title'].widget.attrs.update({'class': 'offer_form_input_classes'})

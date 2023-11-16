@@ -34,11 +34,7 @@ class Offer(models.Model):
     date = models.CharField(max_length=70)
     budget = models.CharField(max_length=70)
     attached_files = models.FileField(upload_to='uploads/', null=True, blank=True)
-    selected_services = models.CharField(max_length=255)  # New field for selected services
     timestamp = models.DateTimeField(auto_now_add=True)
-    
-    def save_selected_services(self, selected_services):
-        self.selected_services = ', '.join(filter(lambda x: x.lower() != 'false', selected_services))
         
     def __str__(self):
         return self.title
