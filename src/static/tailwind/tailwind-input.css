@@ -9,11 +9,20 @@
     }
 
     .contact_classes {
-        @apply bg-white dark:bg-black border border-black dark:border-white text-2xl font-Roboto font-light text-black dark:text-white focus:ring-black focus:border-black  block w-full p-2.5 dark:focus:ring-white dark:focus:border-white mb-10
+        @apply bg-white dark:bg-black border border-black dark:border-gray-300 text-2xl font-Roboto font-light text-black dark:text-white focus:ring-black focus:border-black  block w-full p-2.5 dark:focus:ring-white dark:focus:border-white mb-10
     }
 
+    .offer_form_input_classes {
+        @apply bg-white dark:bg-black border border-black dark:border-gray-300 text-2xl font-Roboto font-light text-black dark:text-white focus:ring-black focus:border-black  block w-full p-2.5 dark:focus:ring-white dark:focus:border-white mb-10
+    }
+
+    .offer_form_area_input_classes {
+        @apply bg-white dark:bg-black border border-black dark:border-gray-300 text-2xl font-Roboto font-light text-black dark:text-white focus:ring-black focus:border-black  block w-full p-2.5 dark:focus:ring-white dark:focus:border-white mb-10
+    }
+
+
     .about_contact_class {
-        @apply h-40 bg-white dark:bg-black border border-black dark:border-white text-2xl font-Roboto font-light text-black dark:text-white focus:ring-black focus:border-black  block w-full p-2.5 dark:focus:ring-white dark:focus:border-white mb-10
+        @apply h-40 bg-white dark:bg-black border border-black dark:border-gray-300 text-2xl font-Roboto font-light text-black dark:text-white focus:ring-black focus:border-black  block w-full p-2.5 dark:focus:ring-white dark:focus:border-white mb-10
     }
 
 

@@ -27,16 +27,24 @@ class CustomLogoutView(LogoutView):
     return reverse('home:home-page')   
 
 
+
+
 class OfferView(LoginRequiredMixin, CreateView):
     template_name = 'offer.html'
     form_class = OfferForm
-    success_url = reverse_lazy('user_profile:profile')  # Define the URL to redirect to after successful form submission
+    success_url = reverse_lazy('user_profile:profile')
 
     def form_valid(self, form):
-        # Set the user field to the authenticated user and save the form
+        # Set the user field to the authenticated user
         form.instance.user = self.request.user
+
+        # Extract selected services from the form and set them on the model instance
+        selected_services = self.request.POST.getlist('selected_services')
+        form.instance.selected_services = ', '.join(selected_services)
+        
+        # Save the form
         form.save()
+
         messages.success(self.request, "Your offer has been submitted successfully. To proceed, click on your preferred communication platforms for the next steps.")
         sleep(2.5)
         return super().form_valid(form)
-

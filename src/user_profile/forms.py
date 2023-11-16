@@ -2,31 +2,27 @@ from django import forms
 from .models import Offer
 
 class OfferForm(forms.ModelForm):
+
     class Meta:
         model = Offer
-    
-        fields = ['title', 'description', 'date', 'budget', 'attached_files']
-        
-        
+        fields = ['title', 'description', 'date', 'budget', 'attached_files', 'selected_services']
+
         widgets = {
             'date': forms.widgets.DateInput(attrs={'type': 'date'}),
-            'budget': forms.widgets.NumberInput(attrs={'placeholder': '$'})
         }
-        
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        
-        
-        self.fields['title'].label = 'Project Name' 
-        self.fields['description'].label = 'Website Requirements'
-        self.fields['date'].label = 'What is your desired deadline for completion of the project?'
-        self.fields['budget'].label = 'Estimated Budget?'
-        self.fields['attached_files'].label = 'Attach Files'
 
+        self.fields['title'].label = "Project Title"
+        self.fields['description'].label = "How can we help you?"
+        self.fields['date'].label = "Deadline for Completion"
+        self.fields['budget'].label = "What's your budget range?"
+        self.fields['attached_files'].label = 'Attach Files(Optional)'
         
-        self.fields['title'].widget.attrs.update({'class': 'input_classes'})
-        self.fields['description'].widget.attrs.update({'class': 'input_classes'})
-        self.fields['attached_files'].widget.attrs.update({'class': 'input_classes'})
-        self.fields['date'].widget.attrs.update({'class': 'input_classes'})
-        self.fields['budget'].widget.attrs.update({'class': 'input_classes'})
+        # Add classes to the fields
+        self.fields['title'].widget.attrs.update({'class': 'offer_form_input_classes'})
+        self.fields['description'].widget.attrs.update({'class': 'offer_form_area_input_classes', 'rows': '4'})
+        self.fields['attached_files'].widget.attrs.update({'class': 'offer_form_input_classes'})
+        self.fields['date'].widget.attrs.update({'class': 'offer_form_input_classes'})
+        self.fields['budget'].widget.attrs.update({'class': 'offer_form_input_classes'})

@@ -5,29 +5,178 @@
 {% block content %}
 
 
-<div class="flex justify-center mt-12">
-<div class="w-full sm:w-10/12 lg:w-7/12 m-4">
+<div class="m-auto w-11/12 md:w-10/12 lg:w-7/12 flex justify-center">
+<div class="my-12 w-full">
 
-  <div class="m-6 text-center">
-    <p class="font-WorkSans font-semibold text-4xl underline">Development Offer</p>
-</div>
 
+
+ 
 <form method="POST">
   {% csrf_token %}
-  {% for field in form %}
+ 
     <div class="mt-6 sm:m-8">
-      <label for="{{ field.id_for_label }}" class="block mb-2 font-Karla text-2xl font-normal text-gray-900">{{ field.label }}</label>
-      {{ field }}
+      <label for="{{ field.id_for_label }}" class="block font-Content text-3xl font-normal text-black dark:text-white mb-5">Project Title</label>
+      {{ form.title }}
     </div>
-  {% endfor %}
-  <div class="mt-6 sm:mt-0">
-  <button type="submit" class="text-white font-WorkSans bg-black hover:bg-slate-900 focus:ring-4 focus:ring-slate-700 font-semibold rounded-lg text-2xl px-14 py-3.5 sm:ml-8 mb-2 dark:bg-black dark:hover:bg-slate-900 focus:outline-none dark:focus:ring-black">Make Offer</button>
+
+    <div class="mt-6 sm:m-8">
+      <label for="{{ field.id_for_label }}" class="block font-Content text-3xl font-normal text-black dark:text-white mb-5">How can we help you?</label>
+      {{ form.description }}
+    </div>
+
+
+<div class="mt-6 sm:m-8">
+  <label for="services" class="block font-Content text-3xl font-normal text-black dark:text-white mb-5">Select Services</label>
+<div id="services" class="grid sm:grid-cols-2 gap-4">
+
+  <div class="service hover:cursor-pointer border border-black dark:border-gray-300 py-2 px-6 w-fit text-2xl font-Inter text-black dark:text-white flex justify-center items-center gap-2 rounded-full" data-service="Service1">
+    <input type="hidden" name="selected_services" value="Web-design">
+    Web-design
+    <button class="select-button text-3xl" type="button">+</button>
+</div>
+
+
+        <div class="service hover:cursor-pointer border border-black dark:border-gray-300 py-2 px-6 w-fit text-2xl font-Inter text-black dark:text-white flex justify-center items-center gap-2 rounded-full" data-service="Service2">
+          <input type="hidden" name="selected_services" value="Content-writing">
+          Content-writing
+          <button class="select-button text-3xl" type="button">+</button>
+        </div>
+
+        <div class="service hover:cursor-pointer border border-black dark:border-gray-300 py-2 px-6 w-fit text-2xl font-Inter text-black dark:text-white flex justify-center items-center gap-2 rounded-full" data-service="Service3">
+          <input type="hidden" name="selected_services" value="Web-development">
+          Web-development
+          <button class="select-button text-3xl" type="button">+</button>
+        </div>
+
+
+        <div class="service hover:cursor-pointer border border-black dark:border-gray-300 py-2 px-6 w-fit text-2xl font-Inter text-black dark:text-white flex justify-center items-center gap-2 rounded-full" data-service="Service4">
+          <input type="hidden" name="selected_services" value="Web-hosting">
+          Web-hosting
+          <button class="select-button text-3xl" type="button">+</button>
+        </div>
+  
+  
+      <div class="service hover:cursor-pointer border border-black dark:border-gray-300 w-fit text-2xl font-Inter text-black dark:text-white flex justify-center items-center gap-2 rounded-full">
+        <button id="select-all-button" class="py-3 px-6" type="button">Select All</button>
+      </div>
+
+      </div>
+    </div>
+
+
+    <div class="mt-6 sm:m-8">
+      <label for="{{ field.id_for_label }}" class="block font-Content text-3xl font-normal text-black dark:text-white mb-5">Deadline for Completion</label>
+      {{ form.date }}
+    </div>
+
+    <div class="mt-6 sm:m-8">
+      <label for="{{ field.id_for_label }}" class="block font-Content text-3xl font-normal text-black dark:text-white mb-5">What's your budget range?</label>
+      {{ form.budget }}
+    </div>
+
+    <div class="mt-6 sm:m-8">
+      <label for="{{ field.id_for_label }}" class="block font-Content text-3xl font-normal text-black dark:text-white mb-5">Attach Files (Optional)</label>
+      {{ form.attached_files }}
+    </div>
+ 
+  
+<div class="sm:mt-14 sm:mr-16">
+  <button type="submit" class="text-xl font-Inter font-normal text-white dark:text-black bg-black dark:bg-white py-5 tracking-wide text-center w-full  hover:bg-slate-900 dark:hover:bg-slate-100 sm:ml-8 ">Make offer</button>
 </div>
 </form>
 
 
 </div>
 </div>
+
+
+
+
+<!-- Include this script in your HTML file -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+      const services = document.querySelectorAll('.service');
+      const selectAllButton = document.getElementById('select-all-button');
+
+      // Add event listener to the "Select All" button
+      selectAllButton.addEventListener('click', function () {
+          const isSelected = this.classList.contains('selected');
+
+          // Toggle the selection of all services
+          services.forEach(function (service) {
+              toggleServiceSelection(service, !isSelected);
+          });
+
+          // Toggle the state of the "Select All" button
+          toggleButtonState(selectAllButton, !isSelected);
+      });
+
+      // Add event listeners to each service
+      services.forEach(function (service) {
+          // Add event listener to the service container
+          service.addEventListener('click', function () {
+              toggleServiceSelection(service);
+          });
+      });
+      
+
+
+      // Function to toggle the selection of a service
+      function toggleServiceSelection(service, forceSelection = null) {
+          const selectButton = service.querySelector('.select-button');
+          const hiddenInput = service.querySelector('input[name="selected_services"]');
+          const isServiceSelected = service.classList.contains('selected');
+
+          // Determine the new selection state
+          const isSelected = forceSelection !== null ? forceSelection : !isServiceSelected;
+
+          // Toggle the CSS class of the service
+          service.classList.toggle('selected', isSelected);
+
+          // Toggle the text content of the select button
+          selectButton.textContent = isSelected ? '-' : '+';
+
+          // Update the value of the hidden input
+          hiddenInput.value = isSelected ? 'true' : 'false';
+
+          // If any service is not selected, unselect "Select All"
+          const isAnyServiceNotSelected = [...services].some(function (s) {
+              return !s.classList.contains('selected');
+          });
+          toggleButtonState(selectAllButton, !isAnyServiceNotSelected);
+
+          // Toggle background color
+          toggleBackgroundColor(service, isSelected);
+      }
+
+      // Function to toggle the state of a button
+      function toggleButtonState(button, isSelected) {
+          button.classList.toggle('selected', isSelected);
+      }
+      
+
+      function toggleBackgroundColor(service, isSelected) {
+    const selectedBgColor = 'bg-black dark:bg-transparent'; // Set your desired background color for selected
+    const selectedTextColor = 'text-white'; // Set your desired text color for selected
+    
+    // Remove all background color and text color classes
+    service.classList.remove(
+        'bg-black', 'dark:bg-white', 'text-white', 
+    );
+
+    // Apply the appropriate background color and text color based on the selection state
+    if (isSelected) {
+        selectedBgColor.split(' ').forEach(className => service.classList.add(className));
+        selectedTextColor.split(' ').forEach(className => service.classList.add(className));
+    }
+}
+
+
+     
+  });
+</script>
+
+
 
 
 
