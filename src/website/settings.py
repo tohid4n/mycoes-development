@@ -39,6 +39,9 @@ INSTALLED_APPS = [
     
     #django-magiclink
     'magiclink',
+    
+    #django-payments
+    'payments',
 
     #apps
     'home',
@@ -216,10 +219,64 @@ LOGGING = {
 }
 
 
-#stripe
-
-STRIPE_PUBLIC_KEY=env("STRIPE_PUBLIC_KEY")
-STRIPE_SECRET_KEY=env("STRIPE_SECRET_KEY")
-STRIPE_WEBHOOK_SECRET=env("STRIPE_WEBHOOK_SECRET")
 
 
+#django-payments 
+
+PAYMENT_VARIANTS = {
+    'paypal': (
+        'payments.paypal.PaypalProvider',
+        {
+            'client_id': 'user@example.com',
+            'secret': 'iseedeadpeople',
+            'endpoint': 'https://api.sandbox.paypal.com',
+            'capture': False,
+        }
+    ),
+    'paypal_card': (
+        'payments.paypal.PaypalCardProvider',
+        {
+            'client_id': 'user@example.com',
+            'secret': 'iseedeadpeople',
+        }
+    ),
+    
+    #stripe in production setting
+    # 'stripe_v3_dev': (
+    #     'payments.stripe.StripeProviderV3',
+    #     {
+    #         'api_key': 'sk_test_123456',
+    #         'use_token': True,
+    #         'endpoint_secret': 'whsec_123456',
+    #         'secure_endpoint': True
+    #     }
+    # )
+
+    'stripe_v3_dev': (
+        'payments.stripe.StripeProviderV3',
+        {
+            'api_key': 'sk_test_123456',
+            'use_token': True,
+            'secure_endpoint': False
+        }
+    ),
+    'stripe': (
+        'payments.stripe.StripeProvider',
+        {
+            'secret_key': 'sk_test_123456',
+            'public_key': 'pk_test_123456',
+        }
+    )
+}
+
+
+# STRIPE_PUBLIC_KEY=env("STRIPE_PUBLIC_KEY")
+# STRIPE_SECRET_KEY=env("STRIPE_SECRET_KEY")
+# STRIPE_WEBHOOK_SECRET=env("STRIPE_WEBHOOK_SECRET")
+
+
+# change in production
+PAYMENT_HOST = 'localhost:8000'
+PAYMENT_USES_SSL = False
+
+PAYMENT_MODEL = 'user_profile.Payment'

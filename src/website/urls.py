@@ -11,5 +11,6 @@ urlpatterns = [
     path('support/', include('support.urls', namespace='support')),
     path('auth/', include('magiclink.urls', namespace='magiclink')),
     path('oauth/', include('social_django.urls', namespace='social')),
+    path('payments/', include('payments.urls')),
     path('logout/', CustomLogoutView.as_view(), name='custom_logout'),
 ]
