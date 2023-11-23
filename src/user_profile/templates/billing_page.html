@@ -4,20 +4,20 @@
 <div class="mx-4 mb-20 z-50">
     <!-- Offer content -->
     {% if user_offers %}
-        {% for offer in user_offers %}
+        {% for offer_data in offers_data %}
             <div class="mb-12 mt-4 pb-6 border-b border-black dark:border-gray-400">
                 <div>
-                    <p class="text-4xl md:text-5xl leading-snug md:leading-snug font-Inter font-bold tracking-wide text-black dark:text-white">{{ offer.title }}</p>
+                    <p class="text-4xl md:text-5xl leading-snug md:leading-snug font-Inter font-bold tracking-wide text-black dark:text-white">{{ offer_data.offer.title }}</p>
                 </div>
                 <div class="mt-4">
-                    <p class="text-base sm:text-xl font-OpenSans font-normal tracking-wide leading-relaxed sm:leading-relaxed text-black dark:text-white">{{ offer.timestamp|date }}</p>
+                    <p class="text-base sm:text-xl font-OpenSans font-normal tracking-wide leading-relaxed sm:leading-relaxed text-black dark:text-white">{{ offer_data.offer.timestamp|date }}</p>
                 </div>
                 <div class="mt-4">
-                    <p class="text-base sm:text-xl font-Content font-normal tracking-wide leading-relaxed sm:leading-relaxed text-black dark:text-white">{{ offer.description }}</p>
+                    <p class="text-base sm:text-xl font-Content font-normal tracking-wide leading-relaxed sm:leading-relaxed text-black dark:text-white">{{ offer_data.offer.description }}</p>
                 </div>
 
                 
-                {% if all_milestones %}
+                {% if offer_data.all_offer_milestones %}
                    
                  <!-- Pricing related -->
                 <div class="relative w-full overflow-x-auto mt-10 border border-black dark:border-gray-400">
@@ -31,7 +31,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {% for milestone in all_milestones %}
+                            {% for milestone in offer_data.all_offer_milestones %}
                                 <tr class="bg-white border-b dark:bg-black dark:border-gray-700">
                                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                         {{ milestone.id }}
@@ -67,49 +67,40 @@
 
                 {% endif %}
 
+                
+                {% if offer_data.next_milestone %}
                 <div class="mt-10">
+                
                     <div>
-                        <p class="text-2xl md:text-3xl leading-snug md:leading-snug font-Inter tracking-wide font-bold text-black dark:text-white">Total: <strong class="font-normal">$ {{ total_ammount }}</strong></p>
+                        <p class="text-2xl md:text-3xl leading-snug md:leading-snug font-Inter tracking-wide font-bold text-black dark:text-white">Total: <strong class="font-normal">$ {{ offer_data.total_ammount }}</strong></p>
                     </div>
 
-                    
-                    {% if next_milestone %}
-                        
-                    <div class="mt-6">
-                        
-
-                        <div>
-                            <p class="text-2xl md:text-3xl leading-snug md:leading-snug font-Inter tracking-wide font-bold text-black dark:text-white">Remaining to Pay: <strong class="font-normal">$ {{ remaining_ammount }}</strong></p>
+                        <div class="mt-6">
+                            <p class="text-2xl md:text-3xl leading-snug md:leading-snug font-Inter tracking-wide font-bold text-black dark:text-white">Remaining to Pay: <strong class="font-normal">$ {{ offer_data.remaining_ammount }}</strong></p>
                         </div>
 
                         <div class="mt-6">
-                            <p class="text-2xl md:text-3xl leading-snug md:leading-snug font-Inter tracking-wide font-bold text-black dark:text-white">Current Milestone: <strong class="font-normal">{{ next_milestone.id }}</strong></p>
+                            <p class="text-2xl md:text-3xl leading-snug md:leading-snug font-Inter tracking-wide font-bold text-black dark:text-white">Current Milestone: <strong class="font-normal">{{ offer_data.next_milestone.id }}</strong></p>
                         </div>
-
+                        
                         <div class="mt-6">
-                            <p class="text-2xl md:text-3xl leading-snug md:leading-snug font-Inter tracking-wide font-bold text-black dark:text-white">Milestone Ammount: <strong class="font-normal">$ {{ next_milestone.ammount }}</strong></p>
+                            <p class="text-2xl md:text-3xl leading-snug md:leading-snug font-Inter tracking-wide font-bold text-black dark:text-white">Milestone Amount: <strong class="font-normal">$ {{ offer_data.next_milestone.ammount }}</strong></p>
                         </div>
 
                         <div class="mt-10">
-                         <form method="post">
+                        <form method="post">
                             {% csrf_token %}
-                            
-                                <button type="submit" class="text-2xl font-Inter font-normal text-white dark:text-black bg-black dark:bg-white py-4 px-12 tracking-wide text-center hover:bg-slate-900 dark:hover:bg-slate-100">Pay Now</button>  
-                        </form>  
+                            <input type="hidden" name="selected_offer_id" value="{{ offer_data.offer.id }}">
+                            <button type="submit" class="text-2xl font-Inter font-normal text-white dark:text-black bg-black dark:bg-white py-4 px-12 tracking-wide text-center hover:bg-slate-900 dark:hover:bg-slate-100">Pay Now</button>
+                         </form>
                       </div>
 
-                      {% else %}
+                      
 
-                      <div class="mt-6">
-                        <p class="text-2xl md:text-4xl leading-snug md:leading-snug font-Inter tracking-wide font-bold text-black dark:text-white">All milestones have been paid - thank you!</p>
+                      
                     </div>
 
-                      {% endif %}
-
-                    </div>
-                </div> 
-                
-
+                    {% endif %}   
 
             </div>
         {% endfor %}

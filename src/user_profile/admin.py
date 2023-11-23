@@ -1,11 +1,13 @@
 from django.contrib import admin
-from .models import Offer, offer_milestone, CommunicationPlatforms
+from .models import Offer, OfferMilestone, CommunicationPlatforms
 
 class OfferAdmin(admin.ModelAdmin):
-    list_display = ('title', 'user', 'timestamp')  # Customize the fields displayed in the list view
+    list_display = ('title', 'user', 'timestamp')
 
+class OfferMilestoneInline(admin.TabularInline): 
+    model = OfferMilestone
 
+@admin.register(Offer)
+class OfferAdminWithInline(admin.ModelAdmin):
+    inlines = [OfferMilestoneInline]
 
-admin.site.register(Offer, OfferAdmin)
-admin.site.register(offer_milestone)
-admin.site.register(CommunicationPlatforms)

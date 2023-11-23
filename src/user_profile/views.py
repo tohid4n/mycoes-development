@@ -21,7 +21,7 @@ from django.http import HttpResponse
 from django.views import View
 from decimal import Decimal
 from payments import get_payment_model
-from .models import Offer, offer_milestone, CommunicationPlatforms
+from .models import Offer, OfferMilestone, CommunicationPlatforms
 
 
 
@@ -48,37 +48,49 @@ Payment = get_payment_model()
 class BillingView(LoginRequiredMixin, generic.TemplateView):
     template_name = 'billing_page.html'
 
-    def get_context_data(self, **kwargs):
+    def get(self, request, *args, **kwargs):
         context = super().get_context_data(**kwargs)
 
         if self.request.user.is_authenticated:
             user_offers = Offer.objects.filter(user=self.request.user)
             communication_platforms = CommunicationPlatforms.objects.first()
-            all_milestones = offer_milestone.objects.filter(offer__user=self.request.user)
-            non_paid_milestones = offer_milestone.objects.filter(offer__user=self.request.user, paid=False)
-            next_milestone = non_paid_milestones.first()
-            total_ammount = all_milestones.aggregate(sum_ammount=Sum('ammount'))['sum_ammount'] or 0
-            paid_ammount = all_milestones.filter(paid=True).aggregate(sum_ammount=Sum('ammount'))['sum_ammount'] or 0
-            remaining_ammount = total_ammount - paid_ammount
 
+            offers_data = []
+
+            for offer in user_offers:
+                # Retrieve milestones specific to the selected offer
+                all_offer_milestones = offer.milestones.all()
+                offer_milestones = offer.milestones.filter(paid=False)
+                next_milestone = offer_milestones.first()
+
+                total_ammount = all_offer_milestones.aggregate(sum_ammount=Sum('ammount'))['sum_ammount'] or 0
+                paid_ammount = offer_milestones.filter(paid=True).aggregate(sum_ammount=Sum('ammount'))['sum_ammount'] or 0
+                remaining_ammount = total_ammount - paid_ammount
+
+                offers_data.append({
+                    'offer': offer,
+                    'all_offer_milestones': all_offer_milestones,
+                    'next_milestone': next_milestone,
+                    'total_ammount': total_ammount,
+                    'remaining_ammount': remaining_ammount,
+                })
+
+            # Update the context with the new data
             context.update({
                 'user_offers': user_offers,
                 'communication_platforms': communication_platforms,
-                'all_milestones': all_milestones,
-                'next_milestone':next_milestone,
-                'total_ammount': total_ammount,
-                'paid_ammount': paid_ammount,
-                'remaining_ammount': remaining_ammount,
+                'offers_data': offers_data,
             })
 
-        return context
-
+        return self.render_to_response(context)
 
     def post(self, request):
-        non_paid_milestones = offer_milestone.objects.filter(offer__user=self.request.user, paid=False)
-        
-        if non_paid_milestones.exists():
-            next_milestone = non_paid_milestones.first()
+        offer_id = request.POST.get('selected_offer_id')
+        selected_offer = get_object_or_404(Offer, id=offer_id, user=request.user)
+        offer_milestones = selected_offer.milestones.filter(paid=False)
+
+        if offer_milestones.exists():
+            next_milestone = offer_milestones.first()
 
             # Create a payment for the next milestone using the determined variant
             payment = Payment.objects.create(
@@ -104,6 +116,8 @@ class BillingView(LoginRequiredMixin, generic.TemplateView):
                 messages.error(request, 'Payment failed.')
 
             next_milestone.save()
+
+        return super().post(request)
 
 
 
