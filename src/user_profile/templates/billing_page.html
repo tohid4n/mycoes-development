@@ -1,129 +1,118 @@
 {% extends 'profile.html' %}
 
 {% block profile-content %}
-      
 <div class="mx-4 mb-20 z-50">
-<!-- Offer  content -->
+    <!-- Offer content -->
+    {% if user_offers %}
+        {% for offer in user_offers %}
+            <div class="mb-12 mt-4 pb-6 border-b border-black dark:border-gray-400">
+                <div>
+                    <p class="text-4xl md:text-5xl leading-snug md:leading-snug font-Inter font-bold tracking-wide text-black dark:text-white">{{ offer.title }}</p>
+                </div>
+                <div class="mt-4">
+                    <p class="text-base sm:text-xl font-OpenSans font-normal tracking-wide leading-relaxed sm:leading-relaxed text-black dark:text-white">{{ offer.timestamp|date }}</p>
+                </div>
+                <div class="mt-4">
+                    <p class="text-base sm:text-xl font-Content font-normal tracking-wide leading-relaxed sm:leading-relaxed text-black dark:text-white">{{ offer.description }}</p>
+                </div>
+
+                
+                {% if all_milestones %}
+                   
+                 <!-- Pricing related -->
+                <div class="relative w-full overflow-x-auto mt-10 border border-black dark:border-gray-400">
+                    <table class="w-full text-sm text-left rtl:text-right text-black dark:text-gray-400">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-black dark:text-gray-400 border-b border-black dark:border-gray-400">
+                            <tr>
+                                <th scope="col" class="px-6 py-3">Milestones</th>
+                                <th scope="col" class="px-6 py-3">Percentage</th>
+                                <th scope="col" class="px-6 py-3">Payment Status</th>
+                                <th scope="col" class="px-6 py-3">Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for milestone in all_milestones %}
+                                <tr class="bg-white border-b dark:bg-black dark:border-gray-700">
+                                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                        {{ milestone.id }}
+                                    </th>
+                                    <td class="px-6 py-4">
+                                        {{ milestone.percentage }}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        {% if milestone.paid %}
+                                            {% if milestone.payment_status == 'confirmed' %}
+                                                Confirmed
+                                            {% elif milestone.payment_status == 'rejected' %}
+                                                Rejected
+                                            {% elif milestone.payment_status == 'refunded' %}
+                                                Refunded
+                                            {% elif milestone.payment_status == 'error' %}
+                                                Error
+                                            {% else %}
+                                                {{ milestone.payment_status }}
+                                            {% endif %}
+                                        {% else %}
+                                            Non-eligible
+                                        {% endif %}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        ${{ milestone.ammount }}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                {% endif %}
+
+                <div class="mt-10">
+                    <div>
+                        <p class="text-2xl md:text-3xl leading-snug md:leading-snug font-Inter tracking-wide font-bold text-black dark:text-white">Total: <strong class="font-normal">$ {{ total_ammount }}</strong></p>
+                    </div>
+
+                    
+                    {% if next_milestone %}
+                        
+                    <div class="mt-6">
+                        
+
+                        <div>
+                            <p class="text-2xl md:text-3xl leading-snug md:leading-snug font-Inter tracking-wide font-bold text-black dark:text-white">Remaining to Pay: <strong class="font-normal">$ {{ remaining_ammount }}</strong></p>
+                        </div>
+
+                        <div class="mt-6">
+                            <p class="text-2xl md:text-3xl leading-snug md:leading-snug font-Inter tracking-wide font-bold text-black dark:text-white">Current Milestone: <strong class="font-normal">{{ next_milestone.id }}</strong></p>
+                        </div>
+
+                        <div class="mt-6">
+                            <p class="text-2xl md:text-3xl leading-snug md:leading-snug font-Inter tracking-wide font-bold text-black dark:text-white">Milestone Ammount: <strong class="font-normal">$ {{ next_milestone.ammount }}</strong></p>
+                        </div>
+
+                        <div class="mt-10">
+                         <form method="post">
+                            {% csrf_token %}
+                            
+                                <button type="submit" class="text-2xl font-Inter font-normal text-white dark:text-black bg-black dark:bg-white py-4 px-12 tracking-wide text-center hover:bg-slate-900 dark:hover:bg-slate-100">Pay Now</button>  
+                        </form>  
+                      </div>
+
+                      {% else %}
+
+                      <div class="mt-6">
+                        <p class="text-2xl md:text-4xl leading-snug md:leading-snug font-Inter tracking-wide font-bold text-black dark:text-white">All milestones have been paid - thank you!</p>
+                    </div>
+
+                      {% endif %}
+
+                    </div>
+                </div> 
+                
 
 
-{% if user_offers %}
-
-{% for offer in user_offers %}
-
-<div  class="mb-12 mt-4 pb-6 border-b border-black dark:border-gray-400">
-<div>
-    <p class="text-4xl md:text-5xl leading-snug md:leading-snug font-Inter font-bold tracking-wide text-black dark:text-white">{{ offer.title }}</p>
-</div>
-
-<div class="mt-4">
-    <p class="text-base sm:text-xl font-OpenSans font-normal tracking-wide leading-relaxed sm:leading-relaxed text-black dark:text-white">{{ offer.timestamp|date }}</p>
-</div>
-
-
-<div class="mt-4">
-    <p class="text-base sm:text-xl font-Content font-normal tracking-wide leading-relaxed sm:leading-relaxed text-black dark:text-white">{{ offer.description }}</p>
-</div>
-
-
-<div>
-    <p class="text-4xl md:text-5xl leading-snug md:leading-snug font-Inter font-bold tracking-wide text-black dark:text-white">{{ latest_offer.title }}</p>
-</div>
-
-<div class="mt-4">
-    <p class="text-base sm:text-xl font-OpenSans font-normal tracking-wide leading-relaxed sm:leading-relaxed text-black dark:text-white">{{ latest_offer.timestamp|date }}</p>
-</div>
-
-{% if milestones %}
-
-<!-- Pricing related -->
-
-<div class="relative w-full overflow-x-auto mt-10 border border-black dark:border-gray-400">
-    <table class="w-full text-sm text-left rtl:text-right text-black dark:text-gray-400">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-black dark:text-gray-400 border-b border-black dark:border-gray-400">
-            <tr>
-                <th scope="col" class="px-6 py-3">
-                   Milestones
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Percentage
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Payment Status
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Price
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            
-            {% for milestones in milestones %}
-            
-            <tr class="bg-white border-b dark:bg-black dark:border-gray-700">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    {{ milestones.id }}
-                </th>
-                <td class="px-6 py-4">
-                    {{ milestones.percentage }}
-                </td>
-                <td class="px-6 py-4">
-                    ${{ milestones.ammount }}
-                </td>
-                <td class="px-6 py-4">
-        
-
-                    {% if milestone.paid %}
-                            {% if milestone.payment_status == 'confirmed' %}
-                                Confirmed
-                            {% elif milestone.payment_status == 'rejected' %}
-                                Rejected
-                            {% elif milestone.payment_status == 'refunded' %}
-                                Refunded
-                            {% elif milestone.payment_status == 'error' %}
-                                Error
-                            {% else %}
-                                <!-- Add other status checks as needed -->
-                                {{ milestone.payment_status }}
-                            {% endif %}
-                        {% else %}
-                            Non-eligible
-                        {% endif %}
-                </td>
-            </tr>
-           
-            {% endfor %}
-            
-        </tbody>
-    </table>
-</div>
-
-
-<div>
-
-<div>
-    <p>Total: {{ total_amount }}</p>
-</div>
-
-<div class="flex">
-<div>
-    <p>Remaining to Pay: {{ remaining_amount }}</p>
-</div>
-
-<form method="post" action="{% payment_url 'payment_processor_name' %}">
-    {% csrf_token %}
-    {% get_payment_form 'payment_processor_name' as form %}
-    {{ form.as_p }}
-    <button type="submit">Pay Now</button>
-</form>
-
-</div>
-
-
-</div>
-{% endif %}
-
-</div>
-{% endfor %}
+            </div>
+        {% endfor %}
 
 
 
@@ -173,29 +162,22 @@
 </div>
 {% endif %}
 
-
 {% else %}
-<div class="sm:mt-32">
-
-    <div>
-    <div>
-        <p class="text-5xl md:text-6xl leading-snug md:leading-snug font-Inter font-bold tracking-wide text-black dark:text-white">You don't have any offers yet.</p>
-    </div>
-
-
-    <div class="flex gap-4 xl:gap-12 max-xl:flex-col flex-row lg:ml-2">
-    <div class="my-12">
-        <a href="{% url 'user_profile:make-offer' %}" class="text-xl font-Inter font-light text-white dark:text-black bg-black dark:bg-white py-5 px-24 hover:bg-slate-900 dark:hover:bg-slate-100 border-2 border-black dark:border-white">Make Offer</a>
-    </div>
-
-    <div class="xl:my-12">
-        <a href="{% url 'home:contact' %}" class="text-xl font-Inter font-light text-black dark:text-white border-2 border-black dark:border-white py-5 px-24">Contact us</a>
-    </div>
-   </div>
-    
-   </div>
-</div>
-{% endif %}
-
+        <div class="sm:mt-32">
+            <div>
+                <div>
+                    <p class="text-5xl md:text-6xl leading-snug md:leading-snug font-Inter font-bold tracking-wide text-black dark:text-white">You don't have any offers yet.</p>
+                </div>
+                <div class="flex gap-4 xl:gap-12 max-xl:flex-col flex-row lg:ml-2">
+                    <div class="my-12">
+                        <a href="{% url 'user_profile:make-offer' %}" class="text-xl font-Inter font-light text-white dark:text-black bg-black dark:bg-white py-5 px-24 hover:bg-slate-900 dark:hover:bg-slate-100 border-2 border-black dark:border-white">Make Offer</a>
+                    </div>
+                    <div class="xl:my-12">
+                        <a href="{% url 'home:contact' %}" class="text-xl font-Inter font-light text-black dark:text-white border-2 border-black dark:border-white py-5 px-24">Contact us</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
 </div>
 {% endblock profile-content %}

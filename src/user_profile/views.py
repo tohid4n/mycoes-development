@@ -1,3 +1,4 @@
+from django.db.models import Sum
 from time import sleep
 from django.shortcuts import render, redirect
 from django.views import generic
@@ -28,7 +29,7 @@ from .models import Offer, offer_milestone, CommunicationPlatforms
 class OfferView(LoginRequiredMixin, CreateView):
     template_name = 'offer.html'
     form_class = OfferForm
-    success_url = reverse_lazy('user_profile:profile-offers')  # Define the URL to redirect to after successful form submission
+    success_url = reverse_lazy('user_profile:profile-offers-billing')  # Define the URL to redirect to after successful form submission
 
     def form_valid(self, form):
         # Set the user field to the authenticated user and save the form
@@ -44,64 +45,46 @@ class OfferView(LoginRequiredMixin, CreateView):
 
 Payment = get_payment_model()
 
-class BillingView(View):
+class BillingView(LoginRequiredMixin, generic.TemplateView):
     template_name = 'billing_page.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        # Make sure the user is authenticated
         if self.request.user.is_authenticated:
-            # Get all offers made by the current user
             user_offers = Offer.objects.filter(user=self.request.user)
-
-            # Get communication platforms (assuming there is only one set of platforms for all users)
             communication_platforms = CommunicationPlatforms.objects.first()
+            all_milestones = offer_milestone.objects.filter(offer__user=self.request.user)
+            non_paid_milestones = offer_milestone.objects.filter(offer__user=self.request.user, paid=False)
+            next_milestone = non_paid_milestones.first()
+            total_ammount = all_milestones.aggregate(sum_ammount=Sum('ammount'))['sum_ammount'] or 0
+            paid_ammount = all_milestones.filter(paid=True).aggregate(sum_ammount=Sum('ammount'))['sum_ammount'] or 0
+            remaining_ammount = total_ammount - paid_ammount
 
-            context['user_offers'] = user_offers
-            context['communication_platforms'] = communication_platforms
+            context.update({
+                'user_offers': user_offers,
+                'communication_platforms': communication_platforms,
+                'all_milestones': all_milestones,
+                'next_milestone':next_milestone,
+                'total_ammount': total_ammount,
+                'paid_ammount': paid_ammount,
+                'remaining_ammount': remaining_ammount,
+            })
 
         return context
 
-    def get(self, request):
-        # You can modify this logic based on your requirements
-        milestones = offer.offer_milestone_set.all()
-        if milestones.exists():
-            offer_id = milestones.first().offer.id
-            offer = get_object_or_404(Offer, pk=offer_id)
 
-            total_amount = offer.total_amount()
-            paid_amount = sum(milestone.amount for milestone in milestones.filter(paid=True))
-            remaining_amount = total_amount - paid_amount
-
-            context = self.get_context_data()
-            context.update({
-                'offer': offer,
-                'milestones': milestones,
-                'total_amount': total_amount,
-                'paid_amount': paid_amount,
-                'remaining_amount': remaining_amount,
-            })
-
-            return render(request, self.template_name, context)
-
-        # Handle the case when there are no milestones available
-        return render(request, self.template_name, {'message': 'No milestones available for billing.'})
-
-
-
-    def post(self, request, offer_id):
-        offer = get_object_or_404(Offer, pk=offer_id)
-        milestones = offer.offer_milestone_set.filter(paid=False)
-
-        if milestones.exists():
-            next_milestone = milestones.first()
+    def post(self, request):
+        non_paid_milestones = offer_milestone.objects.filter(offer__user=self.request.user, paid=False)
+        
+        if non_paid_milestones.exists():
+            next_milestone = non_paid_milestones.first()
 
             # Create a payment for the next milestone using the determined variant
             payment = Payment.objects.create(
                 variant='default',
                 description=f'Payment for milestone: {next_milestone}',
-                total=next_milestone.amount,
+                total=next_milestone.ammount,
                 currency='USD',
                 billing_name='MyCoes',
                 billing_address_1='Khedekar layout Near Central Bus Stand',
@@ -114,15 +97,13 @@ class BillingView(View):
 
             if payment.is_successful():
                 next_milestone.paid = True
-                next_milestone.payment_status = 'confirmed'  # Update based on your payment result
+                next_milestone.payment_status = 'confirmed'
+                messages.success(request, 'Payment successful.')
             else:
                 next_milestone.payment_status = 'error'
+                messages.error(request, 'Payment failed.')
 
             next_milestone.save()
-
-
-        return redirect('billing', offer_id)
-    
 
 
 

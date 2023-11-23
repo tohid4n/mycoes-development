@@ -27,7 +27,7 @@ class offer_milestone(models.Model):
     payment_status = models.CharField(max_length=20, blank=True, null=True)
     
     def __str__(self):
-        return self.ammount
+        return f"{self.id} - {self.ammount}" 
     
     
 
