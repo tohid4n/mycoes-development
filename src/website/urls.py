@@ -1,6 +1,8 @@
 from django.contrib import admin
 from user_profile.views import CustomLogoutView
 from django.urls import path, include
+from home.views import Custom404View, Custom500View
+
 
 urlpatterns = [
     path('tohid/admin/', admin.site.urls),
@@ -14,3 +16,7 @@ urlpatterns = [
     path('payments/', include('payments.urls')),
     path('logout/', CustomLogoutView.as_view(), name='custom_logout'),
 ]
+
+
+handler404 = Custom404View.as_view()
+handler500 = Custom500View.as_view()

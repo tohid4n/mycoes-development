@@ -1,19 +1,18 @@
 {% extends 'base.html' %}
 {% load static %}
-{% load i18n %}
-{% load account socialaccount %}
+
 
 {% block head_title %}Login link failed{% endblock %}
 
 {% block content %}
 
 
-<div class="m-auto w-11/12 md:w-10/12 lg:w-8/12 flex justify-center">
+<div class="m-auto w-full md:w-10/12 lg:w-9/12 flex justify-center">
     <div>
-     <div class="mt-36 mb-24 sm:mb-26">
+     <div class="max-sm:mt-28 mt-36 mb-20 sm:mb-26">
    
    <div>
-     <h1 class="text-5xl font-Inter font-bold tracking-wide max-xsm:leading-tight leading-20 text-black dark:text-white m-4">Login failed.</h1>
+     <h1 class="text-4xl sm:text-5xl font-Inter font-bold tracking-wide max-xsm:leading-tight leading-20 text-black dark:text-white m-4">Login failed.</h1>
    </div>
    <div>
      <p class="text-2xl font-Content font-normal leading-relaxed text-black dark:text-white m-4">
@@ -30,8 +29,8 @@
   <div>
         <ul class="text-lg font-Roboto font-normal leading-relaxed text-black dark:text-white m-4">
             <li>The URL you are trying to use is malformed.</li>
-            <li>The magic link you tried to use has expired.</li>
-            <li>You have already used this magic link to login before.</li>
+            <li>The link you tried to use has expired.</li>
+            <li>You have already used this link to login before.</li>
             {% if ONE_TOKEN_PER_USER %}
             <li>You have requested another link causing this login link to become invalid</li>
             {% endif %}
@@ -54,6 +53,7 @@
    </div>
    </div>
 {% endblock content %} 
+
 
 
 

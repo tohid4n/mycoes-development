@@ -5,18 +5,18 @@
 
 {% block content %}
 
-<div class="m-auto w-full sm:w-11/12 md:w-10/12 lg:w-8/12">
+<div class="m-auto w-full sm:w-11/12 md:w-10/12 lg:w-9/12">
    <div class="mt-28 sm:mt-32 md:mt-36">
 
   
   
-    <div class="text-left">
-      <p class="text-4xl sm:text-5xl font-OpenSans font-normal m-6 text-black dark:text-white">Feedback & Reviews</p>
+    <div class="text-left m-4">
+      <p class="text-4xl sm:text-5xl font-OpenSans font-normal text-black dark:text-white">Feedback & Reviews</p>
     </div>
   
 
 
-    <div class="mt-4 md:mt-10 flex items-center justify-center gap-4">
+    <div class="mt-4 md:mt-10 mx-4 flex items-center gap-4">
       <div class="rounded-full text-white dark:text-black w-8 h-8 flex items-center justify-center bg-black dark:bg-white">{{ user.email.0|default_if_none:""|upper }}</div>              
       <div class="pb-8 w-9/12 pt-8">
           <div class="w-full border border-black dark:border-gray-400 rounded-xl">
@@ -35,17 +35,17 @@
 
 
 <div>
-<p class="text-xl font-OpenSans font-normal text-black dark:text-white m-6">{{ feedback_count }} Feedbacks</p>
+<p class="text-xl font-OpenSans font-normal text-black dark:text-white m-4">{{ feedback_count }} Feedbacks</p>
 </div>
 
 
-  <div class="mt-6 mb-20">
+  <div class="mt-10 mb-20">
     <div class="w-full overflow-y-hidden">
      
       
       {% for feedback in object_list %}
       <div >
-          <div class="flex justify-between mx-6">
+          <div class="flex justify-between mx-4">
             <div class="flex gap-4">
               <div class="rounded-full text-white dark:text-black w-8 h-8 flex items-center justify-center bg-black dark:bg-white">{{ feedback.user.email.0|default_if_none:""|upper }}</div>              
               <div><p class="text-sm font-Roboto font-bold text-black dark:text-white">{{ feedback.user.username }}</p></div>
@@ -55,7 +55,29 @@
              {% if feedback.user == user %}
             <form method="post" action="{% url 'feedback:feedback-delete' feedback.pk %}">
               {% csrf_token %}
-              <button type="submit" class="text-black dark:text-white hover:underline">Delete</button>
+
+             
+<!-- Three Doted Menu Icon -->
+<div type="submit" class="flex justify-between hover:cursor-pointer" aria-label="Breadcrumb">
+  <ol class="inline-flex items-center mb-3 sm:mb-0">
+    <li>
+      <div class="flex items-center">
+        <span id="dropdownProject" data-dropdown-toggle="dropdown-project">
+          <svg class="fill-black dark:fill-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" height="30" viewBox="0 -960 960 960" width="30"><path d="M240-400q-33 0-56.5-23.5T160-480q0-33 23.5-56.5T240-560q33 0 56.5 23.5T320-480q0 33-23.5 56.5T240-400Zm240 0q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm240 0q-33 0-56.5-23.5T640-480q0-33 23.5-56.5T720-560q33 0 56.5 23.5T800-480q0 33-23.5 56.5T720-400Z"/></svg>
+          </span>
+        <button type="submit" id="dropdown-project" class="z-20 hidden bg-white divide-y divide-gray-100 rounded-lg w-32 dark:bg-black border border-gray-400 dark:border-gray-700">
+          <ul class="py-2 text-sm text-black dark:text-white" aria-labelledby="dropdownDefault">
+            <li class="block px-4 py-2">
+              Delete
+            </li>
+          </ul>
+        </button>   
+      </div>
+    </li>
+  </ol>
+</div>
+
+      
             </form>
             {% endif %}
           </div>
@@ -76,6 +98,21 @@
   </div>
   
   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
