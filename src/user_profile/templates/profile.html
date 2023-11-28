@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base-profile.html' %}
 {% load static %}
 {% block head_title %}Profile{% endblock head_title %}
 
@@ -68,17 +68,6 @@
   </div>
   </div>
 
- <script>
-   document.addEventListener('DOMContentLoaded', function () {
-       // Calculate the height of the window
-       const windowHeight = window.innerHeight;
-
-       // Apply the height to the sidebar
-       const sidebar = document.getElementById('default-sidebar');
-       sidebar.style.height = windowHeight + 'px';
-   });
-
-</script> 
 
 
 {% endblock content %}
