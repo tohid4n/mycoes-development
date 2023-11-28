@@ -24,6 +24,12 @@ from payments import get_payment_model
 from .models import Offer, OfferMilestone, CommunicationPlatforms
 
 
+from django.shortcuts import get_object_or_404, redirect
+from django.template.response import TemplateResponse
+from payments import get_payment_model, RedirectNeeded
+
+
+
 
 
 class OfferView(LoginRequiredMixin, CreateView):
@@ -40,7 +46,6 @@ class OfferView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
     
     
-
 
 
 Payment = get_payment_model()
@@ -84,43 +89,61 @@ class BillingView(LoginRequiredMixin, generic.TemplateView):
 
         return self.render_to_response(context)
 
-    def post(self, request):
-        offer_id = request.POST.get('selected_offer_id')
-        selected_offer = get_object_or_404(Offer, id=offer_id, user=request.user)
-        offer_milestones = selected_offer.milestones.filter(paid=False)
+    
 
-        if offer_milestones.exists():
-            next_milestone = offer_milestones.first()
 
-            # Create a payment for the next milestone using the determined variant
-            payment = Payment.objects.create(
-                variant='default',
-                description=f'Payment for milestone: {next_milestone}',
-                total=next_milestone.ammount,
-                currency='USD',
-                billing_name='MyCoes',
-                billing_address_1='Khedekar layout Near Central Bus Stand',
-                billing_city='Gulbarga',
-                billing_postcode='585103',
-                billing_country_code='IN',
-                billing_country_area='India',
-                customer_ip_address=request.META.get('HTTP_X_REAL_IP', request.META.get('REMOTE_ADDR', ''))
-            )
 
-            if payment.is_successful():
+class PaymentDetailsView(View):
+    template_name = 'billing_page.html'
+
+    def get(self, request, payment_id):
+        payment = get_object_or_404(get_payment_model(), id=payment_id)
+
+        try:
+            form = payment.get_form(data=request.POST or None)
+        except RedirectNeeded as redirect_to:
+            return redirect(str(redirect_to))
+
+        return self.render_payment_response(request, form, payment)
+
+    def post(self, request, *args, **kwargs):
+        payment_id = kwargs.get('payment_id')
+        payment = get_object_or_404(get_payment_model(), id=payment_id)
+
+        try:
+            form = payment.get_form(data=request.POST or None)
+        except RedirectNeeded as redirect_to:
+            return redirect(str(redirect_to))
+
+        if request.method == 'POST':
+            # Your existing logic to retrieve offer and milestones
+            offer_id = request.POST.get('selected_offer_id')
+            selected_offer = get_object_or_404(Offer, id=offer_id, user=request.user)
+            offer_milestones = selected_offer.milestones.filter(paid=False)
+
+            if payment.is_successful() and offer_milestones.exists():
+                next_milestone = offer_milestones.first()
+
+                # Handle successful payment
                 next_milestone.paid = True
                 next_milestone.payment_status = 'confirmed'
                 messages.success(request, 'Payment successful.')
-            else:
-                next_milestone.payment_status = 'error'
+                next_milestone.save()
+            elif not payment.is_successful():
+                # Handle failed payment
                 messages.error(request, 'Payment failed.')
 
-            next_milestone.save()
+        return self.render_payment_response(request, form, payment)
 
-        return super().post(request)
-
-
-
+    def render_payment_response(self, request, form, payment):
+        return TemplateResponse(
+            request,
+            self.template_name,
+            {'form': form, 'payment': payment}
+        )
+    
+    
+    
 
 class ProfileTranscationsView(LoginRequiredMixin, generic.TemplateView):
     template_name = 'profile-transcations.html' 

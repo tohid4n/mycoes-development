@@ -34,6 +34,20 @@
         @apply font-OpenSans block w-full align-middle rounded-xl h-14 text-black dark:text-white focus:outline-none focus:ring-0 border-none resize-none p-3 no-scrollbar dark:bg-black
     }  
     
+    .dark-shadow {
+        @apply shadow-[inset_0px_0px_300px_-103px_rgba(0,0,0,1)];
+        -webkit-box-shadow: inset 0px 0px 300px -103px rgba(0, 0, 0, 1);
+        -moz-box-shadow: inset 0px 0px 300px -103px rgba(0, 0, 0, 1);
+    }
+      
+      
+    .white-shadow {
+        @apply shadow-[inset_0px_0px_300px_-103px_rgba(255,255,255,0.96)];
+        -webkit-box-shadow: inset 0px 0px 300px -103px rgba(255, 255, 255, 0.96);
+        -moz-box-shadow: inset 0px 0px 300px -103px rgba(255, 255, 255, 0.96);
+    }
+        
+
 }
 
 

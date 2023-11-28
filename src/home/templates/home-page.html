@@ -4,65 +4,59 @@
 
 {% block content %}
 
- <!-- Hero Section -->
-
-<div class="m-auto w-full md:w-10/12 lg:w-9/12 flex justify-center">
-  <div>
-   <div class="mt-36 sm:mt-60">
- 
- <div>
-   <h1 class="text-5xl sm:text-6xl font-Roboto font-bold tracking-wide sm:leading-snug text-black dark:text-white m-4">WHY YOU HERE, CAUSE YOUR NEED AND SAME WE PRESENT FOR YOUR BUSINESS.</h1>
- </div>
 
 
- <div class="mb-10 mt-5 mx-4">
-  <a href="{% url 'home:contact' %}" class="text-black dark:text-white hover:text-white dark:hover:text-black">
-  <div class="text-center w-full py-5 sm:py-6 border border-black dark:border-white hover:bg-black dark:hover:bg-white">
-    <p class="text-2xl font-Inter font-light">Contact us</p>
+<div class="relative bg-white dark:bg-black">
+  <!-- Video for Light Mode -->
+  <video autoplay muted loop playsinline class="hidden sm:block w-full h-full absolute top-0 left-0 object-fill">
+    <source src="{% static 'videos/bg-video.mp4' %}" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <div class="hidden sm:block overlay absolute top-0 left-0 w-full h-full bg-white dark:bg-black dark:opacity-90 opacity-60"></div>
+
+  <!-- Content -->
+  <div class="m-auto w-full md:w-10/12 lg:w-9/12 flex justify-center relative z-10">
+    <div class="mt-36 sm:mt-80">
+      <div id="hero-text" class="transition-all duration-500">
+        <h1 class="text-5xl sm:text-7xl font-Roboto font-bold tracking-wide leading-snug sm:leading-snug text-black dark:text-white m-4">WE HELP YOU TO ACHIEVE WHAT YOU WANT.</h1>
+      </div>
+
+      <div class="my-10 mx-4">
+        <a href="{% url 'home:contact' %}" class="text-black dark:text-white hover:text-white dark:hover:text-black">
+          <div class="text-center w-full py-5 sm:py-6 border border-black dark:border-white hover:bg-black dark:hover:bg-white">
+            <p class="text-xl sm:text-2xl font-Inter font-light">Contact us</p>
+          </div>
+        </a>
+      </div>
+    </div>
   </div>
-</a>
 </div>
 
- </div>
- </div>
- </div>
+
+
+
+
  
   <!-- About us Section -->
  
  
-  <div class="bg-black dark:bg-white w-full flex justify-center my-10">
+  <div class="bg-white dark:bg-black w-full flex justify-center my-12">
    <div class="m-auto w-full md:w-10/12 lg:w-9/12 py-6 flex justify-center flex-col-reverse lg:flex-row items-center gap-8">
-    <div class="lg:w-9/12">
-     <div><h2 class="text-5xl sm:text-6xl font-Content font-bold leading-tight sm:leading-snug tracking-wide text-white dark:text-black m-4">About MyCoes</h2></div>
-     <div><p class="text-2xl font-OpenSans font-normal leading-tight sm:leading-snug tracking-wide text-white dark:text-black m-4">MyCoes is all about building great user experience and design with new things that serve the goals of, those who want to achieve them. A better pricing model that benefits the achiever, with MyCoes.</p></div>
+    <div>
+     <div><h2 class="text-4xl sm:text-6xl font-Content font-bold leading-tight sm:leading-snug tracking-wide text-black dark:text-white m-4">About MyCoes</h2></div>
+     <div><p class="text-xl sm:text-2xl font-OpenSans font-normal leading-normal sm:leading-snug tracking-wide text-black dark:text-white m-4">MyCoes is all about building great user experience and design with new things that serve the goals of, those who want to achieve them. A better pricing model that benefits the achiever, with MyCoes.</p></div>
      <div class="my-12">
-      <a href="{% url 'home:about' %}" class="text-xl font-Inter font-light text-black dark:text-white bg-white dark:bg-black py-5 px-24 xsm:px-40 m-4 hover:bg-slate-100 dark:hover:bg-slate-900">Learn More</a>
+      <a href="{% url 'home:about' %}" class="text-xl font-Inter font-light text-white dark:text-black bg-black dark:bg-white py-5 px-24 xsm:px-40 m-4 hover:bg-slate-900 dark:hover:bg-slate-100">Learn More</a>
      </div>
     </div>
-
-<div class="w-fit xl:w-4/12 max-lg:hidden">
-  <img class="w-full" src="{% static 'img\general\mycoes-logo.png' %}" alt="MyCoes - logo">
-</div>
-
    </div>
    </div>
   
  
-  <!-- Services content-1's Section -->
- 
-   <div class="m-auto w-full md:w-10/12 lg:w-9/12 flex justify-center py-10">
-     <div>
-     <div>
- <h2 class="text-5xl sm:text-6xl font-inter font-bold leading-tight sm:leading-snug tracking-wide text-black dark:text-white m-4">From Design to building your site we handle it for you.</h2>
-     </div>
-     <div class="mt-6">
- <p class="text-xl font-Content font-normal leading-relaxed text-black dark:text-white m-4">Are you in need of a comprehensive website solution that handles every aspect, from design to hosting? Look no further! Our range of services includes web designing, web development, and web hosting, providing you with a complete package to meet all your needs. We dedicated to creating a visually appealing and user-friendly website that effectively represents your brand. With our expertise in web development, we will ensure that your website functions flawlessly and delivers a seamless user experience. Trust us to provide you with a hassle-free and all-encompassing website service that exceeds your expectations. Take your online presence to new heights with MyCoes.</p>
-     </div>
-   </div>
-   </div>
 
 
-    <!-- Services content-2's Section -->
+    <!-- Services content's Section -->
 
    <div class="bg-black dark:bg-white w-full flex justify-center my-10 py-20">
     <div class="m-auto w-full md:w-10/12 lg:w-9/12 flex justify-center flex-col-reverse lg:flex-row items-center gap-8">
@@ -111,7 +105,7 @@
     <div class="mt-16 md:mx-4 w-full">
       <a href="{% url 'home:services' %}" class="text-black dark:text-white hover:text-white dark:hover:text-black">
       <div class="text-center w-full py-5 sm:py-6 border border-black dark:border-white hover:bg-black dark:hover:bg-white">
-        <p class="text-2xl font-Inter font-light">View Services</p>
+        <p class="text-xl sm:text-2xl font-Inter font-light">View Services</p>
       </div>
     </a>
   </div>
@@ -119,47 +113,6 @@
   </div>
   </div>
  
- 
-   <!-- Pricing's Section -->
-   <div class="border-t border-gray-400 dark:border-gray-700">
-    <div class="m-auto w-full md:w-10/12 lg:w-9/12 my-20">
-      <div>
-        <h2 class="text-5xl sm:text-6xl font-OpenSans font-bold leading-snug tracking-wide text-black dark:text-white m-4">Pricing Made Easy,</h2>
-            </div>
-
-      <div class="mx-4">
-  
-    
-      <div class="flex overflow-x-auto no-scrollbar items-center my-12 w-full gap-10 sm:mx-4">
-      
-        <div class="border border-black dark:border-white p-4 flex-shrink-0 h-80 sm:h-96 w-72 sm:w-96">
-          <div><h3 class="text-4xl sm:text-5xl font-Inter font-bold leading-snug sm:leading-snug tracking-wide text-black dark:text-white m-4">Whenever You wanna pay.</h3></div>
-          <div><p class="text-xl font-OpenSans font-normal tracking-wide text-black dark:text-white m-4">*For Previous Customers only</p></div>
-          </div>
-  
-  
-        <div class="border border-black dark:border-white p-4 flex-shrink-0 h-80 sm:h-96 w-72 sm:w-96">
-          <div><h3 class="text-4xl sm:text-5xl font-Inter font-bold leading-snug sm:leading-snug tracking-wide text-black dark:text-white m-4">The Step pay, as Industry standard</h3></div>
-          <div><p class="text-xl font-OpenSans font-normal tracking-wide text-black dark:text-white m-4">*Available for Everyone</p></div>
-        </div>
-
-      </div>
-
-
-      <div class="mt-16 md:mx-4 w-full">
-        <a href="{% url 'home:pricing' %}" class="text-black dark:text-white hover:text-white dark:hover:text-black">
-        <div class="text-center w-full py-5 sm:py-6 border border-black dark:border-white hover:bg-black dark:hover:bg-white">
-          <p class="text-2xl font-Inter font-light">View Pricing</p>
-        </div>
-      </a>
-      </div>
-  
-    </div>
-    </div>
-
-    </div>
-
-
 
      <!-- Carousel section -->
 
@@ -229,13 +182,13 @@
   <!-- Slider controls -->
   <div class="max-md:relative">
   <button type="button" class="absolute max-md:bottom-0 max-md:right-20 md:top-0 md:left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
-    <span class="inline-flex items-center justify-center w-10 h-10 rounded-full text-black dark:text-gray-200">
+    <span class="inline-flex items-center justify-center w-10 h-10 max-md:bg-slate-300 dark:bg-transparent rounded-full">
       <svg class="w-30 h-30 fill-black dark:fill-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z"/></svg>
         <span class="sr-only">Previous</span>
     </span>
 </button>
 <button type="button" class="absolute max-md:bottom-0 right-0 md:top-0 md:right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
-    <span class="inline-flex items-center justify-center w-10 h-10 rounded-full text-black dark:text-gray-200">
+    <span class="inline-flex items-center justify-center w-10 h-10 rounded-full max-md:bg-slate-300 dark:bg-transparent">
       <svg class="w-30 h-30 fill-black dark:fill-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z"/></svg>  <span class="sr-only">Next</span>
     </span>
 </button>

@@ -20,8 +20,7 @@ SECRET_KEY = env('SECRET_KEY')
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-
+DEBUG = env('DEBUG')
 # Application definition
 
 INSTALLED_APPS = [
@@ -227,17 +226,17 @@ PAYMENT_VARIANTS = {
     'paypal': (
         'payments.paypal.PaypalProvider',
         {
-            'client_id': 'user@example.com',
-            'secret': 'iseedeadpeople',
-            'endpoint': 'https://api.sandbox.paypal.com',
+            'client_id': 'AfJ2qmP34OKKFl4MubFmjV38BSB0BnBxmU2R76DaglthL4dp8FFdP6baIFQbocK8ygCO48alXg21RT-J',
+            'secret': 'EOw6n2ope7uMoY_LvqYZPrOG2_z0FkLevpGTBV8v2RdwH3s2Q_gkTDNK5v680hJZgaPiHNi72Q8yEyzg',
+            'endpoint': 'https://sandbox.paypal.com',
             'capture': False,
         }
     ),
     'paypal_card': (
         'payments.paypal.PaypalCardProvider',
         {
-            'client_id': 'user@example.com',
-            'secret': 'iseedeadpeople',
+            'client_id': 'AfJ2qmP34OKKFl4MubFmjV38BSB0BnBxmU2R76DaglthL4dp8FFdP6baIFQbocK8ygCO48alXg21RT-J',
+            'secret': 'EOw6n2ope7uMoY_LvqYZPrOG2_z0FkLevpGTBV8v2RdwH3s2Q_gkTDNK5v680hJZgaPiHNi72Q8yEyzg',
         }
     ),
     
@@ -263,8 +262,8 @@ PAYMENT_VARIANTS = {
     'stripe': (
         'payments.stripe.StripeProvider',
         {
-            'secret_key': 'sk_test_123456',
-            'public_key': 'pk_test_123456',
+            'secret_key': 'sk_test_51NU0KkSISUKJ2ZnZG5oNbUzu3AiyBCy8yHobOvHSb6YOtQgm1T4785GX5nD5NGwDPAQTjvbzoxlGyLNflhnLqQIz00kYt9IHf4',
+            'public_key': 'pk_test_51NU0KkSISUKJ2ZnZ5BbjEHXKt7KPjIk0ZKTip2f5D2slv7TqYuOeDpzaUuUMHj0BSUgB9yaxNB0TGcYZ0TJQVC3e00VXvZSrmV',
         }
     )
 }

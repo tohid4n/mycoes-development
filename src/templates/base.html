@@ -91,6 +91,23 @@
 
 <script src="https://unpkg.com/@trevoreyre/autocomplete-js"></script>
 
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    var navBar = document.getElementById("navbar");
+
+    window.addEventListener("scroll", function() {
+      var scrolled = window.scrollY;
+
+      if (scrolled > 10) {
+        navBar.classList.add("bg-white", "dark:bg-black",);
+      } else {
+        navBar.classList.remove("bg-white", "dark:bg-black");
+      }
+    });
+  });
+</script>
+
 <!-- Search Input -->
 
 
