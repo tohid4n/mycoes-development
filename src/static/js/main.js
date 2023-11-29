@@ -93,20 +93,36 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  playIcon.addEventListener("click", function () {
+  function playVideo() {
     video.play().then(updatePlayPauseIcons);
-  });
+  }
 
-  pauseIcon.addEventListener("click", function () {
+  function pauseVideo() {
     video.pause();
     updatePlayPauseIcons();
-  });
+  }
+
+  playIcon.addEventListener("click", playVideo);
+  pauseIcon.addEventListener("click", pauseVideo);
 
   // Set initial visibility of play/pause icons based on video state
-  video.addEventListener("loadeddata", function () {
-    updatePlayPauseIcons();
+  video.addEventListener("loadeddata", updatePlayPauseIcons);
+
+  // Listen for window resize events and update button state
+  window.addEventListener("resize", function () {
+    if (window.innerWidth < 768) {
+      // For small screens, hide the video and show play button
+      video.style.display = "none";
+      playIcon.style.display = "block";
+      pauseIcon.style.display = "none";
+    } else {
+      // For larger screens, show the video and update button state
+      video.style.display = "block";
+      updatePlayPauseIcons();
+    }
   });
 });
+
 
 
 
@@ -116,20 +132,39 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("DOMContentLoaded", function () {
   var navBar = document.getElementById("navbar");
 
-  window.addEventListener("scroll", function () {
+  function toggleScrollClass() {
     var scrolled = window.scrollY;
+    var windowWidth = window.innerWidth;
 
-    if (scrolled > 10) {
-      navBar.classList.add("bg-white", "dark:bg-black");
+    // Remove all classes related to scrolling and small screens
+    navBar.classList.remove(
+      "bg-white", "dark:bg-black", 
+      "scrolled"
+    );
+
+    if (windowWidth >= 768) {
+      // Toggle the 'scrolled' class based on the scroll position
+      navBar.classList.toggle("scrolled", scrolled > 10);
     } else {
-      navBar.classList.remove("bg-white", "dark:bg-black");
+      // For small screens, always add bg-white and dark:bg-black
+      navBar.classList.add("bg-white", "dark:bg-black");
     }
-  });
+  }
+
+  // Initial call to set classes on page load
+  toggleScrollClass();
+
+  window.addEventListener("scroll", toggleScrollClass);
+  window.addEventListener("resize", toggleScrollClass);
 });
 
 
 
+
+
+
 //navbar and footer gap calulate and assign to profile pages sidebar
+
 document.addEventListener('DOMContentLoaded', function () {
     // Calculate the height of the window
     const windowHeight = window.innerHeight;

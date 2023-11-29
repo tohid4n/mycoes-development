@@ -42,7 +42,7 @@
   {% if messages %}
       <div class="fixed mt-6 inset-x-0 flex justify-center mx-4 z-50">
         {% for message in messages %}
-          <div class="alert alert-{{ message.tags }} bg-opacity-90 font-Karla font-normal text-lg p-4 text-black border border-gray-400 rounded w-fit
+          <div class="alert alert-{{ message.tags }} mt-24 bg-opacity-90 font-Karla font-normal text-lg p-4 text-black border border-gray-400 rounded w-fit
                       {% if message.tags == 'success' %}
                         bg-green-100
                       {% elif message.tags == 'info' %}

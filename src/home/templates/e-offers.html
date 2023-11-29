@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head_title %}E-Offers{% endblock head_title %}
+{% block content %}
+
+<div class="mt-28 sm:mt-40 mb-16">
+
+    <div class="m-auto w-full md:w-10/12 lg:w-9/12 flex justify-center">
+
+
+        <div>
+            <div>
+                <h1 class="text-5xl md:text-7xl font-Inter font-bold tracking-wide max-xsm:leading-snug leading-snug md:leading-snug text-black dark:text-white m-4">CHOOSE ANY SERVICE THAT NEEDED MOST, JUST FOR $5.</h1>
+            </div>
+        
+      <div class="flex md:items-center max-md:flex-col max-md:gap-14 gap-6 my-12">
+       <div>
+         <a href="{% url 'home:about' %}" class="text-xl font-Inter font-normal text-white dark:text-black bg-black dark:bg-white py-5 px-28 m-4 hover:bg-slate-900 dark:hover:bg-slate-100">About us</a>
+       </div>
+
+       <div>
+        <a href="{% url 'home:services' %}" class="text-xl font-Inter font-normal text-black dark:text-white py-5 px-28 m-4 border border-black dark:border-gray-300 hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black">Services</a>
+      </div>
+    </div>   
+
+
+    
+    <div>
+      <p class="text-2xl sm:text-3xl font-Roboto font-light tracking-wide text-black leading-normal sm:leading-relaxed dark:text-white m-4">Valid for the next 7 days only!</p>
+  </div>
+
+ </div>
+</div>
+       
+
+<div class="w-full flex justify-center bg-black dark:bg-white my-10 sm:my-20 py-10">
+    <div class="w-full md:w-10/12 lg:w-9/12">
+        
+            <div class="mb-10"><h2 class="text-4xl sm:text-5xl font-OpenSans font-bold tracking-wide text-white leading-snug sm:leading-snug dark:text-black m-4">Things You Want to Know</h2></div>
+    
+            <div class="mb-6">
+                <h3 class="text-2xl sm:text-3xl font-Roboto font-light tracking-wide text-white leading-normal sm:leading-relaxed dark:text-black m-4">&#9632; Offer valid for only Five people.</h3>
+            </div>
+
+            <div class="mb-6">
+              <h3 class="text-2xl sm:text-3xl font-Roboto font-light tracking-wide text-white leading-normal sm:leading-relaxed dark:text-black m-4">&#9632; One Person can choose only one service.</h3>
+            </div>
+
+            <div class="mb-6">
+              <h3 class="text-2xl sm:text-3xl font-Roboto font-light tracking-wide text-white leading-normal sm:leading-relaxed dark:text-black m-4">&#9632; Ask as many revisions as you want.</h3>
+            </div>
+
+            <div class="mb-6">
+              <h3 class="text-2xl sm:text-3xl font-Roboto font-light tracking-wide text-white leading-normal sm:leading-relaxed dark:text-black m-4">&#9632; No video calls and calls, Work done through messages. You can choose any suitable communication platform. (Want to know why? I am an Introvert)</h3>
+            </div>
+
+            <div class="mb-6">
+              <h3 class="text-2xl sm:text-3xl font-Roboto font-light tracking-wide text-white leading-snug sm:leading-relaxed dark:text-black m-4">&#9632; Pay after work is done. We like to receive payments through Stripe and PayPal. (You can pay directly through links or from the website)</h3>
+            </div>
+
+            <div class="mb-6">
+              <h3 class="text-2xl sm:text-3xl font-Roboto font-light tracking-wide text-white leading-snug sm:leading-relaxed dark:text-black m-4">&#9632; Needed feedback when the work is done. (You can provide it on the Feedback page)</h3>
+            </div>
+
+            <div class="mb-6">
+              <h3 class="text-2xl sm:text-3xl font-Roboto font-light tracking-wide text-white leading-snug sm:leading-relaxed dark:text-black m-4">&#9632; Need Your Beautifull Smiling Photo.</h3>
+            </div>
+
+            <div class="mb-6">
+              <h3 class="text-2xl sm:text-3xl font-Roboto font-light tracking-wide text-white leading-snug sm:leading-relaxed dark:text-black m-4">&#9632; We use these things (Full name, Photo, and Feedback) for our portfolio on our website.</h3>
+            </div>
+
+            <div class="mb-6">
+              <h3 class="text-2xl sm:text-3xl font-Roboto font-light tracking-wide text-white leading-snug sm:leading-relaxed dark:text-black m-4">&#9632; If you agree on these things, let's do your work Now.</h3>
+            </div>
+           
+        
+    </div>
+</div>
+
+
+
+<div class="flex justify-center items-center flex-col md:flex-row w-full sm:w-9/12 m-auto">
+
+<div class="m-4 w-11/12 flex justify-center sm:hidden xl:inline">
+  <div>
+  <div><h2 class="text-5xl exsm:text-6xl lg:text-7xl xl:text-8xl font-Lexend font-bold leading-tight text-black dark:text-white sm:mb-6">Your Most Important Service, Now on affordable Price.</h2></div>
+</div>
+</div>
+
+
+  <div class="flex justify-center w-full lg:w-11/12">
+    <div class="m-4">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="mt-4 sm:m-4">
+                <label for="{{ form.name.id_for_label }}" class="block mb-4 font-OpenSans text-3xl font-normal text-black dark:text-white">{{ form.name.label }}</label>
+                {{ form.name }}
+              </div>
+              
+              <div class="mt-4 sm:m-4">
+                <label for="{{ form.email.id_for_label }}" class="block mb-4 font-OpenSans text-3xl font-normal text-black dark:text-white">{{ form.email.label }}</label>
+                {{ form.email }}
+              </div>
+
+              <div class="mt-4 sm:m-4">
+                <label for="{{ form.about.id_for_label }}" class="block mb-4 font-OpenSans text-3xl font-normal text-black dark:text-white">{{ form.about.label }}</label>
+                {{ form.about }}
+              </div>
+
+              <div class="mt-4 mb-4 sm:m-4 flex items-center gap-6 flex-wrap">
+                <div class="mb-6">{{ form.accept }}</div>
+                <label for="{{ form.accept.id_for_label }}" class="block mb-4 font-OpenSans text-3xl font-normal text-black dark:text-white">{{ form.accept.label }}</label>
+                
+              </div>
+
+            <div class="sm:mx-4">
+              <button type="submit" class="text-xl font-Inter font-normal text-white dark:text-black bg-black dark:bg-white py-5 tracking-wide text-center w-full hover:bg-slate-900 dark:hover:bg-slate-100">Register Now</button>
+            </div>
+            
+          </form>
+    </div>
+    </div>
+
+    
+</div>
+</div>
+  
+{% endblock content %} 

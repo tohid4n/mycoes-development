@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import HomePageView, AboutView, ServicesView, PricingView, ContactView, PrivacyPolicyView, TermsOfServicesView
+from .views import HomePageView, AboutView, ServicesView, PricingView, ContactView, E_OfferView, PrivacyPolicyView, TermsOfServicesView
 
 
 app_name = 'home'
@@ -10,6 +10,7 @@ urlpatterns = [
     path('services/', ServicesView.as_view(), name="services"),
     path('pricing/', PricingView.as_view(), name="pricing"),
     path('contact/', ContactView.as_view(), name="contact"),
+    path('e-offer/', E_OfferView.as_view(), name="e-offer"),
     path('privacy-policy/', PrivacyPolicyView.as_view(), name="privacy-policy"),
     path('terms-of-services/', TermsOfServicesView.as_view(), name="terms-of-services"),
 ]
