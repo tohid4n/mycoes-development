@@ -1,12 +1,13 @@
 {% extends 'base-home.html' %}
 {% load static %}
+{% load cookie_consent_tags %}
 {% block head_title %}Home{% endblock head_title %}
 
 {% block content %}
 
 <!-- Hero section -->
 
-<div class="relative bg-white dark:bg-black">
+<div class="relative bg-white dark:bg-black max-md:border-b border-gray-400 dark:border-gray-700">
   <!-- Video for Light Mode -->
   <video id="bgVideo" autoplay muted loop playsinline class="hidden md:block w-full h-full absolute top-0 left-0 object-fill">
     <source src="{% static 'videos/bg-video.mp4' %}" type="video/mp4">
@@ -32,7 +33,7 @@
 
   <!-- Content -->
   <div class="m-auto w-full md:w-10/12 lg:w-9/12 flex justify-center relative z-10">
-    <div class="mt-36 sm:mt-80">
+    <div class="mt-36 lg:mt-56 xl:mt-80">
       <div id="hero-text" class="transition-all duration-500">
         <h1 class="text-5xl sm:text-7xl font-Roboto font-bold tracking-wide leading-snug sm:leading-snug text-black dark:text-white m-4">WE HELP YOU ACHIEVE WHAT YOU WANT TO BUILD.</h1>
       </div>
@@ -51,10 +52,6 @@
 
 
 
-
-
-
- 
   <!-- About us Section -->
  
  
@@ -78,6 +75,10 @@
    <div class="bg-black dark:bg-white w-full flex justify-center my-10 py-10 sm:py-20">
     <div class="m-auto w-full md:w-10/12 lg:w-9/12 flex justify-center flex-col-reverse lg:flex-row items-center gap-8">
      <div>
+
+
+    
+
       <div><h2 class="text-4xl sm:text-6xl font-inter font-bold leading-tight sm:leading-snug tracking-wide text-white dark:text-black m-4">Offer valid for the next 7 days only!</h2></div>
       <div><p class="text-xl sm:text-3xl font-Roboto font-light leading-snug sm:leading-snug tracking-wide text-white dark:text-black m-4">Thousands of dollar's services are just for 5 dollar.  The offer is limited to only  Five people.</p></div>
       <div class="my-12">
@@ -139,28 +140,6 @@
   </div>
  
 
-
-  <div id="alert-additional-content-5" class="p-4 border-t bg-white dark:bg-black border-gray-700" role="alert">
-    <div class="flex items-center mt-6">
-      <h3 class="text-3xl font-Roboto font-medium text-black dark:text-white">We value your privacy</h3>
-    </div>
-
-    <div class="flex items-center max-md:flex-wrap md:gap-6 my-6">
-    <div class="mt-2 mb-4 text-xl font-Roboto font-light text-black dark:text-white">
-      We use cookies to enhance your browsing experience and provide personalized content. By clicking "Accept," you consent to the use of cookies on our site. <a href="{% url 'home:privacy-policy' %}" class="text-blue-400 underline">Cookie Policy</a>
-    </div>
-
-    <div class="flex gap-6 mt-2 mb-4">
-      <button type="button" class="text-xl font-Roboto font-light text-white dark:text-black bg-black dark:bg-white hover:bg-slate-950 dark:hover:bg-gray-100 py-3 px-10">
-       Accept
-      </button>
-
-      <button type="button" class="text-xl font-Roboto font-light text-black dark:text-white border border-black dark:border-gray-300 py-3 px-10" data-dismiss-target="#alert-additional-content-5" aria-label="Close">
-        Dismiss
-       </button>
-    </div>
-  </div>
-  </div>
 
      <!-- Carousel section -->
 

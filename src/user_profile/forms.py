@@ -1,5 +1,7 @@
 from django import forms
 from .models import Offer
+from payments import get_payment_model
+
 
 class OfferForm(forms.ModelForm):
 
@@ -25,3 +27,20 @@ class OfferForm(forms.ModelForm):
         self.fields['attached_files'].widget.attrs.update({'class': 'offer_form_input_classes'})
         self.fields['timeline'].widget.attrs.update({'class': 'offer_form_input_classes'})
         self.fields['budget'].widget.attrs.update({'class': 'offer_form_input_classes'})
+
+
+
+        
+        
+class PaymentForm(forms.ModelForm):
+    class Meta:
+        model = get_payment_model()
+        fields = ["variant", "currency", "total"]
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Set the fields as not required
+        self.fields["variant"].required = False
+        self.fields["currency"].required = False
+        self.fields["total"].required = False
+        

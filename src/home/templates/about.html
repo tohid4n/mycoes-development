@@ -8,30 +8,32 @@ Welcome to MyCoes! We offer customized web development services using HTML, CSS,
 
 {% block content %}
 
-<div class="bg-white dark:bg-black mt-16">
-<div class="px-5 py-20 sm:px-10 sm:py-32 m-auto w-full sm:w-11/12 md:w-10/12 lg:w-9/12">
-<div><h1 class="text-4xl sm:text-5xl lg:text-6xl font-Content font-bold leading-normal sm:leading-normal lg:leading-normal text-black dark:text-white">About the Developer</h1></div>
+<div class="bg-white dark:bg-black mt-8">
+    <div class="px-5 py-20 sm:px-10 sm:py-32 m-auto w-full sm:w-11/12 md:w-10/12 lg:w-9/12">
+       
+    <div><h1 class="text-6xl xsm:text-8xl lg:text-9xl font-lato font-light leading-normal xsm:leading-normal lg:leading-normal text-black dark:text-white">We <strong class="font-OpenSans font-bold">means</strong> I</h1></div>
+    <div><h2 class="text-4xl lg:text-5xl font-OpenSans font-bold leading-normal lg:leading-normal text-black dark:text-white">Everything for better user experience.</h2></div>    
     
-        
-        <div class="w-full my-6">
-            <p class="text-xl lg:text-2xl font-Inter dark:font-Content font-light leading-normal lg:leading-normal text-black dark:text-white">Hello, my name is Saiyyad Patel, also known as Tohid. I am a web designer and full-stack web developer with HTML, CSS, Tailwind CSS, JavaScript, Python, Django, and MySQL. I have experience in web hosting with AWS and Digital Ocean. <strong class="font-bold underline">I prefer communication through messages rather than video or voice calls.</strong> I love my work and try to never frustrate my clients. If you would like to get in touch, feel free to message me.</p>
+    <div class="flex md:items-center max-md:flex-col max-md:gap-14 gap-10 my-12">
+        <div>
+          <a href="{% url 'home:services' %}" class="text-xl font-Inter font-normal text-white dark:text-black bg-black dark:bg-white py-5 px-28 hover:bg-slate-900 dark:hover:bg-slate-100">Services</a>
         </div>
-
-        <div class="flex flex-wrap max-xsm:gap-6 gap-16 mt-10">
-            <a href="https://www.linkedin.com/in/tohid-patel/" class="text-lg sm:text-xl font-OpenSans tracking-widest font-light leading-normal text-black dark:text-white hover:underline hover:cursor-pointer">LINKEDIN</a>
-            <a href="https://wa.me/918431944801?text=Hello%20from%20the%20website%20on%20WhatsApp!" class="text-lg sm:text-xl font-OpenSans tracking-widest font-light leading-normal text-black dark:text-white hover:underline hover:cursor-pointer">WHATSAPP</a>
-            <a href="mailto:tohidpatel584@gmail.com?subject=Hello%20from%20the%20Website&body=Hey%20Tohid,%0A%0AI%20visited%20your%20website%20and%20wanted%20to%20connect.%0A%0ABest%20regards,%0A[Your%20Name]" class="text-lg sm:text-xl font-OpenSans tracking-widest font-light leading-normal text-black dark:text-white hover:underline hover:cursor-pointer">GMAIL</a>
+ 
+        <div>
+         <a href="{% url 'home:services' %}" class="text-xl font-Inter font-normal text-black dark:text-white py-5 px-28 border border-black dark:border-gray-300 hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black">Contact </a>
+       </div>
+     </div>   
+            
+    
         </div>
-        
-        
-        
     </div>
-</div>
-
-
-
     
 
+    <div id="scrollToBottom" class="scroll-to-bottom fixed left-1/2 transform -translate-x-1/2 bottom-8 bg-black dark:bg-white p-3 rounded-full cursor-pointer">
+        <svg class="fill-white dark:fill-black" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
+            <path d="M440-800v487L216-537l-56 57 320 320 320-320-56-57-224 224v-487h-80Z"/>
+        </svg>
+    </div>
 
 
 
@@ -73,7 +75,41 @@ Welcome to MyCoes! We offer customized web development services using HTML, CSS,
             </div>
             </div>
 
+
+
+            <div>
+                <div class="flex flex-col md:flex-row items-center px-5 py-20 sm:px-10 sm:py-40 gap-4 sm:gap-5 md:gap-10 m-auto w-full sm:w-11/12 md:w-10/12 lg:w-9/12">
+                    <div class="w-full md:w-1/2">
+                        <h2 class="text-4xl lg:text-5xl font-Content font-bold leading-normal lg:leading-tight text-black dark:text-white">We Focus on Your goals.</h2>
+                    </div>
+                    <div class="w-full md:w-1/2">
+                        <p class="text-2xl font-OpenSans font-normal leading-normal text-black dark:text-white">We help you to achieve your goals with our web solutions. With our content strategy and copywriting, we design and develop your site to accomplish your goals.</p>
+                    </div>
+                </div>
+                </div>
+                
+
        
+            <div class="bg-black dark:bg-white">
+                <div class="px-5 py-20 sm:px-10 sm:py-32 m-auto w-full sm:w-11/12 md:w-10/12 lg:w-9/12">
+                <div><h1 class="text-4xl sm:text-5xl lg:text-6xl font-Content font-bold leading-normal sm:leading-normal lg:leading-normal text-white dark:text-black">About the Developer</h1></div>
+                    
+                        
+                        <div class="w-full my-6">
+                            <p class="text-xl lg:text-2xl font-Inter dark:font-Content font-light leading-normal lg:leading-normal text-white dark:text-black">Hello, my name is Saiyyad Patel, also known as Tohid. I am a web designer and full-stack web developer with HTML, CSS, Tailwind CSS, JavaScript, Python, Django, and MySQL. I have experience in web hosting with AWS and Digital Ocean. <strong class="font-bold underline">I prefer communication through messages rather than video or voice calls.</strong> I love my work and try to never frustrate my clients. If you would like to get in touch, feel free to message me.</p>
+                        </div>
+                
+                        <div class="flex flex-wrap max-xsm:gap-6 gap-16 mt-10">
+                            <a href="https://www.linkedin.com/in/tohid-patel/" class="text-lg sm:text-xl font-OpenSans tracking-widest font-light leading-normal text-white dark:text-black hover:underline hover:cursor-pointer">LINKEDIN</a>
+                            <a href="https://wa.me/918431944801?text=Hello%20from%20the%20website%20on%20WhatsApp!" class="text-lg sm:text-xl font-OpenSans tracking-widest font-light leading-normal text-white dark:text-black hover:underline hover:cursor-pointer">WHATSAPP</a>
+                            <a href="mailto:tohidpatel584@gmail.com?subject=Hello%20from%20the%20Website&body=Hey%20Tohid,%0A%0AI%20visited%20your%20website%20and%20wanted%20to%20connect.%0A%0ABest%20regards,%0A[Your%20Name]" class="text-lg sm:text-xl font-OpenSans tracking-widest font-light leading-normal text-white dark:text-black hover:underline hover:cursor-pointer">GMAIL</a>
+                        </div>
+                        
+                        
+                        
+                    </div>
+                </div>
+                
             
             
 

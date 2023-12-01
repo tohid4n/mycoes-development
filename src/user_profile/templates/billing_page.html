@@ -34,7 +34,7 @@
                             {% for milestone in offer_data.all_offer_milestones %}
                                 <tr class="bg-white border-b dark:bg-black dark:border-gray-700">
                                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        {{ milestone.id }}
+                                        {{ milestone.milestone_number }}
                                     </th>
                                     <td class="px-6 py-4">
                                         {{ milestone.percentage }}
@@ -80,7 +80,7 @@
                         </div>
 
                         <div class="mt-6">
-                            <p class="text-2xl md:text-3xl leading-snug md:leading-snug font-Inter tracking-wide font-bold text-black dark:text-white">Current Milestone: <strong class="font-normal">{{ offer_data.next_milestone.id }}</strong></p>
+                            <p class="text-2xl md:text-3xl leading-snug md:leading-snug font-Inter tracking-wide font-bold text-black dark:text-white">Current Milestone: <strong class="font-normal">{{ offer_data.next_milestone.milestone_number }}</strong></p>
                         </div>
                         
                         <div class="mt-6">
@@ -88,12 +88,25 @@
                         </div>
 
                         <div class="mt-10">
-                            <form action="{{ form.action }}" method="post">
+                            {% comment %} <form action="{{ form.action }}" method="post">
                                 {% csrf_token %}
                                 {{ form.as_p }}
                                 <input type="hidden" name="selected_offer_id" value="{{ offer_data.offer.id }}">
                                 <button type="submit" class="text-2xl font-Inter font-normal text-white dark:text-black bg-black dark:bg-white py-4 px-12 tracking-wide text-center hover:bg-slate-900 dark:hover:bg-slate-100">Proceed</button>
-                            </form>
+                            </form> {% endcomment %}
+
+
+                            <form method="post" action="{% url 'user_profile:create-payment' %}">
+                                {% csrf_token %}
+                                <input type="hidden" name="next_milestone_id" value="{{ offer_data.next_milestone.id }}">
+                                <input type="hidden" name="title" value="{{ offer_data.next_milestone.title }}">
+                                <input type="hidden" name="amount" value="{{ offer_data.next_milestone.ammount }}">
+                                <!-- Add other fields as needed -->
+                              
+                                <button type="submit">Pay Now</button>
+                              </form>
+                              
+                              
                       </div>
 
                       

@@ -173,3 +173,46 @@ document.addEventListener('DOMContentLoaded', function () {
     const sidebar = document.getElementById('default-sidebar');
     sidebar.style.height = windowHeight + 'px';
 });
+
+
+
+
+
+
+// scrolling effect to the bottom
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  // Show/hide the scroll-to-bottom icon based on the user's scroll position
+  window.addEventListener('scroll', function () {
+      var scrollToBottom = document.getElementById('scrollToBottom');
+      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 20) {
+          scrollToBottom.classList.add('hidden');
+      } else {
+          scrollToBottom.classList.remove('hidden');
+      }
+  });
+
+  // Scroll to the bottom when the icon is clicked
+  document.getElementById('scrollToBottom').addEventListener('click', function () {
+      scrollToBottom();
+  });
+
+  // Function to scroll to the bottom
+  function scrollToBottom() {
+      window.scrollTo({
+          top: document.body.scrollHeight,
+          behavior: 'smooth'
+      });
+  }
+
+  // Show the scroll-to-bottom icon when the user scrolls back up
+  var lastScrollPosition = window.scrollY;
+  window.addEventListener('scroll', function () {
+      var currentScrollPosition = window.scrollY;
+      if (currentScrollPosition < lastScrollPosition) {
+          document.getElementById('scrollToBottom').classList.remove('hidden');
+      }
+      lastScrollPosition = currentScrollPosition;
+  });
+});

@@ -5,6 +5,7 @@ from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 from django.views import  View, generic
 
+
 from home.models import E_OfferModel
 from django.core.exceptions import ValidationError
 from .forms import ContactForm, E_OfferForm
@@ -12,6 +13,9 @@ from .forms import ContactForm, E_OfferForm
 
 class HomePageView(generic.TemplateView):
     template_name = 'home-page.html'
+    
+    
+    
     
 
 class AboutView(generic.TemplateView):

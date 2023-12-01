@@ -13,7 +13,7 @@ from requests import request
 from stripe import PaymentIntent
 
 from user_profile.models import CommunicationPlatforms, Offer
-from .forms import OfferForm
+from .forms import OfferForm, PaymentForm
 
 from django.conf import settings
 from django.shortcuts import render, get_object_or_404, redirect
@@ -27,6 +27,9 @@ from .models import Offer, OfferMilestone, CommunicationPlatforms
 from django.shortcuts import get_object_or_404, redirect
 from django.template.response import TemplateResponse
 from payments import get_payment_model, RedirectNeeded
+
+from decimal import Decimal
+from payments import get_payment_model
 
 
 
@@ -48,7 +51,7 @@ class OfferView(LoginRequiredMixin, CreateView):
     
 
 
-Payment = get_payment_model()
+
 
 class BillingView(LoginRequiredMixin, generic.TemplateView):
     template_name = 'billing_page.html'
@@ -88,81 +91,55 @@ class BillingView(LoginRequiredMixin, generic.TemplateView):
             })
 
         return self.render_to_response(context)
-
+    
     
 
+  
+class CreatePaymentView(LoginRequiredMixin, View):
+    
+    def get(self, request):
+        form = PaymentForm()
+        return render(request, "create_payment.html", {"form": form})
+
+    def post(self, request):
+        form = PaymentForm(request.POST)
+        if form.is_valid():
+            next_milestone_id = request.POST.get('next_milestone_id')
+            form.instance.variant = "stripe"
+            form.instance.currency = "USD"
+            form.instance.total = Decimal(request.POST.get('ammount', 0))
+            form.instance.description = request.POST.get('title')
+
+            payment = form.save(commit=False)
+            payment.save()
+
+            return redirect(reverse('user_profile:payment-details', args=[payment.id]))
+
+        
 
 
 class PaymentDetailsView(View):
-    template_name = 'billing_page.html'
-
     def get(self, request, payment_id):
         payment = get_object_or_404(get_payment_model(), id=payment_id)
-
         try:
             form = payment.get_form(data=request.POST or None)
         except RedirectNeeded as redirect_to:
             return redirect(str(redirect_to))
+        return render(request, "payment.html", {"form": form, "payment": payment})
 
-        return self.render_payment_response(request, form, payment)
 
-    def post(self, request, *args, **kwargs):
-        payment_id = kwargs.get('payment_id')
-        payment = get_object_or_404(get_payment_model(), id=payment_id)
+class PaymentSuccessView(View):
+    def get(self, request):
+        return HttpResponse("Payment succeeded.")
 
-        try:
-            form = payment.get_form(data=request.POST or None)
-        except RedirectNeeded as redirect_to:
-            return redirect(str(redirect_to))
 
-        if request.method == 'POST':
-            # Your existing logic to retrieve offer and milestones
-            offer_id = request.POST.get('selected_offer_id')
-            selected_offer = get_object_or_404(Offer, id=offer_id, user=request.user)
-            offer_milestones = selected_offer.milestones.filter(paid=False)
-
-            if payment.is_successful() and offer_milestones.exists():
-                next_milestone = offer_milestones.first()
-
-                # Handle successful payment
-                next_milestone.paid = True
-                next_milestone.payment_status = 'confirmed'
-                messages.success(request, 'Payment successful.')
-                next_milestone.save()
-            elif not payment.is_successful():
-                # Handle failed payment
-                messages.error(request, 'Payment failed.')
-
-        return self.render_payment_response(request, form, payment)
-
-    def render_payment_response(self, request, form, payment):
-        return TemplateResponse(
-            request,
-            self.template_name,
-            {'form': form, 'payment': payment}
-        )
-    
-    
+class PaymentFailureView(View):
+    def get(self, request):
+        return HttpResponse("Payment failed.")
     
 
 class ProfileTranscationsView(LoginRequiredMixin, generic.TemplateView):
     template_name = 'profile-transcations.html' 
-    
-
-          
-    
-
-    
-    
-
-
-
-
-
-
-
-    
-
     
 
 

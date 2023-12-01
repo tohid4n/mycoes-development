@@ -44,11 +44,12 @@ INSTALLED_APPS = [
 
     #apps
     'home',
-    #'status',
     'user_profile',
     'feedback',
     'support',
    
+   # Cookie consent
+    'cookie_consent',
     
 ]
 
@@ -81,7 +82,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.i18n',
-                
+            
                 'social_django.context_processors.backends',
                 'social_django.context_processors.login_redirect',
             ],
@@ -259,6 +260,7 @@ PAYMENT_VARIANTS = {
             'secure_endpoint': False
         }
     ),
+    
     'stripe': (
         'payments.stripe.StripeProvider',
         {
