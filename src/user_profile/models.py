@@ -11,6 +11,8 @@ class OfferMilestone(models.Model):
     paid = models.BooleanField(default=False)
     offer = models.ForeignKey('Offer', on_delete=models.CASCADE, related_name='milestones')
     created_at = models.DateTimeField(auto_now_add=True)
+    transaction_id = models.CharField(max_length=255, blank=True, null=True)
+    transaction_date = models.DateTimeField(blank=True, null=True)
     
     class Meta:
         unique_together = ['offer', 'milestone_number']

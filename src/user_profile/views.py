@@ -151,7 +151,16 @@ class PaypalPaymentSuccessView(LoginRequiredMixin, generic.TemplateView):
 
 
 class ProfileTranscationsView(LoginRequiredMixin, generic.TemplateView):
-    template_name = 'profile-transcations.html'     
+    template_name = 'profile-transcations.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        
+        # Retrieve paid transactions
+        transactions = OfferMilestone.objects.filter(paid=True)
+
+        context['transactions'] = transactions
+        return context  
     
 
 
