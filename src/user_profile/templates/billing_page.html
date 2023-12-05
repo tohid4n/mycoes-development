@@ -41,19 +41,9 @@
                                     </td>
                                     <td class="px-6 py-4">
                                         {% if milestone.paid %}
-                                            {% if milestone.payment_status == 'confirmed' %}
-                                                Confirmed
-                                            {% elif milestone.payment_status == 'rejected' %}
-                                                Rejected
-                                            {% elif milestone.payment_status == 'refunded' %}
-                                                Refunded
-                                            {% elif milestone.payment_status == 'error' %}
-                                                Error
-                                            {% else %}
-                                                {{ milestone.payment_status }}
-                                            {% endif %}
+                                            Paid
                                         {% else %}
-                                            Non-eligible
+                                            Not Paid
                                         {% endif %}
                                     </td>
                                     <td class="px-6 py-4">
@@ -71,47 +61,37 @@
                 {% if offer_data.next_milestone %}
                 <div class="mt-10">
                 
-                    <div>
-                        <p class="text-2xl md:text-3xl leading-snug md:leading-snug font-Inter tracking-wide font-bold text-black dark:text-white">Total: <strong class="font-normal">$ {{ offer_data.total_ammount }}</strong></p>
+                    <div class="border-b border-gray-400 dark:border-gray-700">
+                        <p class="text-xl md:text-2xl leading-snug md:leading-snug font-Roboto tracking-wide font-light text-black dark:text-white mb-2">Total: <strong class="font-bold">$ {{ offer_data.total_ammount }}</strong></p>
                     </div>
 
-                        <div class="mt-6">
-                            <p class="text-2xl md:text-3xl leading-snug md:leading-snug font-Inter tracking-wide font-bold text-black dark:text-white">Remaining to Pay: <strong class="font-normal">$ {{ offer_data.remaining_ammount }}</strong></p>
+                        <div class="mt-6 border-b border-gray-400 dark:border-gray-700">
+                            <p class="text-xl md:text-2xl leading-snug md:leading-snug font-Roboto tracking-wide font-light text-black dark:text-white mb-2">Remaining to Pay: <strong class="font-bold">$ {{ offer_data.remaining_ammount }}</strong></p>
                         </div>
 
-                        <div class="mt-6">
-                            <p class="text-2xl md:text-3xl leading-snug md:leading-snug font-Inter tracking-wide font-bold text-black dark:text-white">Current Milestone: <strong class="font-normal">{{ offer_data.next_milestone.milestone_number }}</strong></p>
+                        <div class="mt-6 border-b border-gray-400 dark:border-gray-700">
+                            <p class="text-xl md:text-2xl leading-snug md:leading-snug font-Roboto tracking-wide font-light text-black dark:text-white mb-2">Current Milestone: <strong class="font-bold">{{ offer_data.next_milestone.milestone_number }}</strong></p>
                         </div>
                         
-                        <div class="mt-6">
-                            <p class="text-2xl md:text-3xl leading-snug md:leading-snug font-Inter tracking-wide font-bold text-black dark:text-white">Milestone Amount: <strong class="font-normal">$ {{ offer_data.next_milestone.ammount }}</strong></p>
+                        <div class="mt-6 border-b border-gray-400 dark:border-gray-700">
+                            <p class="text-xl md:text-2xl leading-snug md:leading-snug font-Roboto tracking-wide font-light text-black dark:text-white mb-2">Milestone Amount: <strong class="font-bold">$ {{ offer_data.next_milestone.ammount }}</strong></p>
                         </div>
 
+                      
                         <div class="mt-10">
-                            {% comment %} <form action="{{ form.action }}" method="post">
+                           
+                            <form method="post" action="{% url 'user_profile:offers-billing' %}">
                                 {% csrf_token %}
-                                {{ form.as_p }}
-                                <input type="hidden" name="selected_offer_id" value="{{ offer_data.offer.id }}">
-                                <button type="submit" class="text-2xl font-Inter font-normal text-white dark:text-black bg-black dark:bg-white py-4 px-12 tracking-wide text-center hover:bg-slate-900 dark:hover:bg-slate-100">Proceed</button>
-                            </form> {% endcomment %}
-
-
-                            <form method="post" action="{% url 'user_profile:create-payment' %}">
-                                {% csrf_token %}
+                                <!-- Add hidden fields with the required details -->
                                 <input type="hidden" name="next_milestone_id" value="{{ offer_data.next_milestone.id }}">
-                                <input type="hidden" name="title" value="{{ offer_data.next_milestone.title }}">
-                                <input type="hidden" name="amount" value="{{ offer_data.next_milestone.ammount }}">
-                                <!-- Add other fields as needed -->
-                              
-                                <button type="submit">Pay Now</button>
-                              </form>
+                                
+                                    <button type="submit" class="text-xl font-Inter font-normal text-white dark:text-black bg-black dark:bg-white py-5 px-24 exsm:px-28 hover:bg-slate-900 dark:hover:bg-slate-100">Pay Now</button>
+                                  
+                            </form> 
                               
                               
                       </div>
 
-                      
-
-                      
                     </div>
 
                     {% endif %}   
@@ -154,7 +134,6 @@
             <p class="text-xl font-medium ml-4 text-black dark:text-white">Slack</p>
           </a>
     </div>
-
 
     <div class="w-60">
         <a href="{{ communication_platforms.salesforce}}" class="py-2 px-4 border border-black dark:border-gray-300 flex items-center w-full hover:bg-slate-600 dark:hover:bg-slate-800">

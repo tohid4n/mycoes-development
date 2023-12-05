@@ -44,7 +44,7 @@ class E_OfferForm(forms.ModelForm):
         
         self.fields['name'].label = 'Name' 
         self.fields['email'].label = 'Email'
-        self.fields['about'].label = 'About'
+        self.fields['about'].label = 'What You want to build?'
         self.fields['accept'].label = 'I accept the terms'
         
         self.fields['name'].widget.attrs.update({'class': 'contact_classes'})

@@ -10,18 +10,21 @@
 
         <div>
             <div>
-                <h1 class="text-5xl md:text-7xl font-Lato font-light tracking-wide max-xsm:leading-snug leading-snug md:leading-snug text-black dark:text-white m-4">CHOOSE ANY SERVICE THAT NEEDED MOST, JUST FOR $5.</h1>
+                <h1 class="text-5xl md:text-7xl font-Lato font-light tracking-wide max-xsm:leading-snug leading-snug md:leading-snug text-black dark:text-white m-4">CHOOSE ANY SERVICE THAT NEEDED MOST, JUST FOR FREE.</h1>
             </div>
         
-      <div class="flex md:items-center max-md:flex-col max-md:gap-14 gap-6 my-12">
-       <div>
-         <a href="{% url 'home:about' %}" class="text-xl font-Inter font-normal text-white dark:text-black bg-black dark:bg-white py-5 px-28 m-4 hover:bg-slate-900 dark:hover:bg-slate-100">About us</a>
-       </div>
+    
 
-       <div>
-        <a href="{% url 'home:services' %}" class="text-xl font-Inter font-normal text-black dark:text-white py-5 px-28 m-4 border border-black dark:border-gray-300 hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black">Services</a>
+
+    <div class="flex md:items-center max-md:flex-col max-md:gap-14 gap-10 my-12 mx-4">
+      <div>
+        <a href="{% url 'home:about' %}" class="text-xl font-Inter font-normal text-white dark:text-black bg-black dark:bg-white py-5 px-24 exsm:px-28 rounded-full border border-black dark:border-white hover:bg-slate-900 dark:hover:bg-slate-100">About us</a>
       </div>
-    </div>   
+
+      <div>
+       <a href="{% url 'home:services' %}" class="text-xl font-Inter font-normal text-black dark:text-white py-5 px-24 exsm:px-28 border border-black  dark:border-gray-300 rounded-full hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black">Services</a>
+     </div>
+   </div>   
 
 
     
@@ -31,7 +34,14 @@
 
  </div>
 </div>
-       
+
+
+<div id="scrollToBottom" class="scroll-to-bottom fixed left-1/2 transform -translate-x-1/2 bottom-8 bg-black dark:bg-white p-3 rounded-full cursor-pointer">
+  <svg class="fill-white dark:fill-black" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
+      <path d="M440-800v487L216-537l-56 57 320 320 320-320-56-57-224 224v-487h-80Z"/>
+  </svg>
+</div>
+
 
 <div class="w-full flex justify-center bg-black dark:bg-white my-10 sm:my-20 py-10">
     <div class="w-full md:w-10/12 lg:w-9/12">
@@ -54,9 +64,6 @@
               <h3 class="text-2xl sm:text-3xl font-Roboto font-light tracking-wide text-white leading-normal sm:leading-relaxed dark:text-black m-4">&#9632; No video calls and calls, Work done through messages. You can choose any suitable communication platform. (Want to know why? I am an Introvert)</h3>
             </div>
 
-            <div class="mb-6">
-              <h3 class="text-2xl sm:text-3xl font-Roboto font-light tracking-wide text-white leading-snug sm:leading-relaxed dark:text-black m-4">&#9632; Pay after work is done. We like to receive payments through Stripe and PayPal. (You can pay directly through links or from the website)</h3>
-            </div>
 
             <div class="mb-6">
               <h3 class="text-2xl sm:text-3xl font-Roboto font-light tracking-wide text-white leading-snug sm:leading-relaxed dark:text-black m-4">&#9632; Needed feedback when the work is done. (You can provide it on the Feedback page)</h3>
@@ -84,7 +91,7 @@
 
 <div class="m-4 w-11/12 flex justify-center sm:hidden xl:inline">
   <div>
-  <div><h2 class="text-5xl exsm:text-6xl lg:text-7xl xl:text-8xl font-Lexend font-bold leading-tight text-black dark:text-white sm:mb-6">Your Most Important Service, Now on affordable Price.</h2></div>
+  <div><h2 class="text-5xl exsm:text-6xl lg:text-7xl xl:text-8xl font-Lexend font-bold leading-tight text-black dark:text-white sm:mb-6">Your Most Important Service, Just Free For Now.</h2></div>
 </div>
 </div>
 

@@ -39,8 +39,6 @@ INSTALLED_APPS = [
     #django-magiclink
     'magiclink',
     
-    #django-payments
-    'payments',
 
     #apps
     'home',
@@ -50,6 +48,9 @@ INSTALLED_APPS = [
    
    # Cookie consent
     'cookie_consent',
+    
+    #Paypal payment
+    'paypal.standard.ipn',    
     
 ]
 
@@ -103,7 +104,7 @@ DATABASES = {
 }
 
 
-
+#Smtp settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = env('EMAIL_HOST')
 EMAIL_PORT = 587
@@ -160,7 +161,7 @@ MAGICLINK_EMAIL_TEMPLATE_NAME_HTML = 'magiclink/login_email.html'
 # social-auth-app-django
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = env('CLIENT_ID')
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = env('SECRET')
-SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/profile/'
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/profile/offers-billing/'
 
 
 SITE_ID = 1
@@ -190,12 +191,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 
 
-
     
-
-
-    
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['*']
     
     
 # Default primary key field type
@@ -220,64 +217,7 @@ LOGGING = {
 
 
 
-
-#django-payments 
-
-PAYMENT_VARIANTS = {
-    'paypal': (
-        'payments.paypal.PaypalProvider',
-        {
-            'client_id': 'AfJ2qmP34OKKFl4MubFmjV38BSB0BnBxmU2R76DaglthL4dp8FFdP6baIFQbocK8ygCO48alXg21RT-J',
-            'secret': 'EOw6n2ope7uMoY_LvqYZPrOG2_z0FkLevpGTBV8v2RdwH3s2Q_gkTDNK5v680hJZgaPiHNi72Q8yEyzg',
-            'endpoint': 'https://sandbox.paypal.com',
-            'capture': False,
-        }
-    ),
-    'paypal_card': (
-        'payments.paypal.PaypalCardProvider',
-        {
-            'client_id': 'AfJ2qmP34OKKFl4MubFmjV38BSB0BnBxmU2R76DaglthL4dp8FFdP6baIFQbocK8ygCO48alXg21RT-J',
-            'secret': 'EOw6n2ope7uMoY_LvqYZPrOG2_z0FkLevpGTBV8v2RdwH3s2Q_gkTDNK5v680hJZgaPiHNi72Q8yEyzg',
-        }
-    ),
-    
-    #stripe in production setting
-    # 'stripe_v3_dev': (
-    #     'payments.stripe.StripeProviderV3',
-    #     {
-    #         'api_key': 'sk_test_123456',
-    #         'use_token': True,
-    #         'endpoint_secret': 'whsec_123456',
-    #         'secure_endpoint': True
-    #     }
-    # )
-
-    'stripe_v3_dev': (
-        'payments.stripe.StripeProviderV3',
-        {
-            'api_key': 'sk_test_123456',
-            'use_token': True,
-            'secure_endpoint': False
-        }
-    ),
-    
-    'stripe': (
-        'payments.stripe.StripeProvider',
-        {
-            'secret_key': 'sk_test_51NU0KkSISUKJ2ZnZG5oNbUzu3AiyBCy8yHobOvHSb6YOtQgm1T4785GX5nD5NGwDPAQTjvbzoxlGyLNflhnLqQIz00kYt9IHf4',
-            'public_key': 'pk_test_51NU0KkSISUKJ2ZnZ5BbjEHXKt7KPjIk0ZKTip2f5D2slv7TqYuOeDpzaUuUMHj0BSUgB9yaxNB0TGcYZ0TJQVC3e00VXvZSrmV',
-        }
-    )
-}
-
-
-# STRIPE_PUBLIC_KEY=env("STRIPE_PUBLIC_KEY")
-# STRIPE_SECRET_KEY=env("STRIPE_SECRET_KEY")
-# STRIPE_WEBHOOK_SECRET=env("STRIPE_WEBHOOK_SECRET")
-
-
-# change in production
-PAYMENT_HOST = 'localhost:8000'
-PAYMENT_USES_SSL = False
-
-PAYMENT_MODEL = 'user_profile.Payment'
+#Paypal settings
+# PAYPAL_BUY_BUTTON_IMAGE = ""
+PAYPAL_RECEIVER_EMAIL = env('PAYPAL_RECEIVER_EMAIL')
+PAYPAL_TEST = True

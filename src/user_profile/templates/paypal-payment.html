@@ -1,0 +1,59 @@
+{% extends 'base-payment.html' %}
+
+
+{% block content %}
+    
+
+<div class="w-full xsm:w-r26 p-8 m-auto mt-20 sm:mt-32 mb-7 sm:mb-14 sm:border rounded-md border-gray-500 dark:border-gray-800">
+  <div class="flex justify-center">
+    <div class="w-full">
+      <div class="text-center mb-6">
+        <h1 class="font-OpenSans font-semibold text-4xl text-black dark:text-white">Payment</h1>
+      </div>
+
+
+      {% if messages %}
+  {% for message in messages %}
+    <div id="alert-{{ message.tags }}" class="flex items-center px-4 py-3.5 {{ message.tags }} border mx-1 my-4 {% if message.tags == 'success' %}
+        bg-green-100 border-green-900
+      {% elif message.tags == 'info' %}
+        bg-blue-100 border-blue-600
+      {% elif message.tags == 'warning' %}
+        bg-yellow-100 border-yellow-600
+      {% elif message.tags == 'error' %}
+        bg-red-100 border-red-900
+      {% endif %}" role="alert">
+      <div class="ms-3 text-xl font-OpenSans text-black font-medium">
+        {{ message }}
+      </div>
+      <button type="button" class="ms-auto -mx-1.5 -my-1.5 p-1.5 inline-flex items-center justify-center h-8 w-8" data-dismiss-target="alert-{{ message.tags }}" aria-label="Close">
+        <span class="sr-only">Close</span>
+        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+        </svg>
+      </button>
+    </div>
+  {% endfor %}
+{% endif %}
+      
+
+  <div class="my-8 mx-1">
+    <div><p class="text-lg font-Roboto font-light text-black dark:text-white mb-4">*For Conformation</p></div>
+    <div><p class="text-xl font-Roboto font-light text-black dark:text-white pb-2 mb-4 border-b border-gray-700 dark:border-gray-400">Title: <span class=" font-bold">{{ milestone.offer.title }}</span></p></div>
+    <div><p class="text-xl font-Roboto font-light text-black dark:text-white pb-2 mb-4 border-b border-gray-700 dark:border-gray-400">Milestone No. <span class=" font-bold">{{ milestone.milestone_number }}</span></p></div>
+    <div><p class="text-xl font-Roboto font-light text-black dark:text-white pb-2 mb-4 border-b border-gray-700 dark:border-gray-400">Price: <span class=" font-bold">${{ milestone.ammount }}</span></p></div>
+  </div>
+     
+
+ <div class="flex justify-center items-center">
+  {{ form.render }}
+ </div>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+{% endblock content %}

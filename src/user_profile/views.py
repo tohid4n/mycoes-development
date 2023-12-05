@@ -1,36 +1,25 @@
+import json
 from django.db.models import Sum
 from time import sleep
-from django.shortcuts import render, redirect
+from django.http import Http404, HttpResponse
+from django.shortcuts import redirect, render
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
-
 from django.contrib.auth.views import LogoutView
 from django.contrib import messages
 from django.urls import reverse
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView
-from requests import request
-from stripe import PaymentIntent
-
 from user_profile.models import CommunicationPlatforms, Offer
-from .forms import OfferForm, PaymentForm
-
+from .forms import OfferForm
+from .models import Offer, CommunicationPlatforms, OfferMilestone
+from django.contrib import messages
 from django.conf import settings
-from django.shortcuts import render, get_object_or_404, redirect
-from django.http import HttpResponse
-from django.views import View
 from decimal import Decimal
-from payments import get_payment_model
-from .models import Offer, OfferMilestone, CommunicationPlatforms
-
-
-from django.shortcuts import get_object_or_404, redirect
-from django.template.response import TemplateResponse
-from payments import get_payment_model, RedirectNeeded
-
-from decimal import Decimal
-from payments import get_payment_model
-
+from paypal.standard.forms import PayPalPaymentsForm
+from .forms import CustomPayPalPaymentsForm
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_exempt
 
 
 
@@ -38,7 +27,7 @@ from payments import get_payment_model
 class OfferView(LoginRequiredMixin, CreateView):
     template_name = 'offer.html'
     form_class = OfferForm
-    success_url = reverse_lazy('user_profile:profile-offers-billing')  # Define the URL to redirect to after successful form submission
+    success_url = reverse_lazy('user_profile:offers-billing')  # Define the URL to redirect to after successful form submission
 
     def form_valid(self, form):
         # Set the user field to the authenticated user and save the form
@@ -49,9 +38,6 @@ class OfferView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
     
     
-
-
-
 
 class BillingView(LoginRequiredMixin, generic.TemplateView):
     template_name = 'billing_page.html'
@@ -68,12 +54,13 @@ class BillingView(LoginRequiredMixin, generic.TemplateView):
             for offer in user_offers:
                 # Retrieve milestones specific to the selected offer
                 all_offer_milestones = offer.milestones.all()
-                offer_milestones = offer.milestones.filter(paid=False)
+                offer_milestones = offer.milestones.filter(paid=False).order_by('created_at')
                 next_milestone = offer_milestones.first()
 
                 total_ammount = all_offer_milestones.aggregate(sum_ammount=Sum('ammount'))['sum_ammount'] or 0
-                paid_ammount = offer_milestones.filter(paid=True).aggregate(sum_ammount=Sum('ammount'))['sum_ammount'] or 0
+                paid_ammount = offer.milestones.filter(paid=True).aggregate(sum_ammount=Sum('ammount'))['sum_ammount'] or 0
                 remaining_ammount = total_ammount - paid_ammount
+
 
                 offers_data.append({
                     'offer': offer,
@@ -92,54 +79,79 @@ class BillingView(LoginRequiredMixin, generic.TemplateView):
 
         return self.render_to_response(context)
     
+    def post(self, request, *args, **kwargs):
+        next_milestone_id = request.POST.get('next_milestone_id')
+        request.session['next_milestone_id'] = next_milestone_id
+
+        sleep(1)
+        return redirect('user_profile:paypal-payment', next_milestone_id=next_milestone_id)
     
-
-  
-class CreatePaymentView(LoginRequiredMixin, View):
     
-    def get(self, request):
-        form = PaymentForm()
-        return render(request, "create_payment.html", {"form": form})
+    
+class PaypalPaymentView(LoginRequiredMixin, generic.View):
 
-    def post(self, request):
-        form = PaymentForm(request.POST)
-        if form.is_valid():
-            next_milestone_id = request.POST.get('next_milestone_id')
-            form.instance.variant = "stripe"
-            form.instance.currency = "USD"
-            form.instance.total = Decimal(request.POST.get('ammount', 0))
-            form.instance.description = request.POST.get('title')
+    def get(self, request, *args, **kwargs):
+        # Retrieve milestone data from sessions
+        next_milestone_id = self.request.session.get('next_milestone_id')
 
-            payment = form.save(commit=False)
-            payment.save()
-
-            return redirect(reverse('user_profile:payment-details', args=[payment.id]))
-
-        
-
-
-class PaymentDetailsView(View):
-    def get(self, request, payment_id):
-        payment = get_object_or_404(get_payment_model(), id=payment_id)
         try:
-            form = payment.get_form(data=request.POST or None)
-        except RedirectNeeded as redirect_to:
-            return redirect(str(redirect_to))
-        return render(request, "payment.html", {"form": form, "payment": payment})
+            # Check if next_milestone_id is present
+            if not next_milestone_id:
+                raise Http404
+            # Retrieve the milestone using next_milestone_id
+            milestone = OfferMilestone.objects.get(id=next_milestone_id)
+        except OfferMilestone.DoesNotExist:
+            # Handle the case where the milestone is not found
+            raise Http404
+        
+        paypal_dict = {
+            'business': settings.PAYPAL_RECEIVER_EMAIL,
+            'amount': milestone.ammount, 
+            'item_name': milestone.offer.title,  
+            'invoice': str(milestone.milestone_id), 
+            'item_number': str(milestone.milestone_number),
+            'currency_code': 'USD', 
+            'notify_url': f'http://{request.get_host()}{reverse("user_profile:paypal-payment", kwargs={"next_milestone_id": next_milestone_id})}?message=notify',
+            'return_url': f'http://{request.get_host()}{reverse("user_profile:paypal-payment", kwargs={"next_milestone_id": next_milestone_id})}?message=success',
+            'cancel_return': f'http://{request.get_host()}{reverse("user_profile:paypal-payment", kwargs={"next_milestone_id": next_milestone_id})}?message=cancel',
 
+        }
 
-class PaymentSuccessView(View):
-    def get(self, request):
-        return HttpResponse("Payment succeeded.")
+        form = CustomPayPalPaymentsForm(initial=paypal_dict)
+        
+        context = {
+            'form': form,
+            'milestone': milestone  
+        }
+        
+        message = request.GET.get('message', None)
 
+        if message == 'notify':
+            messages.info(request, 'Something happened on the Paypal side, Please retry.')
+        elif message == 'success':
+            messages.success(request, 'Payment was successful!')
+        elif message == 'cancel':
+            messages.warning(request, 'Payment was canceled.')
 
-class PaymentFailureView(View):
-    def get(self, request):
-        return HttpResponse("Payment failed.")
+        return render(request, 'paypal-payment.html', context)
+
+    def dispatch(self, request, *args, **kwargs):
+        try:
+            return super().dispatch(request, *args, **kwargs)
+        except Http404:
+            # Redirect to your custom 404 page
+            return render(request, '404.html', status=404)
     
+    
+    
+
+class PaypalPaymentSuccessView(LoginRequiredMixin, generic.TemplateView):
+    template_name = 'paypal-payment-success.html' 
+    
+
 
 class ProfileTranscationsView(LoginRequiredMixin, generic.TemplateView):
-    template_name = 'profile-transcations.html' 
+    template_name = 'profile-transcations.html'     
     
 
 

@@ -7,7 +7,7 @@
 
 <!-- Hero section -->
 
-<div class="relative bg-white dark:bg-black max-md:border-b border-gray-400 dark:border-gray-700">
+<div class="relative bg-white dark:bg-black">
   <!-- Video for Light Mode -->
   <video id="bgVideo" autoplay muted loop playsinline class="hidden md:block w-full h-full absolute top-0 left-0 object-fill">
     <source src="{% static 'videos/bg-video.mp4' %}" type="video/mp4">
@@ -17,7 +17,7 @@
   <div class="hidden md:block overlay absolute top-0 left-0 w-full h-full bg-white dark:bg-black dark:opacity-90 opacity-60"></div>
 
   <!-- Play/Pause Button -->
-  <button onclick="toggleVideo()" id="playPauseBtn" class="hidden md:block absolute top-24 right-40 rounded-full cursor-pointer focus:outline-none">
+  <button onclick="toggleVideo()" id="playPauseBtn" class="hidden xl:block absolute top-24 right-40 rounded-full cursor-pointer focus:outline-none">
     
     <!-- SVG for Pause -->
     <svg id="pauseIcon" class="fill-black dark:fill-white" xmlns="http://www.w3.org/2000/svg" height="45" viewBox="0 -960 960 960" width="45" style="display: block;">
@@ -38,9 +38,9 @@
         <h1 class="text-5xl sm:text-7xl font-Roboto font-bold tracking-wide leading-snug sm:leading-snug text-black dark:text-white m-4">WE HELP YOU ACHIEVE WHAT YOU WANT TO BUILD.</h1>
       </div>
 
-      <div class="my-10 mx-4">
+      <div class="mt-10 md:mb-10 mx-4">
         <a href="{% url 'home:contact' %}" class="text-black dark:text-white hover:text-white dark:hover:text-black">
-          <div class="text-center w-full py-5 sm:py-6 border border-black dark:border-white hover:bg-black dark:hover:bg-white">
+          <div class="text-center w-full py-5 sm:py-6 border border-black dark:border-gray-300 hover:bg-black dark:hover:bg-white">
             <p class="text-xl sm:text-2xl font-Inter font-light">Contact us</p>
           </div>
         </a>
@@ -48,6 +48,13 @@
     </div>
   </div>
 
+</div>
+
+
+<div id="scrollToBottom" class="xsm:hidden scroll-to-bottom fixed left-1/2 transform -translate-x-1/2 bottom-8 bg-black dark:bg-white p-3 rounded-full cursor-pointer">
+  <svg class="fill-white dark:fill-black" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
+      <path d="M440-800v487L216-537l-56 57 320 320 320-320-56-57-224 224v-487h-80Z"/>
+  </svg>
 </div>
 
 
@@ -70,19 +77,16 @@
  
 
 
-    <!-- Services content's Section -->
+    <!-- MyCoes offer Section -->
 
    <div class="bg-black dark:bg-white w-full flex justify-center my-10 py-10 sm:py-20">
     <div class="m-auto w-full md:w-10/12 lg:w-9/12 flex justify-center flex-col-reverse lg:flex-row items-center gap-8">
      <div>
 
-
-    
-
       <div><h2 class="text-4xl sm:text-6xl font-inter font-bold leading-tight sm:leading-snug tracking-wide text-white dark:text-black m-4">Offer valid for the next 7 days only!</h2></div>
-      <div><p class="text-xl sm:text-3xl font-Roboto font-light leading-snug sm:leading-snug tracking-wide text-white dark:text-black m-4">Thousands of dollar's services are just for 5 dollar.  The offer is limited to only  Five people.</p></div>
+      <div><p class="text-xl sm:text-3xl font-Roboto font-light leading-snug sm:leading-snug tracking-wide text-white dark:text-black m-4">Thousands of dollar's services are just for free.  The offer is limited to only  Five people.</p></div>
       <div class="my-12">
-        <a href="{% url 'home:e-offer' %}" class="text-xl font-Inter font-light text-black dark:text-white bg-white dark:bg-black py-5 px-16 xsm:px-28 m-4 hover:bg-slate-100 dark:hover:bg-slate-900">Be the One in Five</a>
+        <a href="{% url 'home:e-offer' %}" class="text-xl font-Inter font-light text-black dark:text-white bg-white dark:bg-black py-5 px-16 xsm:px-28 m-4 hover:bg-slate-100 dark:hover:bg-slate-900">Register Now</a>
        </div>
     </div>
     </div>
@@ -208,7 +212,7 @@
   
   <!-- Slider controls -->
   <div class="max-md:relative">
-  <button type="button" class="absolute max-md:bottom-0 max-md:right-20 md:top-0 md:left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
+  <button type="button" class="absolute max-md:bottom-0 max-xsm:left-0 max-md:right-20 md:top-0 md:left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
     <span class="inline-flex items-center justify-center w-10 h-10 max-md:bg-slate-300 dark:bg-transparent rounded-full">
       <svg class="w-30 h-30 fill-black dark:fill-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z"/></svg>
         <span class="sr-only">Previous</span>
