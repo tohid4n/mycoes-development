@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Offer, OfferMilestone, CommunicationPlatforms
+from .models import Offer, OfferMilestone
 
 class OfferAdmin(admin.ModelAdmin):
     list_display = ('title', 'user', 'timestamp')
@@ -26,5 +26,3 @@ class OfferAdminWithInline(admin.ModelAdmin):
     user_name.admin_order_field = 'user__username'  
     
     
-admin.site.register(CommunicationPlatforms)    
-

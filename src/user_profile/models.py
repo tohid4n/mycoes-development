@@ -33,9 +33,3 @@ class Offer(models.Model):
     
        
     
-    
-class CommunicationPlatforms(models.Model):
-    platform = models.URLField(max_length=100, null=True, blank=True)   
-    platform_name = models.CharField(max_length=50, null=True, blank=True)   
-    
- 

@@ -1,9 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
-
-
-{% block head_title %}Login link sent{% endblock %}
+{% block title %}Login link sent{% endblock %}
 
 {% block content %}
 
@@ -23,8 +21,8 @@
         </p>
    </div>
    
-   <div class="my-12 mx-4">
-     <a href="{% url 'home:contact' %}" class="text-xl font-Inter font-normal text-white dark:text-black bg-black dark:bg-white py-5 px-20 rounded hover:bg-slate-900 dark:hover:bg-slate-100">Contact us</a>
+   <div class="mb-12 mt-8 mx-4">
+     <a href="{% url 'home:contact' %}" class="text-xl font-Inter font-normal text-white dark:text-black bg-black dark:bg-white py-5 px-20 rounded-full hover:bg-slate-900 dark:hover:bg-slate-100">Contact us</a>
    </div>
    
    

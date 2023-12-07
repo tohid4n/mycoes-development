@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'django.contrib.sites',
     
+    'corsheaders', 
   #django-socialpython-auth
     'social_django',
     
@@ -65,6 +66,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     
     'social_django.middleware.SocialAuthExceptionMiddleware',
+    'corsheaders.middleware.CorsMiddleware', 
 ]
 
 ROOT_URLCONF = 'website.urls'
@@ -192,7 +194,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 
     
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['88b9-2405-201-d00c-a116-483f-2287-39c5-4743.ngrok-free.app', 'localhost', '127.0.0.1',]
+CSRF_TRUSTED_ORIGINS = ['https://88b9-2405-201-d00c-a116-483f-2287-39c5-4743.ngrok-free.app',]
+#CSRF_COOKIE_SECURE = False
     
     
 # Default primary key field type

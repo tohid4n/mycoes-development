@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% block title %}Login{% endblock %}
 
 {% block content %}
 <div class="w-full xsm:w-r26 p-8 m-auto mt-20 sm:mt-32 mb-7 sm:mb-14 sm:border rounded-md border-gray-500 dark:border-gray-800">
@@ -36,7 +36,7 @@
     
         <div class="mb-4">
           <label class="block mb-4 font-OpenSans text-xl font-normal text-black dark:text-white">Email</label>
-            <input type="email" name="email" placeholder="Enter your email" required class="bg-white dark:bg-black border border-black dark:border-white text-xl font-Roboto font-light text-black dark:text-white focus:ring-black focus:border-black  block w-full p-3 dark:focus:ring-white dark:focus:border-white mb-5">
+            <input type="email" name="email" required class="bg-white dark:bg-black border border-black dark:border-white text-xl font-Roboto font-light text-black dark:text-white focus:ring-black focus:border-black  block w-full p-3 dark:focus:ring-white dark:focus:border-white mb-5">
             {% if form.email.errors %}
                 <ul class="text-red-500">
                     {% for error in form.email.errors %}
@@ -47,7 +47,7 @@
         </div>
     
         <div class="mt-4">
-            <button type="submit" class="text-xl font-Inter font-normal text-white dark:text-black bg-black dark:bg-white hover:bg-slate-900 dark:hover:bg-slate-100 w-full py-3.5 mb-2">Continue with Email</button>
+            <button type="submit" class="text-xl font-Inter font-normal text-white dark:text-black bg-black dark:bg-white hover:bg-slate-900 dark:hover:bg-slate-100 w-full py-4 mb-2">Continue</button>
           </div>
         
     </form>

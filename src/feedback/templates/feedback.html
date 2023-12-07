@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block head_title %}Feedback{% endblock head_title %}
+{% block title %}MyCoes User Feedbacks{% endblock title %}
+{% block meta_description %}Your opinion matters to us. Share your thoughts on MyCoes and help us improve. Leave your feedback on our platform and be heard.{% endblock meta_description %}
 
 
 {% block content %}
@@ -17,7 +18,7 @@
 
 
     <div class="mt-4 md:mt-10 mx-4 flex items-center gap-4">
-      <div class="rounded-full text-white dark:text-black w-8 h-8 flex items-center justify-center bg-black dark:bg-white">{{ user.email.0|default_if_none:""|upper }}</div>              
+      <div class="rounded-full text-white dark:text-black w-8 h-8 flex items-center justify-center bg-black dark:bg-white">{{ user.username.0|default_if_none:""|upper }}</div>              
       <div class="pb-8 w-9/12 pt-8">
           <div class="w-full border border-black dark:border-gray-400 rounded-xl">
               
@@ -47,7 +48,7 @@
       <div >
           <div class="flex justify-between mx-4">
             <div class="flex gap-4">
-              <div class="rounded-full text-white dark:text-black w-8 h-8 flex items-center justify-center bg-black dark:bg-white">{{ feedback.user.email.0|default_if_none:""|upper }}</div>              
+              <div class="rounded-full text-white dark:text-black w-8 h-8 flex items-center justify-center bg-black dark:bg-white">{{ feedback.user.username.0|default_if_none:""|upper }}</div>              
               <div><p class="text-sm font-Roboto font-bold text-black dark:text-white">{{ feedback.user.username }}</p></div>
               <div><p class="text-sm font-Roboto font-normal text-black dark:text-white">{{ feedback.timestamp|date }}</p></div>
             </div>
@@ -98,24 +99,6 @@
   </div>
   
   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
       </div>
   </div>
 {% endblock content %}

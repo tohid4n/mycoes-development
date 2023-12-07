@@ -1,7 +1,6 @@
-import json
 from django.db.models import Sum
 from time import sleep
-from django.http import Http404, HttpResponse
+from django.http import Http404
 from django.shortcuts import redirect, render
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -10,13 +9,10 @@ from django.contrib import messages
 from django.urls import reverse
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView
-from user_profile.models import CommunicationPlatforms, Offer
 from .forms import OfferForm
-from .models import Offer, CommunicationPlatforms, OfferMilestone
+from .models import Offer, OfferMilestone
 from django.contrib import messages
 from django.conf import settings
-from decimal import Decimal
-from paypal.standard.forms import PayPalPaymentsForm
 from .forms import CustomPayPalPaymentsForm
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
@@ -47,7 +43,6 @@ class BillingView(LoginRequiredMixin, generic.TemplateView):
 
         if self.request.user.is_authenticated:
             user_offers = Offer.objects.filter(user=self.request.user)
-            communication_platforms = CommunicationPlatforms.objects.first()
 
             offers_data = []
 
@@ -73,7 +68,6 @@ class BillingView(LoginRequiredMixin, generic.TemplateView):
             # Update the context with the new data
             context.update({
                 'user_offers': user_offers,
-                'communication_platforms': communication_platforms,
                 'offers_data': offers_data,
             })
 
@@ -87,9 +81,8 @@ class BillingView(LoginRequiredMixin, generic.TemplateView):
         return redirect('user_profile:paypal-payment', next_milestone_id=next_milestone_id)
     
     
-    
+@method_decorator(csrf_exempt, name='dispatch')
 class PaypalPaymentView(LoginRequiredMixin, generic.View):
-
     def get(self, request, *args, **kwargs):
         # Retrieve milestone data from sessions
         next_milestone_id = self.request.session.get('next_milestone_id')
@@ -108,11 +101,11 @@ class PaypalPaymentView(LoginRequiredMixin, generic.View):
             'business': settings.PAYPAL_RECEIVER_EMAIL,
             'amount': milestone.ammount, 
             'item_name': milestone.offer.title,  
-            'invoice': str(milestone.milestone_id), 
+            'invoice': str(milestone.id), 
             'item_number': str(milestone.milestone_number),
             'currency_code': 'USD', 
-            'notify_url': f'http://{request.get_host()}{reverse("user_profile:paypal-payment", kwargs={"next_milestone_id": next_milestone_id})}?message=notify',
-            'return_url': f'http://{request.get_host()}{reverse("user_profile:paypal-payment", kwargs={"next_milestone_id": next_milestone_id})}?message=success',
+            'notify_url': f'http://{request.get_host()}{reverse("paypal-ipn")}',
+            'return_url': f'http://{request.get_host()}{reverse("user_profile:paypal-payment-success", kwargs={"next_milestone_id": next_milestone_id})}',
             'cancel_return': f'http://{request.get_host()}{reverse("user_profile:paypal-payment", kwargs={"next_milestone_id": next_milestone_id})}?message=cancel',
 
         }
@@ -128,8 +121,6 @@ class PaypalPaymentView(LoginRequiredMixin, generic.View):
 
         if message == 'notify':
             messages.info(request, 'Something happened on the Paypal side, Please retry.')
-        elif message == 'success':
-            messages.success(request, 'Payment was successful!')
         elif message == 'cancel':
             messages.warning(request, 'Payment was canceled.')
 

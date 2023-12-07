@@ -34,33 +34,34 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-// On page load or when changing themes, best to add inline in `head` to avoid FOUC
-if (
-  localStorage.theme === "dark" ||
-  (!("theme" in localStorage) &&
-    window.matchMedia("(prefers-color-scheme: dark)").matches)
-) {
-  document.documentElement.classList.add("dark");
-} else {
-  document.documentElement.classList.remove("dark");
-}
 
+
+// Dark and Light mode
+// On page load or when changing themes, best to add inline in `head` to avoid FOUC
+// Function to set the dark theme
+// Function to set the dark theme
 function setDarkTheme() {
   document.documentElement.classList.add("dark");
   localStorage.theme = "dark";
 }
 
+// Function to set the light theme
 function setLightTheme() {
   document.documentElement.classList.remove("dark");
   localStorage.theme = "light";
 }
 
+// Check if the theme is stored in localStorage, otherwise set the default to dark
+if (localStorage.theme !== "light") {
+  setDarkTheme();
+}
+
+// Function to handle theme switcher item click
 function onThemeSwitcherItemClick(event) {
   const theme = event.target.dataset.theme;
 
   if (theme === "system") {
-    localStorage.removeItem("theme");
-    setSystemTheme();
+    // Handle setting system theme if needed
   } else if (theme === "dark") {
     setDarkTheme();
   } else {
@@ -68,10 +69,14 @@ function onThemeSwitcherItemClick(event) {
   }
 }
 
+// Attach click event listeners to theme switcher items
 const themeSwitcherItems = document.querySelectorAll("#theme-switcher");
 themeSwitcherItems.forEach((item) => {
   item.addEventListener("click", onThemeSwitcherItemClick);
 });
+
+
+
 
 
 

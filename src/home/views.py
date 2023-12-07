@@ -31,8 +31,6 @@ class TermsOfServicesView(generic.TemplateView):
    
 
 
-
-
 class E_OfferView(generic.FormView):
     form_class = E_OfferForm
     template_name = 'e-offers.html'
