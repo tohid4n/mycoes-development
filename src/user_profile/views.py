@@ -148,7 +148,7 @@ class ProfileTranscationsView(LoginRequiredMixin, generic.TemplateView):
         context = super().get_context_data(**kwargs)
         
         # Retrieve paid transactions
-        transactions = OfferMilestone.objects.filter(paid=True)
+        transactions = OfferMilestone.objects.filter(offer__user=self.request.user, paid=True)
 
         context['transactions'] = transactions
         return context  

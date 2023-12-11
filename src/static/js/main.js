@@ -186,38 +186,59 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // scrolling effect to the bottom
 
-
 document.addEventListener('DOMContentLoaded', function () {
+  // Variables to control scroll animation
+  var scrollStep = 500; // Adjust the step size as needed
+  var isAnimating = false;
+
   // Show/hide the scroll-to-bottom icon based on the user's scroll position
   window.addEventListener('scroll', function () {
-      var scrollToBottom = document.getElementById('scrollToBottom');
-      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 20) {
-          scrollToBottom.classList.add('hidden');
-      } else {
-          scrollToBottom.classList.remove('hidden');
-      }
+    var scrollToBottom = document.getElementById('scrollToBottom');
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 20) {
+      scrollToBottom.classList.add('hidden');
+    } else {
+      scrollToBottom.classList.remove('hidden');
+    }
   });
 
-  // Scroll to the bottom when the icon is clicked
+  // Scroll to the bottom with animation when the icon is clicked
   document.getElementById('scrollToBottom').addEventListener('click', function () {
+    if (!isAnimating) {
+      isAnimating = true;
       scrollToBottom();
+    }
   });
 
-  // Function to scroll to the bottom
+  // Function to scroll to the bottom with animation
   function scrollToBottom() {
-      window.scrollTo({
-          top: document.body.scrollHeight,
+    var currentScrollPosition = window.scrollY;
+    var targetScrollPosition = currentScrollPosition + scrollStep;
+
+    // Recursive function for smooth animation
+    function animateScroll() {
+      if (currentScrollPosition >= targetScrollPosition) {
+        isAnimating = false;
+      } else {
+        window.scrollTo({
+          top: currentScrollPosition,
           behavior: 'smooth'
-      });
+        });
+        currentScrollPosition += 10; // Adjust the step size as needed
+        requestAnimationFrame(animateScroll);
+      }
+    }
+
+    // Start the animation
+    animateScroll();
   }
 
   // Show the scroll-to-bottom icon when the user scrolls back up
   var lastScrollPosition = window.scrollY;
   window.addEventListener('scroll', function () {
-      var currentScrollPosition = window.scrollY;
-      if (currentScrollPosition < lastScrollPosition) {
-          document.getElementById('scrollToBottom').classList.remove('hidden');
-      }
-      lastScrollPosition = currentScrollPosition;
+    var currentScrollPosition = window.scrollY;
+    if (currentScrollPosition < lastScrollPosition) {
+      document.getElementById('scrollToBottom').classList.remove('hidden');
+    }
+    lastScrollPosition = currentScrollPosition;
   });
 });

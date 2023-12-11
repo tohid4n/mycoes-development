@@ -32,11 +32,8 @@ module.exports = {
         '90': '3', // You can adjust the value as needed
       },
       fontFamily: {
-        Karla: ['Karla', 'sans-serif'],
-        WorkSans: [ 'Work Sans', 'sans-serif'],
         Montserrat: ['Montserrat', 'sans-serif'],
-        LibreFranklin: ['Libre Franklin', 'sans-serif'],
-        Nunito: ['Nunito', 'sans-serif'],
+        Poppins: ['Poppins', 'sans-serif'],
 
         Carme: ['Carme', 'sans-serif'],
         Content: [ 'Content', 'sans-serif'],

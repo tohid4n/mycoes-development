@@ -11,7 +11,13 @@
 
     <link rel="stylesheet" href="{% static 'css/output.css' %}" />
     <link rel="stylesheet" href="{% static 'css/custom.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/aos.css' %}" />
     <link rel="shortcut icon" href="{% static 'img/general/favicon.ico' %}" type="image/x-icon">	
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+
+
 
     
     <!-- gogle fonts -->
@@ -19,6 +25,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Carme&family=Content:wght@400;700&family=Inter:wght@200;300;400;500;600;700;800;900&family=Lato:wght@300;700&family=Lexend:wght@900&family=Open+Sans:wght@300;400;500;600;700;800&family=Roboto:wght@300;400;700&family=Sintony:wght@400;700&display=swap" rel="stylesheet">
+
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&family=Poppins:wght@100&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
@@ -61,35 +70,31 @@
 
 <!-- Navbar -->
 
-<nav  class="transition-all duration-300 bg-transparent z-50 fixed w-full border-b border-slate-400 dark:border-slate-700" id="navbar">
+<nav  class="bg-white dark:bg-black z-50">
   <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto my-auto p-4">
     
     <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
-      <span class="font-OpenSans font-extrabold text-4xl text-black dark:text-white">MyCoes</span>
+      <span class="font-Lato font-thin text-4xl text-black dark:text-white">MyCoes</span>
   </a>
-    <button data-collapse-toggle="navbar-solid-bg" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-full md:hidden hover:bg-gray-200 focus:outline-none dark:text-gray-400 dark:hover:bg-gray-700" aria-controls="navbar-solid-bg" aria-expanded="false">
+    <button data-collapse-toggle="navbar-solid-bg" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-full md:hidden bg-gray-300 focus:outline-none dark:text-gray-400 dark:bg-gray-700" aria-controls="navbar-solid-bg" aria-expanded="false">
         <span class="sr-only">menu</span>
-        <svg class="w-5 h-5 fill-black dark:fill-white" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 26 26">
+        <svg class="w-5 h-5 fill-white dark:fill-black" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 26 26">
           <path d="M 0 4 L 0 6 L 26 6 L 26 4 Z M 0 12 L 0 14 L 26 14 L 26 12 Z M 0 20 L 0 22 L 26 22 L 26 20 Z"></path>
           </svg>
 
     </button>
-
     <div class="hidden w-full md:block md:w-auto" id="navbar-solid-bg">
-      <ul class="flex flex-col gap-2 font-medium mt-16 rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent md:dark:bg-transparent">
+      <ul class="flex flex-col gap-2 font-medium mt-16 rounded-lg md:space-x-20 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent md:dark:bg-transparent">
         
-        <li><a href="/" class="font-Roboto tracking-wider font-light text-xl text-black dark:text-white md:hover:underline block py-2 px-3 md:p-0 md:hover:bg-transparent md:border-0  dark:hover:text-white md:dark:hover:bg-transparent border-b border-gray-600 max-md:mb-4">Home</a></li>
-        <li><a href="{% url 'home:about' %}" class="font-Roboto tracking-wider font-light text-xl text-black dark:text-white md:hover:underline block py-2 px-3 md:p-0 md:hover:bg-transparent md:border-0  dark:hover:text-white md:dark:hover:bg-transparent border-b border-gray-600 max-md:mb-4">About us</a></li>
-        <li><a href="{% url 'home:services' %}" class="font-Roboto tracking-wider font-light text-xl text-black dark:text-white md:hover:underline block py-2 px-3 md:p-0 md:hover:bg-transparent md:border-0  dark:hover:text-white md:dark:hover:bg-transparent border-b border-gray-600 max-md:mb-4">Services</a></li>
-        <li><a href="{% url 'home:pricing' %}" class="font-Roboto tracking-wider font-light text-xl text-black dark:text-white md:hover:underline block py-2 px-3 md:p-0 md:hover:bg-transparent md:border-0  dark:hover:text-white md:dark:hover:bg-transparent border-b border-gray-600 max-md:mb-4">Pricing</a></li>
-        <li><a href="{% url 'home:contact' %}" class="font-Roboto tracking-wider font-light text-xl text-black dark:text-white md:hover:underline block py-2 px-3 md:p-0 md:hover:bg-transparent md:border-0  dark:hover:text-white md:dark:hover:bg-transparent border-b border-gray-600 max-md:mb-4">Contact</a></li>
-        <li><a href="{% url 'user_profile:offers-billing' %}" class="font-Roboto tracking-wider font-light text-xl text-black dark:text-white md:hover:underline block py-2 px-3 md:p-0 md:hover:bg-transparent md:border-0  dark:hover:text-white md:dark:hover:bg-transparent border-b border-gray-600 max-md:mb-4">Profile</a></li>
+        <li><a href="{% url 'home:about' %}" class="font-Lato tracking-wider font-thin text-2xl text-black dark:text-white md:hover:underline block py-2 px-3 md:p-0 md:hover:bg-transparent md:border-0 hover:text-gray-700 dark:hover:text-gray-200 md:dark:hover:bg-transparent border-b border-gray-600 max-md:mb-4">ABOUT US</a></li>
+        <li><a href="{% url 'home:services' %}" class="font-Lato tracking-wider font-thin text-2xl text-black dark:text-white md:hover:underline block py-2 px-3 md:p-0 md:hover:bg-transparent md:border-0 hover:text-gray-700 dark:hover:text-gray-200 md:dark:hover:bg-transparent border-b border-gray-600 max-md:mb-4">SERVICES</a></li>
+        <li><a href="{% url 'home:pricing' %}" class="font-Lato tracking-wider font-thin text-2xl text-black dark:text-white md:hover:underline block py-2 px-3 md:p-0 md:hover:bg-transparent md:border-0 hover:text-gray-700 dark:hover:text-gray-200 md:dark:hover:bg-transparent border-b border-gray-600 max-md:mb-4">PRICING</a></li>
+        <li><a href="{% url 'home:contact' %}" class="font-Lato tracking-wider font-thin text-2xl text-black dark:text-white md:hover:underline block py-2 px-3 md:p-0 md:hover:bg-transparent md:border-0 hover:text-gray-700 dark:hover:text-gray-200 md:dark:hover:bg-transparent border-b border-gray-600 max-md:mb-4">CONTACT</a></li>
         
       </ul>
     </div>
   </div>
-</nav>  
-
+</nav>
 
 
 
@@ -106,8 +111,59 @@
 
 
 <!-- Footer -->
-<footer class="bg-white dark:bg-black border-t border-slate-500 dark:border-slate-700 z-50">
-{% include 'base/footer.html' %}
+<footer class="bg-white dark:bg-black z-50 ">
+
+
+
+
+  <div class="w-full max-w-screen-xl mx-auto px-4 py-10 bottom-0">
+    <div class="sm:flex sm:items-center sm:justify-between">
+        <div>
+        <a href="/" class="font-Lato font-thin text-4xl text-black dark:text-white">MyCoes</a>
+       
+       </div>
+
+        <ul class="flex flex-wrap items-center leading-relaxed mt-3 mb-6 text-sm font-medium sm:mb-0 sm:mt-0 text-black dark:text-white">
+          
+            <li>
+                <a href="{% url 'home:privacy-policy' %}" class="font-Lato font-thin text-2xl text-black dark:text-white mr-4 hover:underline md:mr-10">PRIVACY & POLICY</a>
+            </li>
+           
+            <li>
+                <a href="{% url 'feedback:feedback-view' %}" class="font-Lato font-thin text-2xl text-black dark:text-white mr-4 hover:underline md:mr-10">FEEDBACK</a>
+            </li>
+
+            <li>
+                <a href="{% url 'support:home' %}" class="font-Lato font-thin text-2xl text-black dark:text-white mr-4 hover:underline md:mr-10">SUPPORT</a>
+            </li>
+           
+        </ul>
+        <div class="border border-black dark:border-white flex w-40 text-center">
+            <a
+              id="theme-switcher"
+              class="block w-full whitespace-nowrap  px-3 py-2 text-sm font-normal dark:text-white bg-white dark:bg-black active:bg-black active:text-white active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-black hover:bg-slate-400"
+              href="#"
+              data-theme="light">
+              <div class="pointer-events-none">
+               
+                <span data-theme-name="light">Light</span>
+              </div>
+            </a>
+            <a
+              id="theme-switcher"
+              class="block w-full whitespace-nowrap bg-transparent px-3 py-2 text-sm font-normal dark:text-black bg-black dark:bg-white active:bg-white active:text-black active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-black hover:bg-slate-400"
+              href="#"
+              data-theme="dark"
+              data-te-dropdown-item-ref>
+              <div class="pointer-events-none">
+                <span data-theme-name="dark">Dark</span>
+              </div>
+            </a>
+          </div>
+
+    </div>
+    </div>
+
   <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script type="text/javascript" src="{% static 'cookie_consent/cookiebar.js' %}"></script>
   
@@ -143,7 +199,7 @@
   
               ready(function() {
                   showCookieBar({
-                      content: "{% with cookie_groups=cookie_groups|join:', ' %}{% filter escapejs %}<div class="p-4 border-t bg-white dark:bg-black border-gray-700 fixed bottom-0 z-50"><div class="flex items-center mt-6"><h3 class="text-3xl font-Roboto font-medium text-black dark:text-white">We value your privacy</h3></div><div class="flex items-center max-md:flex-wrap md:gap-6 my-6"><div class="mt-2 mb-4 text-xl font-Roboto font-light text-black dark:text-white">We use {{ cookie_groups }} cookies to enhance your browsing experience and provide personalized content. By clicking "Accept," you consent to the use of cookies on our site. <a href="{% url 'home:privacy-policy' %}" class="text-blue-400 underline">Cookie Policy</a></div><div class="flex gap-6 mt-2 mb-4"><a href='{{ url_accept }}' class="cc-cookie-accept text-xl font-Roboto font-light text-white dark:text-black bg-black dark:bg-white hover:bg-slate-950 dark:hover:bg-gray-100 py-3 px-10">Accept</a><a href='{{ url_decline }}' class="cc-cookie-decline text-xl font-Roboto font-light text-black dark:text-white border border-black dark:border-gray-300 py-3 px-10">Decline</a></div></div></div>{% endfilter %}{% endwith %}",
+                      content: "{% with cookie_groups=cookie_groups|join:', ' %}{% filter escapejs %}<div class="p-4 border-t bg-white dark:bg-black border-gray-700 fixed bottom-0 z-50"><div class="flex items-center mt-6"><h3 class="text-3xl font-Roboto font-medium text-black dark:text-white">We value your privacy</h3></div><div class="flex items-center max-md:flex-wrap md:gap-6 my-6"><div class="mt-2 mb-4 text-2xl font-Roboto font-light text-black dark:text-white">We use {{ cookie_groups }} cookies to enhance your browsing experience and provide personalized content. By clicking "Accept," you consent to the use of cookies on our site. <a href="{% url 'home:privacy-policy' %}" class="text-blue-400 underline">Cookie Policy</a></div><div class="flex gap-6 mt-2 mb-4"><a href='{{ url_accept }}' class="cc-cookie-accept text-2xl font-Roboto font-light text-white dark:text-black bg-black dark:bg-white hover:bg-slate-950 dark:hover:bg-gray-100 py-3 px-10">Accept</a><a href='{{ url_decline }}' class="cc-cookie-decline text-2xl font-Roboto font-light text-black dark:text-white border border-black dark:border-gray-300 py-3 px-10">Decline</a></div></div></div>{% endfilter %}{% endwith %}",
                       cookie_groups: cookie_groups,
                       cookie_decline: "{% get_decline_cookie_groups_cookie_string request cookie_groups %}",
                       beforeDeclined: function() {
@@ -157,8 +213,15 @@
   {% endif %}
 </footer>
 
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+ <script src="{% static 'js/aos.js' %}" type="text/javascript"></script>
  <script src="{% static 'js/main.js' %}" type="text/javascript"></script>
  <script src="{% static 'js/flowbite.min.js' %}"></script>
+
+ <script>
+  AOS.init();
+</script>
 
 </body>
 </html>
