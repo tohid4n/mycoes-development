@@ -58,6 +58,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -100,12 +101,12 @@ WSGI_APPLICATION = 'website.wsgi.application'
 
 DATABASES = {
         'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': env('NAME'),
         'USER': env('USER'),
         'PASSWORD': env('PASSWORD'),
         'HOST': env('HOST'),
-        'PORT': '3306',  
+        'PORT': '5432',  
         }
     }
 
@@ -198,10 +199,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 
     
-ALLOWED_HOSTS = ['88b9-2405-201-d00c-a116-483f-2287-39c5-4743.ngrok-free.app', 'localhost', '127.0.0.1',]
-CSRF_TRUSTED_ORIGINS = ['https://88b9-2405-201-d00c-a116-483f-2287-39c5-4743.ngrok-free.app',]
-#CSRF_COOKIE_SECURE = False
-    
+ALLOWED_HOSTS = ['.herokuapp.com', 'mycoes-d04bce713e72.herokuapp.com']
+
+
     
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
