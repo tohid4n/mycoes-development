@@ -99,11 +99,15 @@ WSGI_APPLICATION = 'website.wsgi.application'
 
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': env('NAME'),
+        'USER': env('USER'),
+        'PASSWORD': env('PASSWORD'),
+        'HOST': env('HOST'),
+        'PORT': '3306',  
+        }
     }
-}
 
 
 #Smtp settings
@@ -222,6 +226,5 @@ LOGGING = {
 
 
 #Paypal settings
-# PAYPAL_BUY_BUTTON_IMAGE = ""
 PAYPAL_RECEIVER_EMAIL = env('PAYPAL_RECEIVER_EMAIL')
-PAYPAL_TEST = True
+PAYPAL_TEST = False

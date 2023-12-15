@@ -16,3 +16,11 @@ Social Auth for Django:
 
 Django Magiclink:
     django-magiclink==1.3.0
+
+
+Django whitenoise:
+    django-magiclink==1.3.0
+
+
+Django gunicorn:
+    django-magiclink==1.3.0        
