@@ -25,5 +25,5 @@ Django whitenoise:
 Django gunicorn:
     gunicorn==21.2.0 
 
-Django psycopg:
-    psycopg==3.1.15       
+Django psycopg2:
+    psycopg2==2.9.9
