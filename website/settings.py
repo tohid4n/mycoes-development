@@ -2,11 +2,6 @@ import environ
 import os
 from pathlib import Path
 
-
-
-
-
-
 env = environ.Env(
     # set casting, default value
     DEBUG=(bool, False)
