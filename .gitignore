@@ -105,10 +105,16 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-
-venv.bak/
-env.bak/
 .env
+.venv
+env/
+.env
+C:\Users\tohid\Desktop\mycoes-dev\mycoes-production\.env
+venv/
+ENV/
+env.bak/
+venv.bak/
+
 
 # Spyder project settings
 .spyderproject
