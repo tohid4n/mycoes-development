@@ -195,7 +195,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 
     
-ALLOWED_HOSTS = ['.herokuapp.com', 'mycoes-d04bce713e72.herokuapp.com']
+ALLOWED_HOSTS = ['mycoes.com', 'www.mycoes.com', '.herokuapp.com', 'mycoes-d04bce713e72.herokuapp.com']
 
 
     
