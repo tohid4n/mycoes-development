@@ -11,7 +11,7 @@ class WwwRedirectMiddleware:
         requested_host = request.get_host().partition(":")[0]
         requested_scheme = request.scheme
 
-        if requested_host.startswith("www.") or requested_scheme == "http":
+        if requested_host.startswith("www.") or requested_scheme == "http" or requested_host == "mycoes-d04bce713e72.herokuapp.com":
             new_url = f"https://{current_domain}{request.path}"
             return HttpResponsePermanentRedirect(new_url)
         else:
