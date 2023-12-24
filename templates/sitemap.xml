@@ -1,83 +1,72 @@
-<?xml version="1.0" encoding="UTF-8"?> 
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"> 
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
 <url>
-  <loc>http://mycoes.com/</loc>
+  <loc>https://mycoes.com/</loc>
+  <lastmod>2023-12-24T18:05:07+00:00</lastmod>
+  <priority>1.00</priority>
 </url>
 <url>
-  <loc>http://mycoes.com/about/</loc>
+  <loc>https://mycoes.com/about/</loc>
+  <lastmod>2023-12-24T18:05:07+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://mycoes.com/services/</loc>
+  <loc>https://mycoes.com/services/</loc>
+  <lastmod>2023-12-24T18:05:07+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://mycoes.com/pricing/</loc>
+  <loc>https://mycoes.com/pricing/</loc>
+  <lastmod>2023-12-24T18:05:07+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://mycoes.com/contact/</loc>
+  <loc>https://mycoes.com/contact/</loc>
+  <lastmod>2023-12-24T18:05:07+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://mycoes.com/profile/offers-billing/</loc>
+  <loc>https://mycoes.com/auth/login/?next=/profile/offers-billing/</loc>
+  <lastmod>2023-12-24T18:05:07+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://mycoes.com/mycoes-offers/</loc>
+  <loc>https://mycoes.com/mycoes-offers/</loc>
+  <lastmod>2023-12-24T18:05:07+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://mycoes.com/privacy-policy/</loc>
+  <loc>https://mycoes.com/privacy-policy/</loc>
+  <lastmod>2023-12-24T18:05:07+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://mycoes.com/terms-of-services/</loc>
+  <loc>https://mycoes.com/terms-of-services/</loc>
+  <lastmod>2023-12-24T18:05:07+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://mycoes.com/feedback/</loc>
+  <loc>https://mycoes.com/auth/login/?next=/feedback/</loc>
+  <lastmod>2023-12-24T18:05:07+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://mycoes.com/support/</loc>
+  <loc>https://mycoes.com/support/</loc>
+  <lastmod>2023-12-24T18:05:07+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://mycoes.com/profile/offer/</loc>
+  <loc>https://mycoes.com/auth/login/?next=/profile/offer/</loc>
+  <lastmod>2023-12-24T18:05:07+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
-<url>
-  <loc>http://mycoes.com/oauth/login/google-oauth2/</loc>
-</url>
-<url>
-  <loc>https://www.mycoes.com</loc>
-</url>
-<url>
-  <loc>https://www.mycoes.com/contact/</loc>
-</url>
-<url>
-  <loc>http://www.mycoes.com</loc>
-</url>
-<url>
-  <loc>http://www.mycoes.com/</loc>
-</url>
-<url>
-  <loc>http://www.mycoes.com/about/</loc>
-</url>
-<url>
-  <loc>http://www.mycoes.com/services/</loc>
-</url>
-<url>
-  <loc>http://www.mycoes.com/pricing/</loc>
-</url>
-<url>
-  <loc>http://www.mycoes.com/contact/</loc>
-</url>
-<url>
-  <loc>http://www.mycoes.com/profile/offers-billing/</loc>
-</url>
-<url>
-  <loc>http://www.mycoes.com/mycoes-offers/</loc>
-</url>
-<url>
-  <loc>http://www.mycoes.com/privacy-policy/</loc>
-</url>
-<url>
-  <loc>http://www.mycoes.com/terms-of-services/</loc>
-</url>
-<url>
-  <loc>http://www.mycoes.com/feedback/</loc>
-</url>
-<url>
-  <loc>http://www.mycoes.com/support/</loc>
-</url>
+
+
+</urlset>
