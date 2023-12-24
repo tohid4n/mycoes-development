@@ -1,0 +1,9 @@
+User-agent: *
+Disallow: 
+Disallow: /tohid/admin
+Disallow: /paypal
+Disallow: /auth
+Disallow: /oauth
+Disallow: /logout
+Disallow: /cookies
+Sitemap: https://mycoes.com/sitemap.xml/
