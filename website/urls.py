@@ -1,6 +1,7 @@
 from django.contrib import admin
 from user_profile.views import CustomLogoutView
 from django.urls import path, include
+from django.views.generic import TemplateView
 from home.views import Custom404View, Custom500View
 
 
@@ -14,6 +15,7 @@ urlpatterns = [
     path('paypal/', include('paypal.standard.ipn.urls')),
     path('feedback/', include('feedback.urls', namespace='feedback')),
     path('support/', include('support.urls', namespace='support')),
+    path('sitemap.xml/', TemplateView.as_view(template_name='sitemap.xml', content_type='text/xml')),
     path('logout/', CustomLogoutView.as_view(), name='custom_logout'),
 ]
 

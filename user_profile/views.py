@@ -154,6 +154,7 @@ class ProfileTranscationsView(LoginRequiredMixin, generic.TemplateView):
         return context  
     
 
+  
 
 class CustomLogoutView(LoginRequiredMixin, LogoutView):
   def get_success_url(self):

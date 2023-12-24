@@ -121,3 +121,5 @@ class Custom404View(View):
 class Custom500View(View):
     def get(self, request, *args, **kwargs):
         return render(request, '500.html', status=500)    
+    
+    
