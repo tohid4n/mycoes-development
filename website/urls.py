@@ -15,7 +15,7 @@ urlpatterns = [
     path('paypal/', include('paypal.standard.ipn.urls')),
     path('feedback/', include('feedback.urls', namespace='feedback')),
     path('support/', include('support.urls', namespace='support')),
-    path('sitemap.xml/', TemplateView.as_view(template_name='sitemap.xml', content_type='text/xml')),
+    path('sitemap.xml/', TemplateView.as_view(template_name='sitemap.xml', content_type='application/xml')),
     path('logout/', CustomLogoutView.as_view(), name='custom_logout'),
 ]
 
