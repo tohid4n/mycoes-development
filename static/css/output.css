@@ -2442,6 +2442,14 @@ input:checked + .toggle-bg {
   padding-top: 2rem;
 }
 
+.pt-4 {
+  padding-top: 1rem;
+}
+
+.pt-10 {
+  padding-top: 2.5rem;
+}
+
 .pb-12 {
   padding-bottom: 3rem;
 }
