@@ -35,10 +35,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-
 // Dark and Light mode
 // On page load or when changing themes, best to add inline in `head` to avoid FOUC
-// Function to set the dark theme
+
 // Function to set the dark theme
 function setDarkTheme() {
   document.documentElement.classList.add("dark");
@@ -51,9 +50,9 @@ function setLightTheme() {
   localStorage.theme = "light";
 }
 
-// Check if the theme is stored in localStorage, otherwise set the default to dark
-if (localStorage.theme !== "light") {
-  setDarkTheme();
+// Check if the theme is stored in localStorage, otherwise set the default to light
+if (localStorage.theme !== "dark") {
+  setLightTheme();
 }
 
 // Function to handle theme switcher item click
@@ -74,6 +73,9 @@ const themeSwitcherItems = document.querySelectorAll("#theme-switcher");
 themeSwitcherItems.forEach((item) => {
   item.addEventListener("click", onThemeSwitcherItemClick);
 });
+
+
+
 
 
 
