@@ -84,7 +84,7 @@ class ContactView(generic.FormView):
 
     def form_valid(self, form):
         messages.info(
-            self.request, "Thanks for getting in touch. We have received your message. We will contact you in no-time."
+            self.request, "Thanks for getting in touch. We have received your message, We will contact you in no time and Don't forget to check your emails."
         )
 
         # Create an instance of ContactModel and save it to the database
