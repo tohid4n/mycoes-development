@@ -97,6 +97,24 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // scrolling effect to the bottom
 
+
+document.getElementById('registerButton').addEventListener('click', function() {
+  smoothScrollToBottom();
+});
+
+function smoothScrollToBottom() {
+  const targetPosition = document.body.scrollHeight; // This represents the height of the entire document
+
+  // Use window.scrollTo to smoothly scroll to the bottom
+  window.scrollTo({
+    top: targetPosition,
+    behavior: 'smooth'
+  });
+}
+
+
+// scorll down in pixels
+
 document.addEventListener('DOMContentLoaded', function () {
   // Variables to control scroll animation
   var scrollStep = 500; // Adjust the step size as needed
